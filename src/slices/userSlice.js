@@ -5,7 +5,7 @@ import { apiLogin } from "../apis/userAPI";
 export const login = createAsyncThunk("user/login", async (values) => {
     try {
         const data = await apiLogin(values);
-        localStorage.setItem("user", JSON.stringify(data.content));
+        localStorage.setItem("userInfo", JSON.stringify(data.content));
         return data.content;
     } catch (error) {
         throw error.response?.data?.content;
@@ -14,7 +14,7 @@ export const login = createAsyncThunk("user/login", async (values) => {
 
 // default state
 const initialState = {
-    user: JSON.parse(localStorage.getItem("user")) || null,
+    user: JSON.parse(localStorage.getItem("userInfo")) || null,
     isLoading: false,
     error: null,
 };
@@ -29,7 +29,7 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(login.pending, (state) => {
-            return { ...state, isLoading: true, error: null };
+            return { ...state, isLoading: true};
         });
         builder.addCase(login.fulfilled, (state, action) => {
             return { ...state, isLoading: false, user: action.payload };
