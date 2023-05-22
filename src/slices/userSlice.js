@@ -2,10 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { apiLogin } from "../apis/userAPI";
 
 // async actions
-export const login = createAsyncThunk("user/login", async (values) => {
+export const login = createAsyncThunk("user/login", async (values, { getState }) => {
     try {
         const data = await apiLogin(values);
-        localStorage.setItem("userInfo", JSON.stringify(data.content));
+        const { rememberMe } = getState().user;
+        if (rememberMe) {
+            localStorage.setItem("userInfo", JSON.stringify(data.content));
+        }
         return data.content;
     } catch (error) {
         throw error.response?.data?.content;
@@ -17,6 +20,7 @@ const initialState = {
     user: JSON.parse(localStorage.getItem("userInfo")) || null,
     isLoading: false,
     error: null,
+    rememberMe: false,
 };
 
 const userSlice = createSlice({
@@ -26,10 +30,13 @@ const userSlice = createSlice({
         logout: (state) => {
             return { ...state, user: null };
         },
+        setRememberMe: (state, action) => {
+            state.rememberMe = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(login.pending, (state) => {
-            return { ...state, isLoading: true};
+            return { ...state, isLoading: true };
         });
         builder.addCase(login.fulfilled, (state, action) => {
             return { ...state, isLoading: false, user: action.payload };
@@ -40,6 +47,6 @@ const userSlice = createSlice({
     },
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, setRememberMe } = userSlice.actions;
 
 export default userSlice.reducer;

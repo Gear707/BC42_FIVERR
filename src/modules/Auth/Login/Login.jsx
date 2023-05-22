@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
     MDBContainer,
     MDBCol,
@@ -14,8 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { login } from "../../../slices/userSlice";
-import { useNavigate } from "react-router-dom";
+import { login, setRememberMe } from "../../../slices/userSlice";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
@@ -38,9 +38,12 @@ function Login() {
         resolver: yupResolver(schema)
     });
 
-    const { user, isLoading, error } = useSelector((state) => state.user);
+    const { user, isLoading, error, rememberMe } = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    console.log(searchParams.get("redirectURL"));
 
     const navRegister = () => {
         navigate("/register");
@@ -52,6 +55,11 @@ function Login() {
 
     const onError = (errors) => {
         console.log(errors);
+    };
+
+    if (user) {
+        const url = searchParams.get("redirectURL") || "/";
+        return <Navigate to={url} />;
     };
 
     return (
@@ -83,13 +91,17 @@ function Login() {
                         {error && <p className="text-danger">Wrong email/password</p>}
 
                         <div className="d-flex justify-content-between mb-3">
-                            <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
+                            <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' checked={rememberMe}
+                                onChange={(e) => dispatch(setRememberMe(e.target.checked))}
+                            />
                             <p className="text-center">Don't have an account?
                                 <a onClick={navRegister} className="ms-2">Register here</a>
                             </p>
                         </div>
 
-                        <MDBBtn className="mb-2 w-100" size="lg">Log in</MDBBtn>
+                        <MDBBtn className="mb-2 w-100" size="lg" disabled={isLoading}>
+                            Log in
+                        </MDBBtn>
                     </form>
 
                     <div className="divider d-flex align-items-center my-4">
