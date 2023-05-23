@@ -9,7 +9,7 @@ import {
     MDBCheckbox
 }
     from 'mdb-react-ui-kit';
-import "./Login.scss";
+import styles from "./Login.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -63,16 +63,13 @@ function Login() {
     };
 
     return (
-        <MDBContainer className="p-5 bg-white rounded-7">
-
+        <MDBContainer className="mx-4 p-5 bg-white rounded-7">
             <MDBRow className="justify-content-between">
-
-                <MDBCol col='10' md='7' className="d-flex">
+                <MDBCol col='10' lg='7' className="d-none d-lg-block align-self-center">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" className="img-fluid" alt="Phone image" />
                 </MDBCol>
 
-                <MDBCol col='4' md='5'>
-
+                <MDBCol col='4' lg='5'>
                     <form onSubmit={handleSubmit(onSubmit, onError)}>
                         <h2 className="mb-5 text-center">Login</h2>
 
@@ -90,21 +87,24 @@ function Login() {
 
                         {error && <p className="text-danger">Wrong email/password</p>}
 
-                        <div className="d-flex justify-content-between mb-3">
-                            <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' checked={rememberMe}
+                        <div className="d-sm-flex justify-content-between mb-3">
+                            <MDBCheckbox name='flexCheck' label='Remember me'
+                                checked={rememberMe}
                                 onChange={(e) => dispatch(setRememberMe(e.target.checked))}
                             />
-                            <p className="text-center">Don't have an account?
+
+                            <p>
+                                Don't have an account?
                                 <a onClick={navRegister} className="ms-2">Register here</a>
                             </p>
                         </div>
 
-                        <MDBBtn className="mb-2 w-100" size="lg" disabled={isLoading}>
+                        <MDBBtn className={`${styles.loginBtn} mb-2 w-100`} size="lg" disabled={isLoading}>
                             Log in
                         </MDBBtn>
                     </form>
 
-                    <div className="divider d-flex align-items-center my-4">
+                    <div className={`${styles.divider} d-flex align-items-center my-4`}>
                         <p className="text-center fw-bold mx-3 mb-0">OR</p>
                     </div>
 
@@ -123,11 +123,8 @@ function Login() {
                         <MDBIcon fab icon="twitter" className="mx-2" />
                         Continue with twitter
                     </MDBBtn>
-
                 </MDBCol>
-
             </MDBRow>
-
         </MDBContainer>
     );
 }
