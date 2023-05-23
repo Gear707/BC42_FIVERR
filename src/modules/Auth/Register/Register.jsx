@@ -10,14 +10,20 @@ import {
 }
     from 'mdb-react-ui-kit';
 import styles from "./Register.module.scss";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     const [isMale, setIsMale] = useState(true);
 
-    return (
-        <MDBContainer className='mx-4 px-0 px-lg-5 py-2 rounded-7 bg-white'>
-            <MDBRow className='g-0 d-lg-flex align-items-center justify-content-center'>
+    const navigate = useNavigate();
 
+    const navLogin = () => {
+        navigate("/login");
+    };
+
+    return (
+        <MDBContainer className='mx-4 px-0 px-lg-5 rounded-7 bg-white'>
+            <MDBRow className='g-0 d-lg-flex align-items-center justify-content-center'>
                 <MDBCol lg='4' className="d-none d-lg-block">
                     <MDBCardImage src='https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg' alt='phone' className='rounded-t-5 rounded-tr-lg-0' fluid />
                 </MDBCol>
@@ -88,6 +94,10 @@ function Register() {
                                 Submit
                             </MDBBtn>
                         </form>
+                        <p className="mt-3">
+                            Already have an account?
+                            <a onClick={navLogin} className="ms-2">Login here</a>
+                        </p>
                     </MDBRow>
                 </MDBCol>
             </MDBRow>
