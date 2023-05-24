@@ -14,6 +14,11 @@ import { useNavigate } from "react-router-dom";
 
 function Register() {
     const [isMale, setIsMale] = useState(true);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const navigate = useNavigate();
 
@@ -31,46 +36,71 @@ function Register() {
                 <MDBCol lg='8'>
                     <MDBRow className='justify-content-center align-items-center m-5'>
                         <form>
-                            <h3 className="fw-bold mb-4 pb-2 pb-md-0 mb-md-4 text-center">Registration Form</h3>
+                            <h3 className="fw-bold mb-4 pb-2 pb-md-0 mb-md-4 text-center">
+                                Registration Form
+                            </h3>
 
                             <MDBRow>
                                 <MDBCol col='12' md='6' lg='6'>
-                                    <MDBInput wrapperClass='mb-4' label='Name' size='lg' type='text' />
+                                    <MDBInput wrapperClass='mb-4' label='Name' size='lg' type='text'
+                                    />
                                 </MDBCol>
 
                                 <MDBCol md='6' lg='6'>
-                                    <MDBInput wrapperClass='mb-4' label='Email' size='lg' type='email' />
+                                    <MDBInput wrapperClass='mb-4' label='Email' size='lg' type='email'
+                                    />
                                 </MDBCol>
                             </MDBRow>
 
                             <MDBRow>
                                 <MDBCol sm='6' md='6' lg='6'>
-                                    <MDBInput wrapperClass='mb-4' label='Password' size='lg' type='password' />
+                                    <div className="input-group">
+                                        <MDBInput wrapperClass='mb-4 col-10'
+                                            label='Password' size='lg'
+                                            type={showPassword ? 'text' : 'password'}
+                                        />
+                                        <div className={`input-group-text col-2 
+                                        ${styles.togglePassword} 
+                                        ${showPassword ? 'visible' : ''}`
+                                        }
+                                            onClick={togglePasswordVisibility}
+                                        >
+                                            {showPassword ?
+                                                <i className="fa-solid fa-eye"></i>
+                                                :
+                                                <i className="fa-solid fa-eye-slash"></i>
+                                            }
+                                        </div>
+                                    </div>
                                 </MDBCol>
 
                                 <MDBCol sm='6' md='6' lg='6'>
-                                    <MDBInput wrapperClass='mb-4' label='Phone Number' size='lg' type='tel' />
+                                    <MDBInput wrapperClass='mb-4' label='Phone Number' size='lg' type='tel'
+                                    />
                                 </MDBCol>
                             </MDBRow>
 
                             <MDBRow>
                                 <MDBCol sm='6' md='6' lg='6'>
-                                    <MDBInput wrapperClass='mb-4' label='Birthday' size='lg' type='date' />
+                                    <MDBInput wrapperClass='mb-4' label='Birthday' size='lg' type='date'
+                                    />
                                 </MDBCol>
 
                                 <MDBCol sm='6' md='6' lg='6' className='mb-4 d-flex align-items-center'>
                                     <span className="fw-bold me-3">Gender: </span>
                                     <MDBRadio checked={isMale} onChange={() => setIsMale(true)}
-                                        name='gender' id='male' value='male' label='Male' inline />
+                                        name='gender' id='male' value='male' label='Male' inline
+                                    />
                                     <MDBRadio checked={!isMale} onChange={() => setIsMale(false)}
-                                        name='gender' id='female' value='female' label='Female' inline />
+                                        name='gender' id='female' value='female' label='Female' inline
+                                    />
                                     {/* <MDBRadio name='inlineRadio' id='inlineRadio3' value='option3' label='Other' inline /> */}
                                 </MDBCol>
                             </MDBRow>
 
                             <MDBRow>
                                 <div className="form-group mb-4">
-                                    <select id="role" className="form-select" style={{ lineHeight: "2" }} required>
+                                    <select id="role" className="form-select " style={{ lineHeight: "2" }} required>
                                         <option value="">Select role</option>
                                         <option value="1">USER</option>
                                         <option value="2">ADMIN</option>
@@ -80,13 +110,17 @@ function Register() {
 
                             <MDBRow>
                                 <MDBCol>
-                                    <MDBInput wrapperClass='mb-4' label='Skill' size='lg' type='text' />
+                                    <MDBInput wrapperClass='mb-4' size='lg' type='text'
+                                    label='Skill: Teamwork, Communication, Problem Solving,...'
+                                    />
                                 </MDBCol>
                             </MDBRow>
 
                             <MDBRow>
                                 <MDBCol>
-                                    <MDBInput wrapperClass='mb-4' label='Certification' size='lg' type='text' />
+                                    <MDBInput wrapperClass='mb-4' size='lg' type='text'
+                                    label='Certification: Project Management, Business Analyst, Supply Chain,...'
+                                    />
                                 </MDBCol>
                             </MDBRow>
 

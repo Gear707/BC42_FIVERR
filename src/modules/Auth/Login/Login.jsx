@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     MDBContainer,
     MDBCol,
@@ -45,6 +45,12 @@ function Login() {
     const [searchParams, setSearchParams] = useSearchParams();
     console.log(searchParams.get("redirectURL"));
 
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     const navRegister = () => {
         navigate("/register");
     };
@@ -80,7 +86,24 @@ function Login() {
                         </div>
 
                         <div className="mb-3">
-                            <MDBInput label='Password' type='password' size="lg" {...register("password")} />
+                            <div className="input-group">
+                                <MDBInput wrapperClass='col-10' size='lg' 
+                                label='Password' type={showPassword ? 'text' : 'password'}  
+                                {...register("password")}
+                                />
+                                <div className={`input-group-text col-2 
+                                        ${styles.togglePassword} 
+                                        ${showPassword ? 'visible' : ''}`
+                                }
+                                    onClick={togglePasswordVisibility}
+                                >
+                                    {showPassword ?
+                                        <i className="fa-solid fa-eye"></i>
+                                        :
+                                        <i className="fa-solid fa-eye-slash"></i>
+                                    }
+                                </div>
+                            </div>
                             {errors.password &&
                                 <p className="mt-1 text-danger">{errors.password.message}</p>}
                         </div>
