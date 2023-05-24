@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import './App.css';
+// import './App.css';
 import HomeLayout from "./layouts/HomeLayout/HomeLayout";
 import Home from "./modules/Home/Home";
 import AuthLayout from "./layouts/AuthLayout/AuthLayout";
@@ -21,7 +21,7 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Route>
 
-        <Route path="/" element={<UserProfileLayout />} >
+        <Route path="/" element={<UserProfileLayout />}>
           <Route path="/user" element={<UserProfile />} />
         </Route>
       </Routes>
