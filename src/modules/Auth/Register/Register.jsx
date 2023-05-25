@@ -15,6 +15,8 @@ import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { apiRegister } from "../../../apis/userAPI";
 import dayjs from "dayjs";
+import { useSelector } from "react-redux";
+import Loading from "../../../components/Loading/Loading";
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 const NAME_FORMAT = /^[\p{L}\s]{2,}$/u;
@@ -49,6 +51,8 @@ const schema = yup.object({
 });
 
 function Register() {
+    const { user } = useSelector((state) => state.user);
+
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -97,6 +101,8 @@ function Register() {
     const navLogin = () => {
         navigate("/login");
     };
+
+    if (user) return <Loading />;
 
     return (
         <MDBContainer className='mx-4 px-0 px-lg-5 rounded-7 bg-white'>
