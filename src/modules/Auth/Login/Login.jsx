@@ -43,7 +43,6 @@ function Login() {
     const navigate = useNavigate();
 
     const [searchParams, setSearchParams] = useSearchParams();
-    console.log(searchParams.get("redirectURL"));
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -111,7 +110,7 @@ function Login() {
                         {error && <p className="text-danger">Wrong email/password</p>}
 
                         <div className="d-sm-flex justify-content-between mb-3">
-                            <MDBCheckbox name='flexCheck' label='Remember me'
+                            <MDBCheckbox label='Remember me'
                                 checked={rememberMe}
                                 onChange={(e) => dispatch(setRememberMe(e.target.checked))}
                             />

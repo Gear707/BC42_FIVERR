@@ -6,7 +6,6 @@ import {
     MDBCol,
     MDBCardImage,
     MDBInput,
-    MDBRadio,
 }
     from 'mdb-react-ui-kit';
 import styles from "./Register.module.scss";
@@ -15,6 +14,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { apiRegister } from "../../../apis/userAPI";
+import dayjs from "dayjs";
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 const NAME_FORMAT = /^[\p{L}\s]{2,}$/u;
@@ -43,14 +43,9 @@ const schema = yup.object({
         ),
     birthday: yup.string()
         .required("Birthday is required"),
-    gender: yup.boolean()
-        .required("Gender is required"),
+    gender: yup.boolean(),
     role: yup.string()
         .required("Role is required"),
-    skill: yup.array()
-        .required(),
-    certification: yup.array()
-        .required(),
 });
 
 function Register() {
@@ -86,6 +81,9 @@ function Register() {
     };
 
     const onSubmit = (values) => {
+        values.birthday = dayjs(values.birthday).format("MM/DD/YYYY");
+        values.skill = values.skill.split(", ");
+        values.certification = values.certification.split(", ");
         console.log(values);
         registerUserInfo(values);
     };
@@ -226,32 +224,20 @@ function Register() {
                             </MDBRow>
 
                             <MDBRow>
-                                <MDBCol className={errors.skill ? '' : 'mb-3'}>
-                                    <input type='text' className="form-control"
-                                     style={{ lineHeight: "2.3" }}
-                                        placeholder='Skill: Teamwork, Communication, Problem Solving,...'
+                                <MDBCol className='mb-3'>
+                                    <MDBInput type='text' size='lg'
+                                        label='Skill: Teamwork, Communication, Problem Solving,...'
                                         {...register("skill")}
                                     />
-                                    {errors.skill &&
-                                        <p className="mt-1 mb-2 text-danger">
-                                            {errors.skill.message}
-                                        </p>
-                                    }
                                 </MDBCol>
                             </MDBRow>
 
                             <MDBRow>
-                                <MDBCol className={errors.certification ? '' : 'mb-3'}>
-                                    <input type='text' className="form-control"
-                                     style={{ lineHeight: "2.3" }}
-                                        placeholder='Certification: Project Management, Business Analyst, Supply Chain,...'
+                                <MDBCol className='mb-3'>
+                                    <MDBInput type='text' size='lg'
+                                        label='Certification: Project Management, Business Analyst, Supply Chain,...'
                                         {...register("certification")}
                                     />
-                                    {errors.certification &&
-                                        <p className="mt-1 mb-2 text-danger">
-                                            {errors.certification.message}
-                                        </p>
-                                    }
                                 </MDBCol>
                             </MDBRow>
 

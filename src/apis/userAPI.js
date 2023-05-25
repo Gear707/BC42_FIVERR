@@ -6,9 +6,6 @@ export const apiLogin = async (values) => {
 };
 
 export const apiRegister = async (values) => {
-    const payload = {...values, skill: [], certification: []}
-
-    const { data } = await axiosClient.post("/auth/signup", payload);
+    const { data } = await axiosClient.post("/auth/signup", values);
     return data;
 };
-
