@@ -20,11 +20,11 @@ import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
 const schema = yup.object({
-    email: yup.string().required("Enter your email"),
-    password: yup.string().required("Enter your password")
+    email: yup.string().required("Email is required"),
+    password: yup.string().required("Password is required")
         .matches(
             PASSWORD_FORMAT,
-            "The password must have at least 8 characters including uppercase letters, lowercase letters and numbers"
+            "Password must have at least 8 characters including uppercase letters, lowercase letters and numbers"
         ),
 });
 

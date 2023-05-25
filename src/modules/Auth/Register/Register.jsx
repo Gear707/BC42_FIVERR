@@ -11,13 +11,87 @@ import {
     from 'mdb-react-ui-kit';
 import styles from "./Register.module.scss";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { apiRegister } from "../../../apis/userAPI";
+
+const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+const NAME_FORMAT = /^[\p{L}\s]{2,}$/u;
+const PHONENUMBER_FORMAT = /^0[0-9]{9}$/i;
+
+const schema = yup.object({
+    name: yup.string()
+        .required("Name is required")
+        .matches(
+            NAME_FORMAT,
+            "Name must be at least 2 letters and can only consist of alphabet characters",
+        ),
+    email: yup.string().email()
+        .required("Email is required"),
+    password: yup.string()
+        .required("Password is required")
+        .matches(
+            PASSWORD_FORMAT,
+            "Password must have at least 8 characters including uppercase letters, lowercase letters and numbers",
+        ),
+    phone: yup.string()
+        .required("Phone number is required")
+        .matches(
+            PHONENUMBER_FORMAT,
+            "Wrong format",
+        ),
+    birthday: yup.string()
+        .required("Birthday is required"),
+    gender: yup.boolean()
+        .required("Gender is required"),
+    role: yup.string()
+        .required("Role is required"),
+    skill: yup.array()
+        .required(),
+    certification: yup.array()
+        .required(),
+});
 
 function Register() {
-    const [isMale, setIsMale] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
+    };
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            name: "",
+            email: "",
+            password: "",
+            phone: "",
+            birthday: "",
+            gender: true,
+            role: "",
+            skill: [],
+            certification: []
+        },
+        mode: "onTouched",
+        resolver: yupResolver(schema),
+    });
+
+    const registerUserInfo = async (values) => {
+        try {
+            const data = await apiRegister(values);
+            console.log(data);
+        } catch (error) {
+            console.log(error.response?.data?.content);
+        }
+    };
+
+    const onSubmit = (values) => {
+        console.log(values);
+        registerUserInfo(values);
+    };
+
+    const onError = (errors) => {
+        console.log(errors);
     };
 
     const navigate = useNavigate();
@@ -35,29 +109,46 @@ function Register() {
 
                 <MDBCol lg='8'>
                     <MDBRow className='justify-content-center align-items-center m-5'>
-                        <form>
+                        <form onSubmit={handleSubmit(onSubmit, onError)}>
                             <h3 className="fw-bold mb-4 pb-2 pb-md-0 mb-md-4 text-center">
                                 Registration Form
                             </h3>
 
                             <MDBRow>
-                                <MDBCol col='12' md='6' lg='6'>
-                                    <MDBInput wrapperClass='mb-4' label='Name' size='lg' type='text'
+                                <MDBCol col='12' md='6' lg='6'
+                                    className={errors.name ? '' : 'mb-3'}
+                                >
+                                    <MDBInput label='Name' size='lg' type='text'
+                                        {...register("name")}
                                     />
+                                    {errors.name &&
+                                        <p className="mt-1 mb-2 text-danger">
+                                            {errors.name.message}
+                                        </p>
+                                    }
                                 </MDBCol>
 
-                                <MDBCol md='6' lg='6'>
-                                    <MDBInput wrapperClass='mb-4' label='Email' size='lg' type='email'
+                                <MDBCol md='6' lg='6' className={errors.email ? '' : 'mb-3'}>
+                                    <MDBInput label='Email' size='lg' type='email'
+                                        {...register("email")}
                                     />
+                                    {errors.email &&
+                                        <p className="mt-1 mb-2 text-danger">
+                                            {errors.email.message}
+                                        </p>
+                                    }
                                 </MDBCol>
                             </MDBRow>
 
                             <MDBRow>
-                                <MDBCol sm='6' md='6' lg='6'>
+                                <MDBCol sm='6' md='6' lg='6'
+                                    className={errors.password ? '' : 'mb-3'}
+                                >
                                     <div className="input-group">
-                                        <MDBInput wrapperClass='mb-4 col-10'
+                                        <MDBInput wrapperClass='col-10'
                                             label='Password' size='lg'
                                             type={showPassword ? 'text' : 'password'}
+                                            {...register("password")}
                                         />
                                         <div className={`input-group-text col-2 
                                         ${styles.togglePassword} 
@@ -72,55 +163,95 @@ function Register() {
                                             }
                                         </div>
                                     </div>
+                                    {errors.password &&
+                                        <p className="mt-1 mb-2 text-danger">
+                                            {errors.password.message}
+                                        </p>
+                                    }
                                 </MDBCol>
 
-                                <MDBCol sm='6' md='6' lg='6'>
-                                    <MDBInput wrapperClass='mb-4' label='Phone Number' size='lg' type='tel'
+                                <MDBCol sm='6' md='6' lg='6'
+                                    className={errors.phone ? '' : 'mb-3'}
+                                >
+                                    <MDBInput label='Phone Number' size='lg' type='tel'
+                                        {...register("phone")}
                                     />
-                                </MDBCol>
-                            </MDBRow>
-
-                            <MDBRow>
-                                <MDBCol sm='6' md='6' lg='6'>
-                                    <MDBInput wrapperClass='mb-4' label='Birthday' size='lg' type='date'
-                                    />
-                                </MDBCol>
-
-                                <MDBCol sm='6' md='6' lg='6' className='mb-4 d-flex align-items-center'>
-                                    <span className="fw-bold me-3">Gender: </span>
-                                    <MDBRadio checked={isMale} onChange={() => setIsMale(true)}
-                                        name='gender' id='male' value='male' label='Male' inline
-                                    />
-                                    <MDBRadio checked={!isMale} onChange={() => setIsMale(false)}
-                                        name='gender' id='female' value='female' label='Female' inline
-                                    />
-                                    {/* <MDBRadio name='inlineRadio' id='inlineRadio3' value='option3' label='Other' inline /> */}
+                                    {errors.phone &&
+                                        <p className="mt-1 mb-2 text-danger">
+                                            {errors.phone.message}
+                                        </p>
+                                    }
                                 </MDBCol>
                             </MDBRow>
 
                             <MDBRow>
-                                <div className="form-group mb-4">
-                                    <select id="role" className="form-select " style={{ lineHeight: "2" }} required>
+                                <MDBCol sm='6' md='6' lg='6'
+                                    className={errors.birthday ? '' : 'mb-3'}
+                                >
+                                    <MDBInput label='Birthday' size='lg' type='date'
+                                        {...register("birthday")}
+                                    />
+                                    {errors.birthday &&
+                                        <p className="mt-1 mb-2 text-danger">
+                                            {errors.birthday.message}
+                                        </p>
+                                    }
+                                </MDBCol>
+
+                                <MDBCol sm='6' md='6' lg='6' className='mb-3'>
+                                    <div className="form-group">
+                                        <select className="form-select " style={{ lineHeight: "2" }} {...register("gender", { valueAsBoolean: true })}
+                                        >
+                                            <option value="true">Male</option>
+                                            <option value="false">Female</option>
+                                        </select>
+                                    </div>
+                                </MDBCol>
+                            </MDBRow>
+
+                            <MDBRow className={errors.role ? '' : 'mb-3'}>
+                                <div className="form-group">
+                                    <select className="form-select" style={{ lineHeight: "2" }} {...register("role")}
+                                    >
                                         <option value="">Select role</option>
-                                        <option value="1">USER</option>
-                                        <option value="2">ADMIN</option>
+                                        <option>USER</option>
+                                        <option>ADMIN</option>
                                     </select>
                                 </div>
+                                {errors.role &&
+                                    <p className="mt-1 mb-2 text-danger">
+                                        {errors.role.message}
+                                    </p>
+                                }
                             </MDBRow>
 
                             <MDBRow>
-                                <MDBCol>
-                                    <MDBInput wrapperClass='mb-4' size='lg' type='text'
-                                    label='Skill: Teamwork, Communication, Problem Solving,...'
+                                <MDBCol className={errors.skill ? '' : 'mb-3'}>
+                                    <input type='text' className="form-control"
+                                     style={{ lineHeight: "2.3" }}
+                                        placeholder='Skill: Teamwork, Communication, Problem Solving,...'
+                                        {...register("skill")}
                                     />
+                                    {errors.skill &&
+                                        <p className="mt-1 mb-2 text-danger">
+                                            {errors.skill.message}
+                                        </p>
+                                    }
                                 </MDBCol>
                             </MDBRow>
 
                             <MDBRow>
-                                <MDBCol>
-                                    <MDBInput wrapperClass='mb-4' size='lg' type='text'
-                                    label='Certification: Project Management, Business Analyst, Supply Chain,...'
+                                <MDBCol className={errors.certification ? '' : 'mb-3'}>
+                                    <input type='text' className="form-control"
+                                     style={{ lineHeight: "2.3" }}
+                                        placeholder='Certification: Project Management, Business Analyst, Supply Chain,...'
+                                        {...register("certification")}
                                     />
+                                    {errors.certification &&
+                                        <p className="mt-1 mb-2 text-danger">
+                                            {errors.certification.message}
+                                        </p>
+                                    }
                                 </MDBCol>
                             </MDBRow>
 
