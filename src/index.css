@@ -22,3 +22,18 @@ button {
   cursor: pointer;
   transition: all .3s !important;
 }
+
+ol,
+ul {
+  list-style: none;
+  list-style-image: none;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+p {
+  border: 0;
+  margin: 0 !important;
+  outline: 0;
+  padding: 0 !important;
+}
