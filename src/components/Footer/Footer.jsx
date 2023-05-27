@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "./Footer.module.scss";
+import useWindowResize from "../../helpers/useWindowResize";
 
 function Footer() {
+    const [expandedSections, setExpandedSections] = useState([]);
+    const size = useWindowResize();
+
+    const handleSectionToggle = (index) => {
+        const updatedSections = [...expandedSections];
+        updatedSections[index] = !updatedSections[index];
+        setExpandedSections(updatedSections);
+    };
+
+    useEffect(() => {
+        if (size.width <= 575.98) {
+            setExpandedSections(new Array(5).fill(false));
+        } else {
+            setExpandedSections(new Array(5).fill(true));
+        }
+    }, [size.width]);
+
     return (
         <div className={styles.bodyFooter}>
             <footer>
@@ -12,12 +30,16 @@ function Footer() {
                                 <div className={styles.itemTitle}>
                                     <h6>Categories</h6>
                                     <div className="d-flex justify-content-end">
-                                        <span className={styles.collapsible}>
+                                        <span className={styles.collapsible}
+                                            onClick={() => handleSectionToggle(0)}
+                                        >
                                             <i class="fa-solid fa-angle-down"></i>
                                         </span>
                                     </div>
                                 </div>
-                                <div className={styles.itemLink}>
+                                <div className={`${styles.itemLink} 
+                                ${expandedSections[0] ? styles.show : styles.hide}`}
+                                >
                                     <ul>
                                         <li><a href="#">Graphics &amp; Design</a></li>
                                         <li><a href="#">Digital Marketing</a></li>
@@ -40,12 +62,16 @@ function Footer() {
                                 <div className={styles.itemTitle}>
                                     <h6>About</h6>
                                     <div className="d-flex justify-content-end">
-                                        <span className={styles.collapsible}>
+                                        <span className={styles.collapsible}
+                                            onClick={() => handleSectionToggle(1)}
+                                        >
                                             <i class="fa-solid fa-angle-down"></i>
                                         </span>
                                     </div>
                                 </div>
-                                <div className={styles.itemLink}>
+                                <div className={`${styles.itemLink} 
+                                ${expandedSections[1] ? styles.show : styles.hide}`}
+                                >
                                     <ul>
                                         <li><a href="#">Careers</a></li>
                                         <li><a href="#">Press &amp; News</a></li>
@@ -63,12 +89,16 @@ function Footer() {
                                 <div className={styles.itemTitle}>
                                     <h6>Support</h6>
                                     <div className="d-flex justify-content-end">
-                                        <span className={styles.collapsible}>
+                                        <span className={styles.collapsible}
+                                            onClick={() => handleSectionToggle(2)}
+                                        >
                                             <i class="fa-solid fa-angle-down"></i>
                                         </span>
                                     </div>
                                 </div>
-                                <div className={styles.itemLink}>
+                                <div className={`${styles.itemLink} 
+                                ${expandedSections[2] ? styles.show : styles.hide}`}
+                                >
                                     <ul>
                                         <li><a href="#">Help &amp; Support</a></li>
                                         <li><a href="#">Trust &amp; Safety</a></li>
@@ -84,12 +114,16 @@ function Footer() {
                                 <div className={styles.itemTitle}>
                                     <h6>Community</h6>
                                     <div className="d-flex justify-content-end">
-                                        <span className={styles.collapsible}>
+                                        <span className={styles.collapsible}
+                                            onClick={() => handleSectionToggle(3)}
+                                        >
                                             <i class="fa-solid fa-angle-down"></i>
                                         </span>
                                     </div>
                                 </div>
-                                <div className={styles.itemLink}>
+                                <div className={`${styles.itemLink} 
+                                ${expandedSections[3] ? styles.show : styles.hide}`}
+                                >
                                     <ul>
                                         <li><a href="#">Customer Success Stories</a></li>
                                         <li><a href="#">Community Hub</a></li>
@@ -111,12 +145,16 @@ function Footer() {
                                 <div className={styles.itemTitle}>
                                     <h6>More From Fiverr</h6>
                                     <div className="d-flex justify-content-end">
-                                        <span className={styles.collapsible}>
+                                        <span className={styles.collapsible}
+                                            onClick={() => handleSectionToggle(4)}
+                                        >
                                             <i class="fa-solid fa-angle-down"></i>
                                         </span>
                                     </div>
                                 </div>
-                                <div className={styles.itemLink}>
+                                <div className={`${styles.itemLink} 
+                                ${expandedSections[4] ? styles.show : styles.hide}`}
+                                >
                                     <ul>
                                         <li><a href="#">Fiverr Enterprise</a></li>
                                         <li><a href="#">Fiverr Business</a></li>
