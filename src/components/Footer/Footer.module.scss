@@ -6,7 +6,6 @@ $color-2: #74767e;
 $color-3: #efeff0;
 $color-4: #169b64;
 
-
 @mixin noBgAndBorder() {
     background: none;
     border: none;
@@ -143,7 +142,6 @@ $color-4: #169b64;
                             margin-top: 10px !important;
                         }
                     }
-
                 }
 
                 .bottomRight {
