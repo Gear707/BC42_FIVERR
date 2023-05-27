@@ -33,7 +33,7 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(0)}
                                         >
-                                            <i class="fa-solid fa-angle-down"></i>
+                                            <i className="fa-solid fa-angle-down"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(1)}
                                         >
-                                            <i class="fa-solid fa-angle-down"></i>
+                                            <i className="fa-solid fa-angle-down"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(2)}
                                         >
-                                            <i class="fa-solid fa-angle-down"></i>
+                                            <i className="fa-solid fa-angle-down"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(3)}
                                         >
-                                            <i class="fa-solid fa-angle-down"></i>
+                                            <i className="fa-solid fa-angle-down"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(4)}
                                         >
-                                            <i class="fa-solid fa-angle-down"></i>
+                                            <i className="fa-solid fa-angle-down"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -204,35 +204,35 @@ function Footer() {
                                 <li>
                                     <a href="https://twitter.com/fiverr">
                                         <span className={styles.socialIcon}>
-                                            <i class="fa-brands fa-twitter fa-xl"></i>
+                                            <i className="fa-brands fa-twitter fa-xl"></i>
                                         </span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://www.facebook.com/Fiverr/">
                                         <span className={styles.socialIcon}>
-                                            <i class="fa-brands fa-facebook fa-xl"></i>
+                                            <i className="fa-brands fa-facebook fa-xl"></i>
                                         </span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://www.linkedin.com/company/fiverr-com">
                                         <span className={styles.socialIcon}>
-                                            <i class="fa-brands fa-linkedin fa-xl"></i>
+                                            <i className="fa-brands fa-linkedin fa-xl"></i>
                                         </span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://www.pinterest.com/fiverr/">
                                         <span className={styles.socialIcon}>
-                                            <i class="fa-brands fa-pinterest fa-xl"></i>
+                                            <i className="fa-brands fa-pinterest fa-xl"></i>
                                         </span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://www.instagram.com/fiverr/">
                                         <span className={styles.socialIcon}>
-                                            <i class="fa-brands fa-instagram fa-xl"></i>
+                                            <i className="fa-brands fa-instagram fa-xl"></i>
                                         </span>
                                     </a>
                                 </li>
@@ -241,7 +241,7 @@ function Footer() {
                                 <section className="me-1">
                                     <button className={`d-flex ${styles.languageBtn}`}>
                                         <span className={styles.globe}>
-                                            <i class="fa-solid fa-globe"></i>
+                                            <i className="fa-solid fa-globe"></i>
                                         </span>
                                         <span className="label">English</span>
                                     </button>
