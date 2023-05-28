@@ -3,14 +3,14 @@ import Header from "../../components/Header/Header";
 import { Outlet } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 
-function HomeLayout() {
+function MainLayout() {
   return (
     <>
-      <Outlet />
       <Header />
+      <Outlet />
       {/* <Footer /> */}
     </>
   );
 }
 
-export default HomeLayout;
+export default MainLayout;

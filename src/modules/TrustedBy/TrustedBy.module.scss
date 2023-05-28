@@ -1,6 +1,7 @@
 .background {
     background-color: #fafafa;
     margin-bottom: 96px;
+
     .container {
         padding: 0 32px;
         margin: 0 20px;
@@ -8,14 +9,21 @@
         display: flex;
         justify-content: center;
         align-items: center;
-color: #b5b6ba;
+        color: #b5b6ba;
+
         .trustedBy {
-            padding-right: 20px;
+            font-weight: 600;
             font-size: 16px;
+            padding-right: 20px;
         }
 
-        .brand {
-            padding-right: 60px
+        .brandGroup {
+            padding: 0 24px;
+
+            .brand {
+                padding-right: 60px
+            }
         }
+
     }
 }

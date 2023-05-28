@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Banner.module.scss";
 import "./slick.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { apiJobList } from "../../apis/jobAPI";
+import { Link, useNavigate } from "react-router-dom";
 
 function Banner() {
+  const navigate = useNavigate();
+  const [values, setValues] = useState(null);
   const settings = {
     dots: false,
     infinite: true,
@@ -17,6 +21,21 @@ function Banner() {
     fade: true,
     adaptiveHeight: true,
   };
+
+  const handleChange = (evt) => {
+    const { value, name } = evt.target;
+    setValues({ ...values, [name]: value });
+  };
+
+  const handleSearch = async (keyword) => {
+    try {
+      const jobList = await apiJobList(keyword);
+      console.log(jobList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div id="Banner" className={styles.background}>
       <Slider className={styles.slider} {...settings}>
@@ -104,8 +123,17 @@ function Banner() {
                 className={`${styles.serviceInput} form-control`}
                 type="search"
                 placeholder="Search for any services..."
+                name="keyword"
+                onChange={handleChange}
               />
-              <a className={styles.submitButton} type="submit">
+              <a
+                className={styles.submitButton}
+                type="submit"
+                onClick={() => {
+                  handleSearch(values?.keyword);
+                  navigate(`/jobList/${values.keyword}`);
+                }}
+              >
                 <svg
                   width={16}
                   height={16}

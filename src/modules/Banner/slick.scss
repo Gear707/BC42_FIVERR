@@ -1,11 +1,71 @@
-// #carousel .slick-slider {
-//    .slick-list {
-//     .slick-track {
-//         width: 100% !important;
-//         height: 100% !important;
-//     }
-//     } 
-// }
+*body {
+    font: 400 16px/24px Macan, Helvetica Neue, Helvetica, Arial, sans-serif !important;
+}
+
+#Banner .slick-arrow.slick-prev, #Banner .slick-arrow.slick-next {
+    display: none !important;
+}
+
 .slick-slider.slick-initialized {
     padding-top: 0 !important;
+    text-align: center !important;
 }
+
+.slider-package {
+    // margin-right: 5px !important
+}
+
+.slick-arrow.slick-prev, .slick-arrow.slick-next {
+    background-color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.15);
+    font-size: 16px;
+    height: 48px;
+    line-height: 100%;
+    margin-top: -24px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 48px;
+    z-index: 100;
+}
+
+.slick-arrow.slick-prev {
+    border-radius: 30px;
+    left: -25px !important;
+  
+   &:hover {
+    background: #fff !important;
+}
+}
+
+.slick-arrow.slick-next {
+    border-radius: 30px;
+    right: -25px !important;
+
+    &:hover {
+        background: #fff !important;
+    }
+}
+
+.slick-slider .slick-arrow.slick-next::before {
+    background: url("https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/arrows.c651879.svg") no-repeat;
+    background-size: 16px 64px;
+    background-position: bottom;
+    content: "";
+    margin-top: 15px;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}
+
+.slick-slider .slick-arrow.slick-prev::before {
+    background: url("https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/arrows.c651879.svg") no-repeat;
+    background-size: 16px 64px;
+    background-position: top;
+    content: "";
+    margin-top: 15px;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}
+
