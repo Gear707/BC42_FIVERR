@@ -1,13 +1,12 @@
 import React from 'react';
-import Header from "../../components/Header/Header";
 import { Outlet } from "react-router-dom";
+import styles from "./AuthLayout.module.scss";
 
 function AuthLayout() {
     return (
-        <>
-            <Header />
+        <div className={styles.authBody}>
             <Outlet />
-        </>
+        </div>
     );
 }
 
