@@ -10,136 +10,367 @@
     color: white !important;
     overflow: hidden;
 
-    .container {
-        max-width: 1400px;
+    .headerContainer {
+        max-width: 1500px !important;
+        display: inline !important;
+        margin: 0px 40px;
         height: 80px;
-        padding: 0 32px;
-        margin: 0px 20px;
 
-        .background {
-            display: flex !important;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 12px;
+        #navbar.container {
+            max-width: 1500px !important;
+        }
 
-            .nav {
-                overflow: hidden;
+        // .toggleBtn {
+        //     button.navbar-toggler.collapsed {
+        //         width: 25px !important;
+        //         box-shadow: none !important;
+        //         background-color: transparent;
+        //         span.navbar-toggler-icon {
+        //             width: 25px !important;
+        //                  color: #fff !important;
+        //         }
 
-                >ul {
-                    >li {
-                        padding: 0 6px;
-                        font-size: 16px;
+        //         &:focus {
+        //             box-shadow: none !important;
+        //         }
+        //     }
+        // }
 
-                        .joinButton {
-                            border: 1px solid #1dbf73 !important;
-                            color: #1dbf73;
-                            border-radius: 4px;
-                            text-decoration: none;
-                            font-size: 14px;
-                            padding: 5px 16px;
-                            display: flex;
-                            align-items: center !important;
-                            justify-content: center;
+        .nav {
+            overflow: hidden;
 
-                            &:hover {
-                                background-color: #1dbf73;
-                                color: #fff !important;
-                            }
-                        }
+            .joinButton {
+                border: 1px solid #1dbf73 !important;
+                color: #1dbf73;
+                border-radius: 4px;
+                text-decoration: none;
+                font-size: 14px;
+                display: flex;
+                align-items: center !important;
+                justify-content: center;
 
-                        a {
-                            font-weight: 600 !important;
-                            text-decoration: none;
-                            white-space: nowrap;
-
-                            svg {
-                                margin-right: 8px;
-                            }
-
-                        }
-
-                        a:hover,
-                        a:hover svg {
-                            color: #1dbf73 !important;
-                            fill: #1dbf73 !important
-                        }
-
-                    }
-
-                    .FiverrBusiness {
-                        color: #1e1692 !important;
-                    }
+                &:hover {
+                    background-color: #1dbf73;
+                    color: #fff !important;
                 }
             }
 
-            .nav1 {
-                overflow: hidden;
+            a {
+                padding: 6px 12px !important;
+                font-weight: 600 !important;
+                text-decoration: none;
+                white-space: nowrap;
 
-                >ul {
-                    display: flex;
-                    align-items: center !important;
-                    justify-content: center;
-                    color: #fff !important;
-
-                    >li {
-                        padding: 0 6px;
-                        font-weight: 600;
-                        font-size: 16px;
-
-                        .joinButton {
-                            border: 1px solid #fff !important;
-                            color: #fff;
-                            border-radius: 4px;
-                            text-decoration: none;
-                            font-size: 14px;
-                            padding: 5px 16px;
-                            display: flex;
-                            align-items: center !important;
-                            justify-content: center;
-
-                            &:hover {
-                                background-color: #1dbf73;
-                                border: 1px solid #1dbf73 !important;
-                            }
-                        }
-                    }
-
-                    a {
-                        color: #fff !important;
-
-                        svg {
-                            margin-right: 8px;
-                        }
-                    }
-
+                svg {
+                    margin-right: 8px;
                 }
+
+            }
+
+            a:hover,
+            a:hover svg {
+                color: #1dbf73 !important;
+                fill: #1dbf73 !important
+            }
+
+            .FiverrBusiness {
+                color: #1e1692 !important;
+
+
             }
         }
 
-        .searchPackage {
-            input {
-                width: 520px !important;
-                height: 42px
-            }
+        .nav1 {
+            overflow: hidden;
 
-            .submitButton {
-                background-color: #222325;
-                border-radius: 0 4px 4px 0;
-
-                width: 50px;
-                height: 42px;
-
-                display: block;
+            .joinButton {
+                border: 1px solid #fff !important;
+                color: #fff;
+                border-radius: 4px;
+                text-decoration: none;
                 font-size: 14px;
-                padding: 8px 16px;
-                text-shadow: none;
-                cursor: pointer;
-                transition: opacity 0.5s;
+                padding: 5px 16px;
+                display: flex;
+                align-items: center !important;
+                justify-content: center;
 
                 &:hover {
-                    opacity: 0.8;
+                    background-color: #1dbf73;
+                    border: 1px solid #1dbf73 !important;
                 }
             }
+
+
+            a {
+                color: #fff !important;
+                padding: 6px 12px !important;
+                font-weight: 600 !important;
+                text-decoration: none;
+                white-space: nowrap;
+
+                svg {
+                    margin-right: 8px;
+                }
+            }
+
+
+        }
+    }
+
+    .searchPackage {
+        width: 38vw !important;
+
+        input {
+            height: 42px
+        }
+
+        .submitButton {
+            background-color: #222325;
+            border-radius: 0 4px 4px 0;
+
+            width: 50px;
+            height: 42px;
+
+            display: block;
+            font-size: 14px;
+            padding: 8px 16px;
+            text-shadow: none;
+            cursor: pointer;
+            transition: opacity 0.5s;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .headerContainer {
+        max-width: 900px !important;
+        margin: 0px 40px;
+        height: 80px;
+
+        #navbar.container {
+            max-width: 1500px !important;
+        }
+
+        .nav {
+            overflow: hidden;
+
+            .joinButton {
+                border: 1px solid #1dbf73 !important;
+                color: #1dbf73;
+                border-radius: 4px;
+                text-decoration: none;
+                font-size: 14px;
+                display: flex;
+                align-items: center !important;
+                justify-content: center;
+
+                &:hover {
+                    background-color: #1dbf73;
+                    color: #fff !important;
+                }
+            }
+
+            a {
+                display: none;
+
+                svg {
+                    margin-right: 8px;
+                }
+
+            }
+
+            .signIn {
+                display: block;
+
+                .signIn:hover {
+                    color: #1dbf73 !important;
+                    fill: #1dbf73 !important
+                }
+            }
+
+
+            .FiverrBusiness {
+                color: #1e1692 !important;
+
+
+            }
+        }
+
+        .nav1 {
+            overflow: hidden;
+
+
+            .joinButton {
+                border: 1px solid #fff !important;
+                color: #fff;
+                border-radius: 4px;
+                text-decoration: none;
+                font-size: 14px;
+                padding: 5px 16px;
+                display: flex;
+                align-items: center !important;
+                justify-content: center;
+
+                &:hover {
+                    background-color: #1dbf73;
+                    border: 1px solid #1dbf73 !important;
+                }
+            }
+
+
+            a {
+                display: none;
+
+                svg {
+                    margin-right: 8px;
+                }
+
+            }
+
+            .signIn {
+                display: block;
+
+                .signIn:hover {
+                    color: #1dbf73 !important;
+                    fill: #1dbf73 !important
+                }
+            }
+
+
+        }
+    }
+
+    .searchPackage {
+        input {
+            border-radius: 4px !important;
+            height: 42px;
+        }
+
+        .submitButton {
+            display: none !important;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .headerContainer {
+        max-width: 800px !important;
+        margin: 0px 20px;
+        height: 80px;
+
+        #navbar.container {
+            max-width: 800px !important;
+        }
+
+        .nav {
+            overflow: hidden;
+
+            .joinButton {
+                border: 1px solid #1dbf73 !important;
+                color: #1dbf73;
+                border-radius: 4px;
+                text-decoration: none;
+                font-size: 14px;
+                display: flex;
+                align-items: center !important;
+                justify-content: center;
+
+                &:hover {
+                    background-color: #1dbf73;
+                    color: #fff !important;
+                }
+            }
+
+            a {
+                display: none;
+
+                svg {
+                    margin-right: 8px;
+                }
+
+            }
+
+            .signIn {
+                display: block;
+
+                .signIn:hover {
+                    color: #1dbf73 !important;
+                    fill: #1dbf73 !important
+                }
+            }
+
+
+            .FiverrBusiness {
+                color: #1e1692 !important;
+
+
+            }
+        }
+
+        .nav1 {
+            overflow: hidden;
+
+
+            .joinButton {
+                border: 1px solid #fff !important;
+                color: #fff;
+                border-radius: 4px;
+                text-decoration: none;
+                font-size: 14px;
+                padding: 5px 16px;
+                display: flex;
+                align-items: center !important;
+                justify-content: center;
+
+                &:hover {
+                    background-color: #1dbf73;
+                    border: 1px solid #1dbf73 !important;
+                }
+            }
+
+
+            a {
+                display: none;
+
+                svg {
+                    margin-right: 8px;
+                }
+
+            }
+
+            .signIn {
+                display: block;
+
+                .signIn:hover {
+                    color: #1dbf73 !important;
+                    fill: #1dbf73 !important
+                }
+            }
+
+
+        }
+    }
+
+    .searchPackage {
+        width: 8vw !important;
+
+        input {
+            width: 8vw;
+            border-radius: 4px;
+            height: 42px;
+          }
+          
+          /* Thay đổi placeholder */
+          input::placeholder {
+            content: "Find services" !important;
+          }
+
+        .submitButton {
+            display: none !important;
         }
     }
 }
