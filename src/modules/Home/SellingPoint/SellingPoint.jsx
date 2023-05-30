@@ -12,43 +12,43 @@ function SellingPoint() {
             <div className={`${styles.spContent} container`}>
                 <div className="row align-items-center">
                     <div className={`col-12 col-lg-6 ${styles.spLeft}`}>
-                        <h2 className={styles.h2Title}>The best part? Everything.</h2>
+                        <h2 className={styles.h2Title}>A whole world of freelance talent at your fingertips</h2>
                         <ul>
                             <li>
                                 <h6>
                                     <span>
                                         <i className="fa-regular fa-circle-check fa-lg" />
                                     </span>
-                                    Stick to your budget
+                                    The best for every budget
                                 </h6>
-                                <p>Find the right service for every price point. No hourly rates, just project-based pricing.</p>
+                                <p>Find high-quality services at every price point. No hourly rates, just project-based pricing.</p>
                             </li>
                             <li>
                                 <h6>
                                     <span>
                                         <i className="fa-regular fa-circle-check fa-lg" />
                                     </span>
-                                    Get quality work done quickly
+                                    Quality work done quickly
                                 </h6>
-                                <p>Hand your project over to a talented freelancer in minutes, get long-lasting results.</p>
+                                <p>Find the right freelancer to begin working on your project within minutes.</p>
                             </li>
                             <li>
                                 <h6>
                                     <span>
                                         <i className="fa-regular fa-circle-check fa-lg" />
                                     </span>
-                                    Pay when you're happy
+                                    Protected payments, everytime
                                 </h6>
-                                <p>Upfront quotes mean no surprises. Payments only get released when you approve.</p>
+                                <p>Always know what you'll pay upfront. Your payment isn't released until you approve the work.</p>
                             </li>
                             <li>
                                 <h6>
                                     <span>
                                         <i className="fa-regular fa-circle-check fa-lg" />
                                     </span>
-                                    Count on 24/7 support
+                                    24/7 support
                                 </h6>
-                                <p>Our round-the-clock support team is available to help anytime, anywhere.</p>
+                                <p>Questions? Our round-the-clock support team is available to help anytime, anywhere.</p>
                             </li>
                         </ul>
                     </div>
