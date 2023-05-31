@@ -3,9 +3,9 @@ import styles from "./Categories.module.scss";
 
 function Categories() {
     return (
-        <div className={`${styles.categoriesContent} container`}>
+        <div className={`${styles.cateSection} container`}>
             <h2 className={styles.h2Title}>Explore the marketplace</h2>
-            <ul className={styles.categoriesList}>
+            <ul className={styles.cateList}>
                 <li>
                     <a href="#">
                         <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/graphics-design.91dfe44.svg" alt="Graphics & Design" className="img-fluid" />

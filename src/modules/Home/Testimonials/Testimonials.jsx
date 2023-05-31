@@ -23,14 +23,14 @@ function Testimonials() {
     return (
         <div className={`${styles.tesSection} container`}>
             <Slider {...settings}>
-                <div className={`${styles.tesContent} container`}>
+                <div className="container">
                     <div className="row align-items-center">
-                        <div className={`col-5 ${styles.tesLeft}`}>
+                        <div className={`col-12 col-lg-6 col-xl-5 ${styles.tesLeft}`}>
                             <div className={styles.imgWrapper} onClick={() => setPlayVideo(true)}>
                                 <img alt="Video teaser image" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173395/testimonial-video-still-haerfest.jpg" className="img-fluid" />
                             </div>
                         </div>
-                        <div className={`col-7 ${styles.tesRight}`}>
+                        <div className={`col-12 col-lg-6 col-xl-7 ${styles.tesRight}`}>
                             <h5>Tim and Dan Joo, Co-Founders
                                 <span>
                                     <img alt="Company logo" src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/haerfest-logo-x2.934ab63.png" />
@@ -44,14 +44,14 @@ function Testimonials() {
                         </div>
                     </div>
                 </div>
-                <div className={`${styles.tesContent} container`}>
+                <div className="container">
                     <div className="row align-items-center">
-                        <div className={`col-5 ${styles.tesLeft}`}>
+                        <div className={`col-12 col-lg-6 col-xl-5 ${styles.tesLeft}`}>
                             <div className={styles.imgWrapper} onClick={() => setPlayVideo(true)}>
                                 <img alt="Video teaser image" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173414/testimonial-video-still-naadam.jpg" className="img-fluid" />
                             </div>
                         </div>
-                        <div className={`col-7 ${styles.tesRight}`}>
+                        <div className={`col-12 col-lg-6 col-xl-7 ${styles.tesRight}`}>
                             <h5>Caitlin Tormey, Chief Commercial Officer
                                 <span>
                                     <img alt="Company logo" src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/naadam-logo-x2.a79031d.png" className="img-fluid" />
@@ -65,14 +65,14 @@ function Testimonials() {
                         </div>
                     </div>
                 </div>
-                <div className={`${styles.tesContent} container`}>
+                <div className="container">
                     <div className="row align-items-center">
-                        <div className={`col-5 ${styles.tesLeft}`}>
+                        <div className={`col-12 col-lg-6 col-xl-5 ${styles.tesLeft}`}>
                             <div className={styles.imgWrapper} onClick={() => setPlayVideo(true)}>
                                 <img alt="Video teaser image" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173396/testimonial-video-still-lavender.jpg" className="img-fluid" />
                             </div>
                         </div>
-                        <div className={`col-7 ${styles.tesRight}`}>
+                        <div className={`col-12 col-lg-6 col-xl-7 ${styles.tesRight}`}>
                             <h5>Brighid Gannon (DNP, PMHNP-BC), Co-Founder
                                 <span>
                                     <img alt="Company logo" src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/lavender-logo-x2.3fff9e7.png" className="img-fluid" />
@@ -86,14 +86,14 @@ function Testimonials() {
                         </div>
                     </div>
                 </div>
-                <div className={`${styles.tesContent} container`}>
+                <div className="container">
                     <div className="row align-items-center">
-                        <div className={`col-5 ${styles.tesLeft}`}>
+                        <div className={`col-12 col-lg-6 col-xl-5 ${styles.tesLeft}`}>
                             <div className={styles.imgWrapper} onClick={() => setPlayVideo(true)}>
                                 <img alt="Video teaser image" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173399/testimonial-video-still-rooted.jpg" className="img-fluid" />
                             </div>
                         </div>
-                        <div className={`col-7 ${styles.tesRight}`}>
+                        <div className={`col-12 col-lg-6 col-xl-7 ${styles.tesRight}`}>
                             <h5>Kay Kim, Co-Founder
                                 <span>
                                     <img alt="Company logo" src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/rooted-logo-x2.7da3bc9.png" className="img-fluid" />

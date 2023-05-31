@@ -3,8 +3,12 @@
 
 $iconSize: 48px;
 
-.categoriesContent {
-    margin: 0 auto 24px;
+.cateSection {
+    margin-bottom: 55px;
+
+    @include responsive("smaller") {
+        margin: 0 auto 24px;
+    }
 
     .h2Title {
         margin-bottom: 40px;
@@ -22,7 +26,7 @@ $iconSize: 48px;
         }
     }
 
-    .categoriesList {
+    .cateList {
         display: flex;
         flex-wrap: wrap;
 

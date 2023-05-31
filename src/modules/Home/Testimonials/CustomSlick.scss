@@ -1,3 +1,6 @@
+@import "../../../styles/breakpoints";
+@import "../../../styles/responsive";
+
 .slick-arrow {
     background-color: #fff !important;
     border: 0;
@@ -8,24 +11,36 @@
     position: absolute;
     text-align: center;
     z-index: 4;
+    border-radius: 30px;
+
+    &::before {
+        content: none !important;
+    }
 
     &::after {
         background: url("../../../../public/img/arrows.c651879.svg") no-repeat;
         background-size: 16px 64px;
         content: "";
         display: inline-block;
+        width: 16px;
         height: 16px;
         margin-top: 3px;
-        width: 16px;
     }
-}
 
-.slick-prev,
-.slick-next {
-    border-radius: 30px;
+    @include responsive("medium") {
+        top: 32% !important;
+    }
 
-    &::before {
-        content: none !important;
+    @include responsive("small") {
+        top: 26% !important;
+    }
+
+    @include responsive("extra-smaller") {
+        top: 23% !important;
+    }
+
+    @include responsive("smallest") {
+        top: 20% !important;
     }
 }
 

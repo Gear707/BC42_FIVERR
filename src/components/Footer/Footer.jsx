@@ -33,7 +33,11 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(0)}
                                         >
-                                            <i className="fa-solid fa-angle-down"></i>
+                                            {expandedSections[0] ?
+                                                <i className="fa-solid fa-angle-up"></i>
+                                                :
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            }
                                         </span>
                                     </div>
                                 </div>
@@ -64,7 +68,11 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(1)}
                                         >
-                                            <i className="fa-solid fa-angle-down"></i>
+                                            {expandedSections[1] ?
+                                                <i className="fa-solid fa-angle-up"></i>
+                                                :
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            }
                                         </span>
                                     </div>
                                 </div>
@@ -91,7 +99,11 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(2)}
                                         >
-                                            <i className="fa-solid fa-angle-down"></i>
+                                            {expandedSections[2] ?
+                                                <i className="fa-solid fa-angle-up"></i>
+                                                :
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            }
                                         </span>
                                     </div>
                                 </div>
@@ -115,7 +127,11 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(3)}
                                         >
-                                            <i className="fa-solid fa-angle-down"></i>
+                                            {expandedSections[3] ?
+                                                <i className="fa-solid fa-angle-up"></i>
+                                                :
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            }
                                         </span>
                                     </div>
                                 </div>
@@ -148,7 +164,11 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(4)}
                                         >
-                                            <i className="fa-solid fa-angle-down"></i>
+                                            {expandedSections[4] ?
+                                                <i className="fa-solid fa-angle-up"></i>
+                                                :
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            }
                                         </span>
                                     </div>
                                 </div>
