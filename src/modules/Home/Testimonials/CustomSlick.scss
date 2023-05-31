@@ -1,0 +1,46 @@
+.slick-arrow {
+    background-color: #fff !important;
+    border: 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+    width: 48px !important;
+    height: 48px !important;
+    line-height: 100% !important;
+    position: absolute;
+    text-align: center;
+    z-index: 4;
+
+    &::after {
+        background: url("../../../../public/img/arrows.c651879.svg") no-repeat;
+        background-size: 16px 64px;
+        content: "";
+        display: inline-block;
+        height: 16px;
+        margin-top: 3px;
+        width: 16px;
+    }
+}
+
+.slick-prev,
+.slick-next {
+    border-radius: 30px;
+
+    &::before {
+        content: none !important;
+    }
+}
+
+.slick-prev {
+    left: -23px !important;
+
+    &::after {
+        background-position: 0 -32px;
+    }
+}
+
+.slick-next {
+    right: -23px !important;
+
+    &::after {
+        background-position: 0 -48px;
+    }
+}

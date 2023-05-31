@@ -1,6 +1,8 @@
 @import "../../../styles/breakpoints";
 @import "../../../styles/responsive";
 
+$playBtnSize: 100px;
+
 .spSection {
     background-color: #f1fdf7;
     margin-bottom: 96px;
@@ -14,7 +16,7 @@
     }
 }
 
-.spContent {
+.spWrapper {
     padding: 96px 0;
 
     @include responsive("medium") {
@@ -98,12 +100,12 @@
 
             &::after {
                 background: url("../../../../public/img/play-button.png") no-repeat;
-                background-size: 100px;
+                background-size: $playBtnSize;
                 content: "";
                 position: absolute;
                 display: inline-block;
-                width: 100px;
-                height: 100px;
+                width: $playBtnSize;
+                height: $playBtnSize;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);

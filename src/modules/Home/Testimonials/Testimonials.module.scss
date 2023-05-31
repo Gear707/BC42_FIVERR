@@ -1,0 +1,62 @@
+@import "../../../styles/breakpoints";
+@import "../../../styles/responsive";
+
+$playBtnSize: 80px;
+
+.tesLeft {
+    padding: 0 0 8px;
+
+    .imgWrapper {
+        cursor: pointer;
+        position: relative;
+
+        img {
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        &::after {
+            background: url("../../../../public/img/play-button.png") no-repeat;
+            background-size: $playBtnSize;
+            content: "";
+            position: absolute;
+            display: inline-block;
+            width: $playBtnSize;
+            height: $playBtnSize;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+    }
+}
+
+.tesRight {
+    padding: 0 48px 0 64px;
+
+    h5 {
+        color: #74767e;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 140%;
+        padding-bottom: 16px;
+
+        span {
+            border-left: 1px solid #c5c6c9;
+            margin-left: 16px;
+
+            img {
+                display: inline-block;
+                height: 36px;
+                margin-left: 12px;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    blockquote {
+        font-size: 30px;
+        line-height: 44px;
+        color: #003912;
+    }
+}
