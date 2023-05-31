@@ -33,7 +33,11 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(0)}
                                         >
-                                            <i className="fa-solid fa-angle-down"></i>
+                                            {expandedSections[0] ?
+                                                <i className="fa-solid fa-angle-up"></i>
+                                                :
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            }
                                         </span>
                                     </div>
                                 </div>
@@ -51,7 +55,6 @@ function Footer() {
                                         <li><a href="#">Business</a></li>
                                         <li><a href="#">Lifestyle</a></li>
                                         <li><a href="#">Photography</a></li>
-                                        <li><a href="#">End-to-End Projects</a></li>
                                         <li><a href="#">Sitemap</a></li>
                                     </ul>
                                 </div>
@@ -65,7 +68,11 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(1)}
                                         >
-                                            <i className="fa-solid fa-angle-down"></i>
+                                            {expandedSections[1] ?
+                                                <i className="fa-solid fa-angle-up"></i>
+                                                :
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            }
                                         </span>
                                     </div>
                                 </div>
@@ -92,7 +99,11 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(2)}
                                         >
-                                            <i className="fa-solid fa-angle-down"></i>
+                                            {expandedSections[2] ?
+                                                <i className="fa-solid fa-angle-up"></i>
+                                                :
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            }
                                         </span>
                                     </div>
                                 </div>
@@ -104,7 +115,6 @@ function Footer() {
                                         <li><a href="#">Trust &amp; Safety</a></li>
                                         <li><a href="#">Selling on Fiverr</a></li>
                                         <li><a href="#">Buying on Fiverr</a></li>
-                                        <li><a href="#">Fiverr Guides</a></li>
                                     </ul>
                                 </div>
                             </article>
@@ -117,7 +127,11 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(3)}
                                         >
-                                            <i className="fa-solid fa-angle-down"></i>
+                                            {expandedSections[3] ?
+                                                <i className="fa-solid fa-angle-up"></i>
+                                                :
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            }
                                         </span>
                                     </div>
                                 </div>
@@ -125,17 +139,19 @@ function Footer() {
                                 ${expandedSections[3] ? styles.show : styles.hide}`}
                                 >
                                     <ul>
-                                        <li><a href="#">Customer Success Stories</a></li>
-                                        <li><a href="#">Community Hub</a></li>
-                                        <li><a href="#">Forum</a></li>
                                         <li><a href="#">Events</a></li>
                                         <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Influencers</a></li>
-                                        <li><a href="#">Affiliates</a></li>
+                                        <li><a href="#">Forum</a></li>
+                                        <li><a href="#">Community Standards</a></li>
                                         <li><a href="#">Podcast</a></li>
+                                        <li><a href="#">Affiliates</a></li>
                                         <li><a href="#">Invite a Friend</a></li>
                                         <li><a href="#">Become a Seller</a></li>
-                                        <li><a href="#">Community Standards</a></li>
+                                        <li>
+                                            <a href="#">Fiverr Elevate
+                                                <p>Exclusive Benefits</p>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </article>
@@ -148,7 +164,11 @@ function Footer() {
                                         <span className={styles.collapsible}
                                             onClick={() => handleSectionToggle(4)}
                                         >
-                                            <i className="fa-solid fa-angle-down"></i>
+                                            {expandedSections[4] ?
+                                                <i className="fa-solid fa-angle-up"></i>
+                                                :
+                                                <i className="fa-solid fa-angle-down"></i>
+                                            }
                                         </span>
                                     </div>
                                 </div>
@@ -156,19 +176,19 @@ function Footer() {
                                 ${expandedSections[4] ? styles.show : styles.hide}`}
                                 >
                                     <ul>
-                                        <li><a href="#">Fiverr Enterprise</a></li>
                                         <li><a href="#">Fiverr Business</a></li>
                                         <li><a href="#">Fiverr Pro</a></li>
+                                        <li><a href="#">Fiverr Studios</a></li>
                                         <li><a href="#">Fiverr Logo Maker</a></li>
+                                        <li><a href="#">Fiverr Guides</a></li>
                                         <li><a href="#">Get Inspired</a></li>
-                                        <li><a href="#">Fiverr Select</a></li>
                                         <li>
                                             <a href="#">ClearVoice
                                                 <p>Content Marketing</p>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">Fiverr Workspace
+                                            <a href="#">AND CO
                                                 <p>Invoice Software</p>
                                             </a>
                                         </li>
@@ -177,7 +197,6 @@ function Footer() {
                                                 <p>Online Courses</p>
                                             </a>
                                         </li>
-                                        <li><a href="#">Working Not Working</a></li>
                                     </ul>
                                 </div>
                             </article>
