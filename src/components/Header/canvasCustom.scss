@@ -1,0 +1,71 @@
+// .navbar-nav {
+//     flex-direction: row
+// }
+
+.offcanvas {
+    color: #fff;
+    width: 272px !important;
+
+    .offcanvas-body {
+
+        a {
+            color: #95979d;
+            transition: all .5s;
+
+            &:hover {
+                color: #62646a;
+            }
+        }
+
+        a.joinFiverr {
+            color: #fff;
+            background-color: #1dbf73;
+
+            margin-bottom: 20px;
+
+            width: 130px;
+            height: 42px;
+
+            border: 1px solid transparent;
+            border-radius: 4px;
+            transition: all .5s;
+
+            &:hover {
+                background-color: #19A463;
+            }
+        }
+
+        a.fiverBusiness {
+            color: #1dbf73;
+            font-weight: 600;
+        }
+
+        h6 {
+            color: #404145;
+            font-size: 14px;
+            font-weight: 600;
+
+            padding-bottom: 10px;
+            padding-top: 30px;
+
+            border-bottom: 1px solid #dadbdd;
+        }
+
+        .dropdown-toggle::after {
+            margin-left: 80px;
+        }
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    button.navbar-toggler.collapsed {
+        padding: 4px 8px;
+
+        .navbar-toggler-icon {
+
+            width: 25px;
+            height: 25px;
+        }
+    }
+}

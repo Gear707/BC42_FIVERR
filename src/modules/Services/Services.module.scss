@@ -1,7 +1,7 @@
 .background {
-    height: 600px;
+    height: 450px;
     color: #404145;
-    margin-bottom: 96px;
+    margin-top: 96px;
 
     .container {
         padding: 0 32px;
@@ -18,7 +18,9 @@
             position: relative;
 
             img {
-                width: 239px;
+                // width: 239px;
+                // height: 345px;
+                width: 16.5vw;
                 height: 345px;
                 border-radius: 4px;
                 transition: all 1s;
@@ -60,5 +62,75 @@
 
             }
         }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .background {
+        margin-top: 80px;
+
+        .services {
+            padding: 0 18px;
+            position: relative;
+
+            img {
+                width: 20vw !important;
+                height: 345px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .background {
+        margin-top: 80px;
+
+        .services {
+            padding: 0 18px;
+            position: relative;
+
+            img {
+                width: 27vw !important;
+                height: 345px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .background {
+        margin-top: 65px;
+
+        .services {
+            padding: 0 18px;
+            position: relative;
+
+            img {
+                width: 40vw !important;
+                height: 345px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .background {
+        margin-top: 50px;
+
+        .services {
+            padding: 0 18px;
+            position: relative;
+
+            img {
+                width: 75vw !important;
+                height: 345px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .background {
+        margin-top: 40px;
     }
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
+import "./canvasCustom.scss";
 import { useLocation } from "react-router-dom";
 import {
   Button,
@@ -9,13 +10,16 @@ import {
   Navbar,
   Offcanvas,
 } from "react-bootstrap";
+import useWindowResize from "../../helpers/useWindowResize";
 
 function Header() {
   const [y, setY] = useState(0);
 
   const location = useLocation();
   const pathname = location.pathname;
-  const condition = y > 10 || pathname !== "/";
+  const size = useWindowResize();
+
+  const condition = y > 10 || pathname !== "/" || size.width < 576;
   console.log(condition);
   const handleScroll = () => {
     // const scrollTop = window.pageYOffset;
@@ -48,49 +52,124 @@ function Header() {
             placement="start"
           >
             <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1">
-                <Nav.Link href="#action1">Join Fiverr</Nav.Link>
+              <Nav
+                id="sideBar"
+                className={`justify-content-end flex-grow-1 ${styles.sideBar}`}
+              >
+                <Nav.Link className="joinFiverr btn" href="#action1">
+                  Join Fiverr
+                </Nav.Link>
                 <Nav.Link href="#action2">Sign in</Nav.Link>
-                <Nav.Link href="#action2">Browse Categories</Nav.Link>
+                <Nav.Link href="#action2">
+                  <NavDropdown
+                    title="Browse Categories"
+                    id={`offcanvasNavbarDropdown-expand-lg`}
+                  >
+                    <NavDropdown.Item href="#action3">
+                      Graphics & Design
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">
+                      Digital Marketing
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">
+                      Writing & Translation
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">
+                      Video & Animation
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">
+                      Music & Audio
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">
+                      Programming & Tech
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">Data</NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">
+                      Business
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">
+                      Lifestyle
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">
+                      Photography
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">
+                      End-to-End Projects
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">
+                      AI Services NEW
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </Nav.Link>
                 <Nav.Link href="#action2">Explore</Nav.Link>
-                <Nav.Link href="#action2">Fiverr Business</Nav.Link>
+                <Nav.Link className="fiverBusiness" href="#action2">
+                  Fiverr Business
+                </Nav.Link>
+                <h6>General</h6>
                 <Nav.Link href="#action2">Home</Nav.Link>
                 <Nav.Link href="#action2">English</Nav.Link>
                 <Nav.Link href="#action2">US$ USD</Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
-          <div className={styles.toggleBtn}>
-            <Navbar.Toggle
-              className="me-2"
-              aria-controls="offcanvasNavbar-expand-lg"
-            />
-            <Navbar.Brand href="#">
-              <svg
-                width={89}
-                height={27}
-                viewBox="0 0 89 27"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g fill={condition ? "#404145" : "#fff"}>
-                  <path d="m81.6 13.1h-3.1c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-13.4h-2.5c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-18.4h6v2.8c1-2.2 2.3-2.8 4.3-2.8h7.3v2.8c1-2.2 2.3-2.8 4.3-2.8h2zm-25.2 5.6h-12.4c.3 2.1 1.6 3.2 3.7 3.2 1.6 0 2.7-.7 3.1-1.8l5.3 1.5c-1.3 3.2-4.5 5.1-8.4 5.1-6.5 0-9.5-5.1-9.5-9.5 0-4.3 2.6-9.4 9.1-9.4 6.9 0 9.2 5.2 9.2 9.1 0 .9 0 1.4-.1 1.8zm-5.7-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3 .8-3.4 3zm-22.9 11.3h5.2l6.6-18.3h-6l-3.2 10.7-3.2-10.8h-6zm-24.4 0h5.9v-13.4h5.7v13.4h5.9v-18.4h-11.6v-1.1c0-1.2.9-2 2.2-2h3.5v-5h-4.4c-4.3 0-7.2 2.7-7.2 6.6v1.5h-3.4v5h3.4z" />
-                </g>
-                <g fill="#1dbf73">
-                  <path d="m85.3 27c2 0 3.7-1.7 3.7-3.7s-1.7-3.7-3.7-3.7-3.7 1.7-3.7 3.7 1.7 3.7 3.7 3.7z" />
-                </g>
-              </svg>
-            </Navbar.Brand>
-          </div>
 
-          <div className={y < 150 ? "d-none" : "null"}>
+          <Navbar.Toggle
+            className="me-2 d-sm-none"
+            aria-controls="offcanvasNavbar-expand-lg"
+          />
+          <Navbar.Brand className="d-sm-none" href="#">
+            <svg
+              width={89}
+              height={27}
+              viewBox="0 0 89 27"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g fill={condition ? "#404145" : "#fff"}>
+                <path d="m81.6 13.1h-3.1c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-13.4h-2.5c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-18.4h6v2.8c1-2.2 2.3-2.8 4.3-2.8h7.3v2.8c1-2.2 2.3-2.8 4.3-2.8h2zm-25.2 5.6h-12.4c.3 2.1 1.6 3.2 3.7 3.2 1.6 0 2.7-.7 3.1-1.8l5.3 1.5c-1.3 3.2-4.5 5.1-8.4 5.1-6.5 0-9.5-5.1-9.5-9.5 0-4.3 2.6-9.4 9.1-9.4 6.9 0 9.2 5.2 9.2 9.1 0 .9 0 1.4-.1 1.8zm-5.7-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3 .8-3.4 3zm-22.9 11.3h5.2l6.6-18.3h-6l-3.2 10.7-3.2-10.8h-6zm-24.4 0h5.9v-13.4h5.7v13.4h5.9v-18.4h-11.6v-1.1c0-1.2.9-2 2.2-2h3.5v-5h-4.4c-4.3 0-7.2 2.7-7.2 6.6v1.5h-3.4v5h3.4z" />
+              </g>
+              <g fill="#1dbf73">
+                <path d="m85.3 27c2 0 3.7-1.7 3.7-3.7s-1.7-3.7-3.7-3.7-3.7 1.7-3.7 3.7 1.7 3.7 3.7 3.7z" />
+              </g>
+            </svg>
+          </Navbar.Brand>
+
+          {size.width > 576 && (
+            <div id="fiverrLogo" className="fiverrLogo">
+              <Navbar.Toggle
+                className="me-2"
+                aria-controls="offcanvasNavbar-expand-lg"
+              />
+              <Navbar.Brand href="#">
+                <svg
+                  width={89}
+                  height={27}
+                  viewBox="0 0 89 27"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g fill={condition ? "#404145" : "#fff"}>
+                    <path d="m81.6 13.1h-3.1c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-13.4h-2.5c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-18.4h6v2.8c1-2.2 2.3-2.8 4.3-2.8h7.3v2.8c1-2.2 2.3-2.8 4.3-2.8h2zm-25.2 5.6h-12.4c.3 2.1 1.6 3.2 3.7 3.2 1.6 0 2.7-.7 3.1-1.8l5.3 1.5c-1.3 3.2-4.5 5.1-8.4 5.1-6.5 0-9.5-5.1-9.5-9.5 0-4.3 2.6-9.4 9.1-9.4 6.9 0 9.2 5.2 9.2 9.1 0 .9 0 1.4-.1 1.8zm-5.7-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3 .8-3.4 3zm-22.9 11.3h5.2l6.6-18.3h-6l-3.2 10.7-3.2-10.8h-6zm-24.4 0h5.9v-13.4h5.7v13.4h5.9v-18.4h-11.6v-1.1c0-1.2.9-2 2.2-2h3.5v-5h-4.4c-4.3 0-7.2 2.7-7.2 6.6v1.5h-3.4v5h3.4z" />
+                  </g>
+                  <g fill="#1dbf73">
+                    <path d="m85.3 27c2 0 3.7-1.7 3.7-3.7s-1.7-3.7-3.7-3.7-3.7 1.7-3.7 3.7 1.7 3.7 3.7 3.7z" />
+                  </g>
+                </svg>
+              </Navbar.Brand>
+            </div>
+          )}
+          <div className={y < 150 || size.width < 576 ? "d-none" : "null"}>
             <div className={styles.searchPackage}>
               <form className="input-group">
                 <input
                   type="search"
                   className="form-control long-placeholder"
                   autoComplete="off"
-                  placeholder="What service are you looking for today?"
+                  placeholder={
+                    size.width > 768
+                      ? "What service are you looking for today?"
+                      : "Find Services"
+                  }
                 />
                 <a
                   className={styles.submitButton}
@@ -114,7 +193,7 @@ function Header() {
             id="#fiverrNav"
             className={`${
               condition ? styles.nav : styles.nav1
-            } navbar navbar-expand-md`}
+            } navbar navbar-expand-md d-flex flex-row`}
           >
             <Nav id="navbar" className={`justify-content-end flex-grow-1`}>
               <Nav.Link
@@ -143,7 +222,12 @@ function Header() {
               <Nav.Link className={styles.signIn} href="#action2">
                 Sign in
               </Nav.Link>
-              <Nav.Link className={styles.joinButton}>Join</Nav.Link>
+              <Nav.Link
+                style={{ display: "inline" }}
+                className={styles.joinButton}
+              >
+                Join
+              </Nav.Link>
             </Nav>
           </div>
         </Container>

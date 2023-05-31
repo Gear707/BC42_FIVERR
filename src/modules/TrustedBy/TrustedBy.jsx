@@ -1,10 +1,17 @@
 import React from "react";
 import styles from "./TrustedBy.module.scss";
+import useWindowResize from "../../helpers/useWindowResize";
 function TrustedBy() {
+  const size = useWindowResize();
   return (
     <div className={styles.background}>
-      <div className={styles.container}>
-        <span className={styles.trustedBy}>Trusted by:</span>
+      <div
+        className={styles.container}
+        style={size.width < 992 ? { height: "70px" } : { height: "95px" }}
+      >
+        <span className={`${styles.trustedBy} d-none d-lg-block`}>
+          Trusted by:
+        </span>
         <div className={styles.brandGroup}>
           <img
             className={styles.brand}
