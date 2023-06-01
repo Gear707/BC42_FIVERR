@@ -6,3 +6,8 @@ export const apiJobList = async (keyword) => {
   );
   return data?.content;
 };
+
+export const apiCategoryList = async () => {
+  const { data } = await axiosClient.get(`loai-cong-viec`);
+  return data;
+};

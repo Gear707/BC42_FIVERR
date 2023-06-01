@@ -20,7 +20,7 @@ function Header() {
   const size = useWindowResize();
 
   const condition = y > 10 || pathname !== "/" || size.width < 576;
-  console.log(condition);
+
   const handleScroll = () => {
     // const scrollTop = window.pageYOffset;
     const scrollY = window.scrollY;
