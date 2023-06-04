@@ -62,162 +62,143 @@ function UserProfile() {
                                 </div>
                             </div>
                         </div>
-                        <section id="user-segmentation" className="segmentation js-segmentation">
-                            <div data-reactroot className="mp-seller-profile">
-                                <section className="form-thin">
-                                    <article className="bg-white">
-                                        <form autoComplete="off" className="js-form-overview">
-                                            <div className="inner-row description">
-                                                <aside>
-                                                    <h3 className="alt hint--top" data-hint="Tell us more about yourself. Buyers are also interested in learning about you as a person.">
-                                                        {/* react-text: 8 */}Description{/* /react-text */}
-                                                        <a href="#" className="add">Edit Description</a>
-                                                    </h3>
-                                                </aside>
-                                                <section>
-                                                    <p />
-                                                    <span className="counter hidden">
-                                                        {/* react-text: 13 */}0{/* /react-text */}
-                                                        {/* react-text: 14 */} / {/* /react-text */}
-                                                        {/* react-text: 15 */}600{/* /react-text */}
+                        <div>
+                            <article className={styles.basicInfo}>
+                                <form>
+                                    <div className={`${styles.innerRow} pb-4`}>
+                                        <aside>
+                                            <h3 title="Tell us more about yourself. Buyers are also interested in learning about you as a person.">
+                                                Description
+                                            </h3>
+                                            <a href="#">Edit Description</a>
+                                        </aside>
+                                        {/* <section>
+                                            <p></p>
+                                            <span className="counter hidden">
+                                                0
+                                                 / 
+                                                600
+                                            </span>
+                                        </section> */}
+                                    </div>
+                                </form>
+                                <form>
+                                    <div className={styles.innerRow}>
+                                        <aside>
+                                            <h3 title="You can make up to four selections.">
+                                                Languages
+                                            </h3>
+                                            <a href="#">Add New</a>
+                                        </aside>
+                                        <section>
+                                            <ul className={styles.itemList}>
+                                                <li>
+                                                    <span className={styles.title}>
+                                                        English
                                                     </span>
-                                                </section>
-                                                {/* react-text: 16 */}{/* /react-text */}
-                                            </div>
-                                        </form>
-                                        <form autoComplete="off" className="js-form-proficient-languages">
-                                            <div className="inner-row languages">
-                                                <aside>
-                                                    <h3 className="alt hint--top" data-hint="You can make up to four selections.">
-                                                        {/* react-text: 21 */}Languages{/* /react-text */}
-                                                        <a href="#" className="add">Add New</a>
-                                                    </h3>
-                                                    <div className="question">What languages do you speak?</div>
-                                                    {/* react-text: 24 */}{/* /react-text */}
-                                                </aside>
-                                                <section>
-                                                    <ul className="items-list">
-                                                        <li>
-                                                            <span className="title">
-                                                                {/* react-text: 29 */}English{/* /react-text */}
-                                                                {/* react-text: 30 */} {/* /react-text */}
-                                                            </span>
-                                                            {/* react-text: 31 */} - {/* /react-text */}
-                                                            <span className="sub-title">Basic</span>
-                                                            <input type="hidden" name="[seller_profile][proficient_languages][en]" defaultValue="basic" />
-                                                            <div className="animate">
-                                                                <span className="hint--top" data-hint="Edit">
-                                                                    <a href="#" className="pencil" />
-                                                                </span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    {/* react-empty: 37 */}
-                                                    <input type="hidden" defaultValue={1} />
-                                                </section>
-                                            </div>
-                                        </form>
-                                        <div className="js-seller-tests" />
-                                        <form autoComplete="off" className="js-form-social-account">
-                                            <div className="inner-row social-account">
-                                                <aside>
-                                                    <h3 className="alt hint--top" data-hint="Linking to online social networks adds credibility to your profile. You may add more than one. Note: Your personal information will not be displayed to the buyer.">
-                                                        Linked Accounts
-                                                    </h3>
-                                                    {/* react-text: 44 */}{/* /react-text */}
-                                                </aside>
-                                                <section>
-                                                    <ul>
-                                                        <li className="facebook js-btn-facebook-connect " data-should-redirect="false" data-platform="facebook">
-                                                            <span>Facebook</span>
-                                                        </li>
-                                                        <li className="google js-btn-google-connect " data-should-redirect="false" data-platform="google">
-                                                            <span>Google</span>
-                                                        </li>
-                                                        <li className="dribbble js-btn-dribbble-connect " data-should-redirect="false" data-platform="dribbble">
-                                                            <span>Dribbble</span>
-                                                        </li>
-                                                        <li className="stack_exchange js-btn-stackexchange-connect " data-should-redirect="false" data-platform="stack_exchange">
-                                                            <span>Stack Overflow</span>
-                                                        </li>
-                                                        <li className="github js-btn-github-connect " data-should-redirect="false" data-platform="github">
-                                                            <span>GitHub</span>
-                                                        </li>
-                                                        <li className="vimeo js-btn-vimeo-connect " data-should-redirect="false" data-platform="vimeo">
-                                                            <span>Vimeo</span>
-                                                        </li>
-                                                        <li className="twitter js-btn-twitter-connect " data-should-redirect="false" data-platform="twitter">
-                                                            <span>Twitter</span>
-                                                        </li>
-                                                    </ul>
-                                                </section>
-                                            </div>
-                                        </form>
-                                        <form autoComplete="off" className="js-form-skills">
-                                            <div className="inner-row skills">
-                                                <aside>
-                                                    <h3 className="alt hint--top" data-hint="Let your buyers know your skills. Skills gained through your previous jobs, hobbies or even everyday life.">
-                                                        <span>Skills</span>
-                                                        <a href="#" className="add">Add New</a>
-                                                    </h3>
-                                                    <div className="question">Do you have any skills?</div>
-                                                    {/* react-text: 68 */}{/* /react-text */}
-                                                </aside>
-                                                <section>
-                                                    <div className="empty-list">
-                                                        {/* react-text: 71 */}Add your Skills{/* /react-text */}
-                                                        {/* react-text: 72 */}.{/* /react-text */}
-                                                        <input type="hidden" name="[seller_profile]" defaultValue />
+                                                    -
+                                                    <span className={styles.subTitle}>Basic</span>
+                                                    <input type="hidden" name="[seller_profile][proficient_languages][en]" defaultValue="basic" />
+                                                    <div className={styles.animate}>
+                                                        <span title="Edit">
+                                                            <a href="#">
+                                                                <i className="fa-solid fa-pencil"></i>
+                                                            </a>
+                                                        </span>
                                                     </div>
-                                                    {/* react-empty: 74 */}
-                                                    <input type="hidden" defaultValue={0} />
-                                                </section>
+                                                </li>
+                                            </ul>
+                                            <input type="hidden" defaultValue={1} />
+                                        </section>
+                                    </div>
+                                </form>
+                                <form className={styles.socialAccount}>
+                                    <div className={styles.innerRow}>
+                                        <aside>
+                                            <h3 title="Linking to online social networks adds credibility to your profile. You may add more than one. Note: Your personal information will not be displayed to the buyer.">
+                                                Linked Accounts
+                                            </h3>
+                                        </aside>
+                                        <section>
+                                            <ul>
+                                                <li>
+                                                    <span>Facebook</span>
+                                                </li>
+                                                <li>
+                                                    <span>Google</span>
+                                                </li>
+                                                <li>
+                                                    <span>Dribbble</span>
+                                                </li>
+                                                <li>
+                                                    <span>Stack Overflow</span>
+                                                </li>
+                                                <li>
+                                                    <span>GitHub</span>
+                                                </li>
+                                                <li>
+                                                    <span>Vimeo</span>
+                                                </li>
+                                                <li>
+                                                    <span>Twitter</span>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                    </div>
+                                </form>
+                                <form>
+                                    <div className={styles.innerRow}>
+                                        <aside>
+                                            <h3 title="Let your buyers know your skills. Skills gained through your previous jobs, hobbies or even everyday life.">
+                                                Skills
+                                            </h3>
+                                            <a href="#">Add New</a>
+                                        </aside>
+                                        <section>
+                                            <div className={styles.emptyList}>
+                                                Add your Skills
+                                                <input type="hidden" name="[seller_profile]" defaultValue />
                                             </div>
-                                        </form>
-                                        <form autoComplete="off" className="js-form-educations">
-                                            <div className="inner-row education">
-                                                <aside>
-                                                    <h3 className="alt hint--top" data-hint="Describe your educational background. It will help buyers get to know you!">
-                                                        {/* react-text: 80 */}Education{/* /react-text */}
-                                                        <a href="#" className="add">Add New</a>
-                                                    </h3>
-                                                    <div className="question">Did you attend a college or university?</div>
-                                                    {/* react-text: 83 */}{/* /react-text */}
-                                                </aside>
-                                                <section>
-                                                    <div className="empty-list">
-                                                        {/* react-text: 86 */}Add your Education{/* /react-text */}
-                                                        {/* react-text: 87 */}.{/* /react-text */}
-                                                        <input type="hidden" name="[seller_profile]" defaultValue />
-                                                    </div>
-                                                    <input type="hidden" defaultValue={0} />
-                                                </section>
+                                            <input type="hidden" defaultValue={0} />
+                                        </section>
+                                    </div>
+                                </form>
+                                <form>
+                                    <div className={styles.innerRow}>
+                                        <aside>
+                                            <h3 title="Describe your educational background. It will help buyers get to know you!">
+                                                Education
+                                            </h3>
+                                            <a href="#">Add New</a>
+                                        </aside>
+                                        <section>
+                                            <div className={styles.emptyList}>
+                                                Add your Education
+                                                <input type="hidden" name="[seller_profile]" defaultValue />
                                             </div>
-                                        </form>
-                                        <form autoComplete="off" className="js-form-certifications">
-                                            <div className="inner-row certification">
-                                                <aside>
-                                                    <h3 className="alt hint--top" data-hint="Listing your honors and awards can help you stand out from other sellers.">
-                                                        {/* react-text: 94 */}Certification{/* /react-text */}
-                                                        <a href="#" className="add">Add New</a>
-                                                    </h3>
-                                                    <div className="question">Do you have any certifications?</div>
-                                                    {/* react-text: 97 */}{/* /react-text */}
-                                                </aside>
-                                                <section>
-                                                    <div className="empty-list">
-                                                        {/* react-text: 100 */}Add your Certification{/* /react-text */}
-                                                        {/* react-text: 101 */}.{/* /react-text */}
-                                                        <input type="hidden" name="[seller_profile]" defaultValue />
-                                                    </div>
-                                                    <input type="hidden" defaultValue={0} />
-                                                </section>
+                                            <input type="hidden" defaultValue={0} />
+                                        </section>
+                                    </div>
+                                </form>
+                                <form>
+                                    <div className={styles.innerRow}>
+                                        <aside>
+                                            <h3 title="Listing your honors and awards can help you stand out from other sellers.">
+                                                Certification
+                                            </h3>
+                                            <a href="#">Add New</a>
+                                        </aside>
+                                        <section>
+                                            <div className={styles.emptyList}>
+                                                Add your Certification
+                                                <input type="hidden" name="[seller_profile]" defaultValue />
                                             </div>
-                                        </form>
-                                    </article>
-                                </section>
-                            </div>
-                        </section>
+                                            <input type="hidden" defaultValue={0} />
+                                        </section>
+                                    </div>
+                                </form>
+                            </article>
+                        </div>
                     </div>
                     <div className="col-7">
                         <div className="bg-white">
