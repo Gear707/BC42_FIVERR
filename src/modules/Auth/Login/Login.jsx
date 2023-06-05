@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { login, setRememberMe } from "../../../slices/userSlice";
-import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
@@ -42,16 +42,10 @@ function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [searchParams, setSearchParams] = useSearchParams();
-
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
-    };
-
-    const navRegister = () => {
-        navigate("/register");
     };
 
     const onSubmit = (values) => {
@@ -62,10 +56,7 @@ function Login() {
         console.log(errors);
     };
 
-    if (user) {
-        const url = searchParams.get("redirectURL") || "/";
-        return <Navigate to={url} />;
-    };
+    if (user) return <Navigate to={`/users/${user.user.name}`} />
 
     return (
         <MDBContainer className="mx-4 p-5 bg-white rounded-7">
@@ -86,9 +77,9 @@ function Login() {
 
                         <div className="mb-3">
                             <div className="input-group">
-                                <MDBInput wrapperClass='col-10' size='lg' 
-                                label='Password' type={showPassword ? 'text' : 'password'}  
-                                {...register("password")}
+                                <MDBInput wrapperClass='col-10' size='lg'
+                                    label='Password' type={showPassword ? 'text' : 'password'}
+                                    {...register("password")}
                                 />
                                 <div className={`input-group-text col-2 
                                         ${styles.togglePassword} 
@@ -117,7 +108,7 @@ function Login() {
 
                             <p>
                                 Don't have an account?
-                                <a onClick={navRegister} className="ms-2">Register here</a>
+                                <a onClick={() => navigate("/register")} className="ms-2">Register here</a>
                             </p>
                         </div>
 

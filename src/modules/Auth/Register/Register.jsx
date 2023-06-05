@@ -9,14 +9,13 @@ import {
 }
     from 'mdb-react-ui-kit';
 import styles from "./Register.module.scss";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { apiRegister } from "../../../apis/userAPI";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
-import Loading from "../../../components/Loading/Loading";
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 const NAME_FORMAT = /^[\p{L}\s]{2,}$/u;
@@ -98,11 +97,7 @@ function Register() {
 
     const navigate = useNavigate();
 
-    const navLogin = () => {
-        navigate("/login");
-    };
-
-    if (user) return <Loading />;
+    if (user) return <Navigate to="/" />;
 
     return (
         <MDBContainer className='mx-4 px-0 px-lg-5 rounded-7 bg-white'>
@@ -253,7 +248,7 @@ function Register() {
                         </form>
                         <p className="mt-3">
                             Already have an account?
-                            <a onClick={navLogin} className="ms-2">Login here</a>
+                            <a onClick={() => navigate("/login")} className="ms-2">Login here</a>
                         </p>
                     </MDBRow>
                 </MDBCol>
