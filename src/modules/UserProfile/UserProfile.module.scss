@@ -267,3 +267,48 @@
         }
     }
 }
+
+.emptyState {
+    background: #fff;
+    text-align: center;
+    padding: 128px 0 120px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: 20px;
+
+    figcaption {
+        margin: 24px 0;
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+    }
+
+    a {
+        display: block;
+        transition: all .3s ease-in-out;
+        box-sizing: border-box;
+        margin-bottom: 8px;
+
+        .btnGreen {
+            display: inline-block;
+            font-size: 16px;
+            line-height: 24px;
+            padding: 9px 24px;
+            box-sizing: border-box;
+            text-transform: initial;
+
+            background-color: #1dbf73;
+            font-weight: 700;
+            color: #fff !important;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            transition: color .2s, background-color .2s, box-shadow .2s, border .2s;
+
+            &:hover {
+                box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .3);
+            }
+        }
+    }
+}
