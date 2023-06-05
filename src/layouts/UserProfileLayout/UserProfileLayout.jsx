@@ -9,9 +9,9 @@ function UserProfileLayout() {
     const { name } = useParams();
 
     if (!user) {
-        return <h1>Page not found...</h1>;
+        return <h1>Page Not Found</h1>;
     } else {
-        if (user.user.name !== name) return <h1>Wrong username...</h1>;
+        if (user.user.name !== name) return <h1>Wrong username</h1>;
     }
 
     return (
