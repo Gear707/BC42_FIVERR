@@ -18,8 +18,6 @@ function HiredJobs() {
         getHiredJobs();
     }, []);
 
-    console.log(hiredJobs);
-
     return (
         <div>
             {hiredJobs?.length < 1 ?

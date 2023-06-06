@@ -89,11 +89,6 @@
         }
     }
 
-    button {
-        display: inline-block;
-        @include defaultSetting();
-    }
-
     .username {
         font-size: 20px;
         font-weight: 700;
@@ -102,6 +97,9 @@
     }
 
     .penIcon {
+        display: inline-block;
+        @include defaultSetting();
+
         width: 12px;
         height: 12px;
         color: rgb(181, 182, 186);

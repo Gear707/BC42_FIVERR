@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./BasicInfo.module.scss";
 
-function BasicInfo() {
+function BasicInfo({userInfo}) {
     return (
         <div>
             <article className={styles.basicInfo}>

@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from "./Avatar.module.scss";
+import { apiUpdateUser } from "../../../apis/userAPI";
 
-function Avatar({ userInfo }) {
-    console.log(userInfo);
+function Avatar({ userInfo, getUserInfo }) {
+    const [name, setName] = useState("");
+    const [editingName, setEditingName] = useState(false);
+
+    const updateUserInfo = async () => {
+        try {
+            const data = await apiUpdateUser(userInfo?.id, userInfo, name);
+            console.log(data.content);
+        } catch (error) {
+            console.log(error.response?.data?.content);
+        }
+    };
+
+    const handleChangeName = (evt) => {
+        setName(evt.target.value);
+    };
+
+    const handleEditingName = () => {
+        setEditingName(!editingName);
+    };
+
+    const handleSubmit = async () => {
+        await updateUserInfo();
+        getUserInfo();
+        setEditingName(!editingName);
+    };
 
     return (
         <div className="mb-5">
@@ -29,14 +54,49 @@ function Avatar({ userInfo }) {
                     </div>
                     <div>
                         <div className="d-flex flex-column justify-content-center align-items-center">
-                            <span className={styles.username}>
-                                {userInfo?.name}
-                            </span>
-                            <span className="mt-2" title="Change display name">
-                                <button className={styles.penIcon}>
+                            {editingName ? (
+                                <>
+                                    <div className={`mb-2 ${styles.username}`}>
+                                        {userInfo?.name}
+                                    </div>
+                                    <div className="d-flex justify-content-center align-items-center">
+                                        <input type="text" value={name} className="form-control w-50"
+                                            onChange={handleChangeName}
+                                        />
+                                        <button className="btn btn-success ms-2" onClick={handleSubmit}>
+                                            Save
+                                        </button>
+                                    </div>
+                                </>
+                            ) : (
+                                <span className={styles.username}>
+                                    {userInfo?.name}
+                                </span>
+                            )}
+                            {/* <span className="mt-2" title="Change display name">
+                                <button className={styles.penIcon}
+                                    onClick={() => setEditingName(!editingName)}
+                                >
                                     <i className="fa-solid fa-pen"></i>
                                 </button>
-                            </span>
+                            </span> */}
+                            {editingName ? (
+                                <div>
+                                    <button className="btn btn-secondary mt-3"
+                                        onClick={handleEditingName}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            ) : (
+                                <span className="mt-2" title="Change display name">
+                                    <button className={styles.penIcon}
+                                        onClick={handleEditingName}
+                                    >
+                                        <i className="fa-solid fa-pen"></i>
+                                    </button>
+                                </span>
+                            )}
                         </div>
                     </div>
                 </div>

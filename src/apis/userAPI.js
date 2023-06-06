@@ -17,3 +17,10 @@ export const apiGetUser = async (userId) => {
     const { data } = await axiosClient.get(`/users/${userId}`);
     return data;
 };
+
+export const apiUpdateUser = async (userId, user, name, skill, certification) => {
+    const payload = { ...user, name, skill, certification };
+
+    const { data } = await axiosClient.put(`/users/${userId}`, payload);
+    return data;
+};

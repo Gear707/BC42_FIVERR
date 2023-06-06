@@ -5,7 +5,6 @@ import { apiGetUser } from "../../apis/userAPI";
 import Avatar from "./Avatar/Avatar";
 import BasicInfo from "./BasicInfo/BasicInfo";
 import HiredJobs from "./HiredJobs/HiredJobs";
-import { useNavigate, useParams } from "react-router-dom";
 
 function UserProfile() {
     const [userInfo, setUserInfo] = useState({});
@@ -35,8 +34,8 @@ function UserProfile() {
             <div className="container py-5">
                 <div className="row justify-content-between">
                     <div className="col-4">
-                        <Avatar userInfo={userInfo} />
-                        <BasicInfo />
+                        <Avatar userInfo={userInfo} getUserInfo={getUserInfo}/>
+                        <BasicInfo userInfo={userInfo} />
                     </div>
                     <div className="col-7">
                         <HiredJobs />
