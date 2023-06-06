@@ -26,7 +26,7 @@ function Avatar({ userInfo, getUserInfo }) {
     const handleSubmit = async () => {
         await updateUserInfo();
         getUserInfo();
-        setEditingName(!editingName);
+        handleEditingName();
     };
 
     return (
