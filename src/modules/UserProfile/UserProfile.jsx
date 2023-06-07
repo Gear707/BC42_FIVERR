@@ -8,20 +8,15 @@ import HiredJobs from "./HiredJobs/HiredJobs";
 
 function UserProfile() {
     const [userInfo, setUserInfo] = useState({});
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
-
+    
     const { user } = useSelector((state) => state.user);
 
     const getUserInfo = async () => {
         try {
             const data = await apiGetUser(user.user.id);
             setUserInfo(data?.content);
-            console.log(data.content);
         } catch (error) {
-            setError(error?.response?.data?.content);
-        } finally {
-            setLoading(false);
+            console.log(error?.response?.data?.content);
         }
     };
 

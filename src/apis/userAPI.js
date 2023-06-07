@@ -27,10 +27,8 @@ export const apiUpdateUser = async (userId, user, name, skill = [], certificatio
 
 export const apiUploadAvatar = async (userAvatar) => {
     const formData = new FormData();
-    formData.append("avatar", userAvatar);
+    formData.append("formFile", userAvatar);
 
-    const data = await axiosClient.post("/users/upload-avatar", formData, {
-        headers: { "Content-Type": "multipart/form-data" }
-    });
-    return data;
+    const response = await axiosClient.post("/users/upload-avatar", formData);
+    return response?.data;
 };
