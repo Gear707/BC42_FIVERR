@@ -16,7 +16,7 @@ function UserProfile() {
     const getUserInfo = async () => {
         try {
             const data = await apiGetUser(user.user.id);
-            setUserInfo(data.content);
+            setUserInfo(data?.content);
             console.log(data.content);
         } catch (error) {
             setError(error?.response?.data?.content);

@@ -18,9 +18,19 @@ export const apiGetUser = async (userId) => {
     return data;
 };
 
-export const apiUpdateUser = async (userId, user, name, skill, certification) => {
+export const apiUpdateUser = async (userId, user, name, skill = [], certification = []) => {
     const payload = { ...user, name, skill, certification };
 
     const { data } = await axiosClient.put(`/users/${userId}`, payload);
+    return data;
+};
+
+export const apiUploadAvatar = async (userAvatar) => {
+    const formData = new FormData();
+    formData.append("avatar", userAvatar);
+
+    const data = await axiosClient.post("/users/upload-avatar", formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+    });
     return data;
 };
