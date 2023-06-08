@@ -45,3 +45,20 @@
         }
     }
 }
+
+.jobsListWrapper {
+    background: #fff;
+    text-align: center;
+    padding: 20px;
+    padding-bottom: 0;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: 20px;
+
+    .ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+}

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./HiredJobs.module.scss";
 import { apiGetHiredJobs } from "../../../apis/hiredJobAPI";
+import { Typography } from 'antd';
+const { Paragraph } = Typography;
 
 function HiredJobs() {
     const [hiredJobs, setHiredJobs] = useState([]);
@@ -8,7 +10,8 @@ function HiredJobs() {
     const getHiredJobs = async () => {
         try {
             const data = await apiGetHiredJobs();
-            setHiredJobs(data.content);
+            setHiredJobs(data?.content);
+            console.log(data?.content);
         } catch (error) {
             console.log(error);
         }
@@ -19,8 +22,39 @@ function HiredJobs() {
     }, []);
 
     return (
-        <div>
-            {hiredJobs?.length < 1 ?
+        <>
+            {hiredJobs?.length >= 1 ?
+                (
+                    <div className={styles.jobsListWrapper}>
+                        {hiredJobs.map((job) => {
+                            return (
+                                <div className="container mb-3 p-3" key={job.congViec.id}
+                                    style={{ backgroundColor: "#effbf7" }}
+                                >
+                                    <div className="row">
+                                        <div className="col-4">
+                                            <img className="img-fluid" src={job.congViec.hinhAnh}
+                                                alt={job.congViec.id}
+                                            />
+                                        </div>
+                                        <div className="col-8 text-start">
+                                            <h6>{job.congViec.tenCongViec}</h6>
+                                            <Paragraph ellipsis={{ rows: 3, expandable: true }}>
+                                                {job.congViec.moTa}
+                                            </Paragraph>
+                                            <div className="text-end">
+                                                <button className="btn btn-warning">View details</button>
+                                                <button className="btn btn-primary mx-3">Edit</button>
+                                                <button className="btn btn-danger">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )
+                :
                 (
                     <figure className={styles.emptyState}>
                         <svg width={252} height={104} viewBox="0 0 252 104" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,10 +94,8 @@ function HiredJobs() {
                         </a>
                     </figure>
                 )
-                :
-                <h1>Job 1, 2, 3, 4</h1>
             }
-        </div>
+        </>
     );
 }
 
