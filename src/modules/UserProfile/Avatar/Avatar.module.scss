@@ -117,7 +117,6 @@
 
     .origin {
         border-top: 1px solid #dadbdd;
-        margin-top: 24px !important;
         padding-top: 20px !important;
 
         li {
@@ -136,7 +135,7 @@
     }
 }
 
-.spinner {
+.spinnerAvatar {
     position: absolute;
     z-index: 3;
     width: 100%;
@@ -147,12 +146,24 @@
     align-items: center;
     background-color: #d5d4d2;
 
-    .halfSpinner {
+    .halfSpinnerAvatar {
         width: 50px;
         height: 50px;
         border: 3px solid #43789c;
         border-top: 3px solid transparent;
         border-radius: 50%;
         animation: spin 0.5s linear 0s infinite;
+    }
+}
+
+.spinnerUsername {
+    @extend .spinnerAvatar;
+    background-color: transparent;
+    margin: 10px 0 !important;
+
+    .halfSpinnerUsername {
+        @extend .halfSpinnerAvatar;
+        width: 20px;
+        height: 20px;
     }
 }
