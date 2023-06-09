@@ -14,6 +14,7 @@ function UserProfile() {
     const getUserInfo = async () => {
         try {
             const data = await apiGetUser(user.user.id);
+            console.log(data?.content);
             setUserInfo(data?.content);
         } catch (error) {
             console.log(error?.response?.data?.content);
@@ -30,7 +31,7 @@ function UserProfile() {
                 <div className="row justify-content-between">
                     <div className="col-4">
                         <Avatar userInfo={userInfo} getUserInfo={getUserInfo}/>
-                        <BasicInfo userInfo={userInfo} />
+                        <BasicInfo userInfo={userInfo} getUserInfo={getUserInfo}/>
                     </div>
                     <div className="col-7">
                         <HiredJobs />

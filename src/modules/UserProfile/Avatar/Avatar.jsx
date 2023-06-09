@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styles from "./Avatar.module.scss";
-import { apiUpdateUser, apiUploadAvatar } from "../../../apis/userAPI";
+import { apiUpdateUsername, apiUploadAvatar } from "../../../apis/userAPI";
 
 function Avatar({ userInfo, getUserInfo }) {
     const [name, setName] = useState("");
@@ -36,7 +36,7 @@ function Avatar({ userInfo, getUserInfo }) {
         if (name) {
             setLoadingUsername(true);
             try {
-                const data = await apiUpdateUser(userInfo?.id, userInfo, name);
+                const data = await apiUpdateUsername(userInfo?.id, userInfo, name);
                 console.log(data?.content);
             } catch (error) {
                 console.log(error.response?.data?.content);

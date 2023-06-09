@@ -18,8 +18,22 @@ export const apiGetUser = async (userId) => {
     return data;
 };
 
-export const apiUpdateUser = async (userId, user, name, skill = [], certification = []) => {
-    const payload = { ...user, name, skill, certification };
+export const apiUpdateUsername = async (userId, user, name) => {
+    const payload = { ...user, name };
+
+    const { data } = await axiosClient.put(`/users/${userId}`, payload);
+    return data;
+};
+
+export const apiUpdateSkill = async (userId, user, skill) => {
+    const payload = { ...user, skill };
+
+    const { data } = await axiosClient.put(`/users/${userId}`, payload);
+    return data;
+};
+
+export const apiUpdateCertification = async (userId, user, certification) => {
+    const payload = { ...user, certification };
 
     const { data } = await axiosClient.put(`/users/${userId}`, payload);
     return data;
