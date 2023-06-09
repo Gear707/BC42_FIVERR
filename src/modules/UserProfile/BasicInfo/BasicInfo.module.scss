@@ -39,13 +39,14 @@
                 font-weight: 700;
                 line-height: 120%;
 
-                a {
-                    display: inline-block;
-                    color: #00698c;
-                    font-size: 14px;
-                    font-weight: 700;
-                    text-align: right;
-                }
+            }
+
+            a {
+                display: inline-block;
+                color: #00698c;
+                font-size: 14px;
+                font-weight: 700;
+                text-align: right;
             }
         }
 
@@ -56,20 +57,50 @@
             li {
                 margin-bottom: 10px;
 
-                .title {
-                    font-size: 14px;
-                    line-height: 18px;
-                    margin-bottom: 5px;
-                    margin-right: 5px;
-                    font-weight: 400;
-                    color: #555;
+                &.skillBubble {
+                    border: 1px solid #e5e5e5;
+                    border-radius: 15px;
+                    display: inline-block;
+                    position: relative;
+                    min-width: 40px;
+                    text-align: center;
+                    padding: 8px 15px;
+                    margin: 0 10px 10px 0;
+                    transition: background .2s ease-in-out;
+
+                    &:hover {
+                        background: #f4f4f4;
+                        border: 1px solid #e5e5e5;
+                        cursor: pointer;
+
+                        .animate {
+                            width: 35px;
+                        }
+                    }
+
+                    .animate {
+                        background: #fff;
+                        border-radius: 15px;
+                        position: absolute;
+                        top: 0;
+                        right: auto;
+                        bottom: 0;
+                        left: 0;
+                        margin: 0;
+                        width: 0;
+                        padding: 7px 5px;
+                        overflow: hidden;
+
+
+                    }
                 }
 
-                .subTitle {
-                    color: #b2b2b2;
-                    font-size: 14px;
+                .title {
+                    font-size: 1rem;
+                    line-height: 18px;
+                    margin: 0;
                     font-weight: 400;
-                    margin-left: 5px;
+                    color: #555;
                 }
 
                 .animate {
@@ -82,6 +113,14 @@
                     margin-right: -15px;
                     right: 0;
                     opacity: 0;
+
+                    a {
+                        &:hover {
+                            i {
+                                color: #555;
+                            }
+                        }
+                    }
 
                     i {
                         color: #b2b2b2;
@@ -100,7 +139,7 @@
         .emptyList {
             color: #b2b2b2;
             font-size: 14px;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
         }
     }
 
@@ -125,6 +164,40 @@
                 z-index: 1;
                 color: #00698c;
             }
+        }
+    }
+}
+
+.formWrapper {
+    background-color: #f4f4f4;
+    margin: 0 -15px 20px;
+    padding: 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+
+    .inputWrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .buttonWrapper {
+        display: flex;
+        padding-top: 15px;
+        margin-top: 15px;
+        border-top: 1px solid #e5e5e5;
+    }
+
+    textarea {
+        background-color: inherit;
+        width: 100%;
+        border: 0;
+        box-shadow: none;
+        border-bottom: 1px solid #e5e5e5;
+        height: 140px;
+
+        &:focus {
+            outline: 0;
         }
     }
 }
