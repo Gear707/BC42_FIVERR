@@ -16,6 +16,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { apiRegister } from "../../../apis/userAPI";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
+import { alertError } from "../../../helpers/sweeAlert2";
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 const NAME_FORMAT = /^[\p{L}\s]{2,}$/u;
@@ -78,8 +79,10 @@ function Register() {
         try {
             const data = await apiRegister(values);
             console.log(data);
+            alertSuccess("Member registered successfully!");
         } catch (error) {
             console.log(error.response?.data?.content);
+            alertError("Failed to register!");
         }
     };
 
