@@ -107,7 +107,7 @@ function Services() {
     swipeToSlide: true,
   };
   return (
-    <div className={styles.background}>
+    <div id="Services" className={styles.background}>
       <div className={styles.container}>
         <h2>Popular services</h2>
 

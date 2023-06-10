@@ -57,14 +57,14 @@ function Banner() {
     setValues({ ...values, [name]: value });
   };
 
-  const handleSearch = async (keyword) => {
-    try {
-      const jobList = await apiJobList(keyword);
-      console.log(jobList);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleSearch = async (keyword) => {
+  //   try {
+  //     const jobList = await apiJobList(keyword);
+  //     console.log(jobList);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div id="Banner" className={styles.background}>
@@ -155,13 +155,13 @@ function Banner() {
               type="search"
               placeholder="Search for any services..."
               name="keyword"
-              onChange={handleChange}
+              // onChange={handleChange}
             />
             <a
               className={`${styles.submitButton}  d-lg-none d-block col-12`}
               type="submit"
               onClick={() => {
-                handleSearch(values?.keyword);
+                // handleSearch(values?.keyword);
                 navigate(`/jobList/${values.keyword}`);
               }}
             >
@@ -188,7 +188,7 @@ function Banner() {
                   className={`${styles.submitButton} text-center`}
                   type="submit"
                   onClick={() => {
-                    handleSearch(values?.keyword);
+                    // handleSearch(values?.keyword);
                     navigate(`/jobList/${values.keyword}`);
                   }}
                 >

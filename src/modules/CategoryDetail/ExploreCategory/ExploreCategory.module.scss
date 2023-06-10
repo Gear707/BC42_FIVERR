@@ -1,0 +1,66 @@
+.container {
+    margin: -20px 20px 20px 0px;
+    padding: 32px;
+    font-size: 16px;
+    color: #222325;
+
+    h2 {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .category {
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+
+        .nhom {
+            text-align: center;
+            max-width: 300px;
+
+            img {
+                width: 100%;
+                height: 200px;
+                border-radius: 8px;
+                margin: 20px 0;
+            }
+
+            h3 {
+                font-size: 21px;
+                font-weight: 500;
+
+            }
+
+            .loai {
+                margin: 12px 0 !important;
+
+                a {
+                    font-size: 18px !important;
+                    color: #62646a;
+                    text-decoration: none;
+                }
+            }
+
+        }
+    }
+
+}
+
+@media screen and (max-width: 992px) {
+    .container {}
+}
+
+
+@media screen and (max-width: 576px) {
+    .container {
+        margin: -20px 20px 20px 20px;
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .container {
+        margin: -20px 20px 20px 20px;
+        padding: 15px;
+    }
+}

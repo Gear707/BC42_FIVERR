@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import MainHeader from "./MainHeader/MainHeader";
 import SubHeader from "./SubHeader/SubHeader";
 import styles from "./Header.module.scss";
+import { useLocation } from "react-router-dom";
+import useWindowResize from "../../helpers/useWindowResize";
 
 function Header() {
   const [y, setY] = useState(0);
-  const condition = y > 150;
-  console.log(condition);
+
+  const size = useWindowResize();
+  const location = useLocation();
+  const pathname = location.pathname;
+
+  const condition = y >= 150 || pathname !== "/" || size.width < 576;
 
   const handleScroll = () => {
     // const scrollTop = window.pageYOffset;

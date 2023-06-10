@@ -1,0 +1,13 @@
+.container {
+    font-size: 16px;
+    font-weight: 600;
+    color: #62646a;
+
+    .navItem {
+        display: flex;
+        align-items: center;
+        span {
+             margin: 0 7px  
+        }
+    }
+}

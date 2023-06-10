@@ -1,0 +1,49 @@
+.budgetDropdown {
+    width: 310px;
+    height: 320px;
+    padding: 16px 24px;
+
+    color: #404145;
+    font-weight: 600;
+    .custom {
+        display: flex;
+        align-items: center;
+    }
+
+    .maxMin {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .max,
+        .min {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            padding: 5px;
+            margin-bottom: 24px;
+        }
+    }
+
+
+}
+
+.budgetPoll {
+    width: 100%;
+    height: 200px;
+    color: #404145;
+    font-size: 14px;
+    font-weight: 600;
+
+    label {
+        height: 19px;
+        margin: 12px 3px;
+    }
+
+    input {
+        width: 19px;
+        height: 19px;
+        margin: 15px 3px 12px 3px;
+        padding-left: 0;
+    }
+}

@@ -7,7 +7,10 @@ import MainLayout from "./layouts/MainLayout/MainLayout";
 
 //lazy: thực hiện cơ chế tải chậm. Bắt đầu tại thời điểm gọi component mới bắt đầu tải về. Tránh các component không cần thiết tải dữ liệu từ ban đầu
 const Home = lazy(() => import("./modules/Home/Home"));
-const JobList = lazy(() => import("./modules/JobList.jsx/JobList"));
+const JobList = lazy(() => import("./modules/JobList/JobList"));
+const CategoryDetail = lazy(() =>
+  import("./modules/CategoryDetail/CategoryDetail")
+);
 
 function App() {
   return (
@@ -19,9 +22,13 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path="/jobList/:keyword" element={<JobList />} />
+            <Route
+              path="/:tenLoaiCongViec/:MaLoaiCongViec"
+              element={<CategoryDetail />}
+            />
           </Route>
-          {/* <Route path="/*" element={<PageNotFound />}></Route> */}
         </Routes>
+        {/* <Route path="/*" element={<PageNotFound />}></Route> */}
       </BrowserRouter>
     </Suspense>
   );

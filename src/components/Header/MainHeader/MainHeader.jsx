@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MainHeader.module.scss";
 import "./canvasCustom.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
-  Button,
   Container,
   Nav,
   NavDropdown,
@@ -19,7 +18,10 @@ function MainHeader() {
   const pathname = location.pathname;
   const size = useWindowResize();
 
+  const naivigate = useNavigate();
+
   const condition = y > 10 || pathname !== "/" || size.width < 576;
+  const condition2 = y >= 150 || pathname !== "/" || size.width < 576;
 
   const handleScroll = () => {
     // const scrollTop = window.pageYOffset;
@@ -117,7 +119,7 @@ function MainHeader() {
             className="me-2 d-sm-none"
             aria-controls="offcanvasNavbar-expand-lg"
           />
-          <Navbar.Brand className="d-sm-none" href="#">
+          <Navbar.Brand className="d-sm-none">
             <svg
               width={89}
               height={27}
@@ -140,7 +142,7 @@ function MainHeader() {
                 className="me-2"
                 aria-controls="offcanvasNavbar-expand-lg"
               />
-              <Navbar.Brand href="#">
+              <Navbar.Brand role="button" onClick={() => naivigate("/")}>
                 <svg
                   width={89}
                   height={27}
@@ -158,7 +160,7 @@ function MainHeader() {
               </Navbar.Brand>
             </div>
           )}
-          <div className={y < 150 || size.width < 576 ? "d-none" : "null"}>
+          <div className={condition2 ? "null" : "d-none"}>
             <div className={styles.searchPackage}>
               <form className="input-group">
                 <input

@@ -1,0 +1,58 @@
+.serviceDropdown {
+    width: 570px;
+    height: 400px;
+    padding: 16px 24px;
+
+    .serviceContainer {}
+
+    b {
+        padding-bottom: 20px !important;
+    }
+
+    .checkBoxList {
+        display: flex;
+        justify-content: space-between;
+        align-items: center !important;
+
+        .optionBox {
+            display: flex;
+            // justify-content: space-around;
+            align-items: center !important;
+            margin: 12px 0;
+            font-weight: 550;
+            color: #222325;
+        }
+
+        input {
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+        }
+
+        label {
+            font-size: 14px;
+            max-width: 70px;
+        }
+
+        .number {
+            font-size: 14px;
+            font-weight: 500;
+            color: #62646a;
+            margin-left: 10px;
+        }
+
+        .showMore {
+            font-size: 14px;
+            color: #62646a !important;
+        }
+
+        hr {
+            border-bottom: 1px solid #efeff0 !important;
+            // padding: 24px 8px;
+        }
+
+
+    }
+
+
+}
