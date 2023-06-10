@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import styles from "./Avatar.module.scss";
 import { apiUpdateUsername, apiUploadAvatar } from "../../../apis/userAPI";
+import { alertError, alertSuccess, warningPopup } from "../../../helpers/sweeAlert2";
 
 function Avatar({ userInfo, getUserInfo }) {
     const [name, setName] = useState("");
     const [isEditing, setIsEditing] = useState(false);
     const [loadingAvatar, setLoadingAvatar] = useState(false);
-    const [loadingUsername, setLoadingUsername] = useState(false);
 
     const handleEditing = () => {
         setIsEditing(!isEditing);
@@ -34,21 +34,23 @@ function Avatar({ userInfo, getUserInfo }) {
 
     const updateUsername = async () => {
         if (name) {
-            setLoadingUsername(true);
-            try {
-                const data = await apiUpdateUsername(userInfo?.id, userInfo, name);
-                console.log(data?.content);
-            } catch (error) {
-                console.log(error.response?.data?.content);
-            } finally {
-                setLoadingUsername(false);
+            const { isConfirmed } = await warningPopup(`Save ${name} as your new username?`);
+            if (isConfirmed) {
+                try {
+                    const data = await apiUpdateUsername(userInfo?.id, userInfo, name);
+                    console.log(data?.content);
+                    alertSuccess("Username updated successfully!");
+                } catch (error) {
+                    console.log(error.response?.data?.content);
+                    alertError("Failed to update username");
+                }
             }
         }
     };
 
-    const handleUpdate = async () => {
-        handleEditing();
+    const handleUpdateUsername = async () => {
         await updateUsername();
+        handleEditing();
         getUserInfo();
     };
 
@@ -87,19 +89,9 @@ function Avatar({ userInfo, getUserInfo }) {
                     </div>
                     <div>
                         <div className="d-flex flex-column justify-content-center align-items-center">
-                            {loadingUsername ?
-                                (
-                                    <div className={styles.spinnerUsername}>
-                                        <div className={styles.halfSpinnerUsername}></div>
-                                    </div>
-                                )
-                                :
-                                (
-                                    <div className={styles.username}>
-                                        {userInfo?.name}
-                                    </div>
-                                )
-                            }
+                            <div className={styles.username}>
+                                {userInfo?.name}
+                            </div>
                             {isEditing ?
                                 (
                                     <>
@@ -110,7 +102,7 @@ function Avatar({ userInfo, getUserInfo }) {
                                         </div>
                                         <div className="mt-2">
                                             <button className="btn btn-success"
-                                                onClick={handleUpdate} disabled={!name}
+                                                onClick={handleUpdateUsername} disabled={!name}
                                             >
                                                 Update
                                             </button>
@@ -124,7 +116,7 @@ function Avatar({ userInfo, getUserInfo }) {
                                 )
                                 :
                                 (
-                                    <div className={`${loadingUsername ? "d-none" : "d-block"}`}>
+                                    <div>
                                         <span title="Change display name">
                                             <button className={styles.penIcon}
                                                 onClick={handleEditing}

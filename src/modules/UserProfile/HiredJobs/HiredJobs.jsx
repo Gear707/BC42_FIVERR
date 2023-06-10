@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./HiredJobs.module.scss";
-import { apiGetHiredJobs } from "../../../apis/hiredJobAPI";
+import { apiDeleteHiredJob, apiGetHiredJobs } from "../../../apis/hiredJobAPI";
+import { alertError, alertSuccess, warningPopup } from "../../../helpers/sweeAlert2";
+import "./customAnt.scss";
 import { Pagination, Typography } from 'antd';
 const { Paragraph } = Typography;
 
@@ -8,6 +10,16 @@ function HiredJobs() {
     const [hiredJobs, setHiredJobs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const jobsPerPage = 7;
+
+    const getHiredJobs = async () => {
+        try {
+            const data = await apiGetHiredJobs();
+            setHiredJobs(data?.content);
+            console.log(data?.content);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const getItemsForCurrentPage = () => {
         const lastIndex = currentPage * jobsPerPage;
@@ -19,12 +31,39 @@ function HiredJobs() {
         setCurrentPage(pageNumber);
     };
 
+    const handleDeleteJob = async (jobId) => {
+        const { isConfirmed } = await warningPopup("Are you sure you want to delete this job?");
+        console.log(isConfirmed);
+        if (isConfirmed) {
+            try {
+                await apiDeleteHiredJob(jobId);
+                getHiredJobs();
+                alertSuccess("Job deleted successfully!");
+            } catch (error) {
+                console.log(error);
+                alertError("Failed to delete the job!");
+            }
+        }
+    };
+
+    const renderStars = (rating) => {
+        const stars = [];
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                stars.push(<i key={i} className="fas fa-star"></i>);
+            } else {
+                stars.push(<i key={i} className="far fa-star"></i>);
+            }
+        }
+        return stars;
+    };
+
     const renderJobs = () => {
         const jobsToDisplay = getItemsForCurrentPage();
 
         return jobsToDisplay.map((job) => {
             return (
-                <div className="container mb-3 p-3" key={job.congViec.id}
+                <div className="container mb-3 p-3" key={job.id}
                     style={{ backgroundColor: "#e5ebf0" }}
                 >
                     <div className="row">
@@ -40,9 +79,12 @@ function HiredJobs() {
                                 {job.congViec.moTa}
                             </Paragraph>
                             <div className="text-end">
-                                <button className="btn btn-info">View details</button>
-                                <button className="btn btn-primary mx-3">Edit</button>
-                                <button className="btn btn-danger">Delete</button>
+                                <button className="btn btn-primary me-3">Edit</button>
+                                <button className="btn btn-danger"
+                                    onClick={() => handleDeleteJob(job.id)}
+                                >
+                                    Delete
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -51,33 +93,9 @@ function HiredJobs() {
         });
     };
 
-    const renderStars = (rating) => {
-        const stars = [];
-
-        for (let i = 1; i <= 5; i++) {
-            if (i <= rating) {
-                stars.push(<i key={i} className="fas fa-star"></i>);
-            } else {
-                stars.push(<i key={i} className="far fa-star"></i>);
-            }
-        }
-
-        return stars;
-    };
-
-    const getHiredJobs = async () => {
-        try {
-            const data = await apiGetHiredJobs();
-            setHiredJobs(data?.content);
-            console.log(data?.content);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     useEffect(() => {
         getHiredJobs();
-    }, []);
+    }, [currentPage]);
 
     return (
         (hiredJobs?.length >= 1 ?
