@@ -16,7 +16,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { apiRegister } from "../../../apis/userAPI";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
-import { alertError } from "../../../helpers/sweeAlert2";
+import { alertError, alertSuccess } from "../../../helpers/sweeAlert2";
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 const NAME_FORMAT = /^[\p{L}\s]{2,}$/u;
@@ -59,7 +59,7 @@ function Register() {
         setShowPassword(!showPassword);
     };
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             name: "",
             email: "",
@@ -69,7 +69,7 @@ function Register() {
             gender: true,
             role: "",
             skill: [],
-            certification: []
+            certification: [],
         },
         mode: "onTouched",
         resolver: yupResolver(schema),
@@ -79,7 +79,9 @@ function Register() {
         try {
             const data = await apiRegister(values);
             console.log(data);
-            alertSuccess("Member registered successfully!");
+            if (data) {
+                alertSuccess("Member registered successfully!");
+            }
         } catch (error) {
             console.log(error.response?.data?.content);
             alertError("Failed to register!");
@@ -87,11 +89,12 @@ function Register() {
     };
 
     const onSubmit = (values) => {
-        values.birthday = dayjs(values.birthday).format("MM/DD/YYYY");
+        values.birthday = dayjs(values.birthday).format("DD/MM/YYYY");
         values.skill = values.skill.split(", ");
         values.certification = values.certification.split(", ");
         console.log(values);
         registerUserInfo(values);
+        reset();
     };
 
     const onError = (errors) => {

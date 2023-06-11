@@ -6,6 +6,7 @@ import AuthLayout from "./layouts/AuthLayout/AuthLayout";
 import UserProfileLayout from "./layouts/UserProfileLayout/UserProfileLayout";
 
 import Loading from "./components/Loading/Loading";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 const Home = lazy(() => import("./modules/Home/Home"));
 const Login = lazy(() => import("./modules/Auth/Login/Login"));
@@ -30,7 +31,7 @@ function App() {
             <Route path="/users/:name" element={<UserProfile />} />
           </Route>
 
-          <Route path="*" element={<h1>Page Not Found</h1>} />
+          <Route path="*" element={<PageNotFound/>} />
         </Routes>
       </BrowserRouter>
     </Suspense>

@@ -3,15 +3,16 @@ import Header from "../../components/Header/Header";
 import { Outlet, useParams } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import { useSelector } from "react-redux";
+import PageNotFound from "../../components/PageNotFound/PageNotFound";
 
 function UserProfileLayout() {
     const { user } = useSelector((state) => state.user);
     const { name } = useParams();
 
     if (!user) {
-        return <h1>Page Not Found</h1>;
+        return <PageNotFound/>;
     } else {
-        if (user.user.name !== name) return <h1>Wrong username</h1>;
+        if (user.user.name !== name) return <PageNotFound/>;
     }
 
     return (
