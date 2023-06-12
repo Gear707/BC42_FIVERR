@@ -59,7 +59,7 @@ function HiredJobs({ userInfo }) {
             await apiUpdateHiredJob(values.id, values);
             handleClose();
             getHiredJobs();
-            alertSuccess("Job updated successfully!");
+            alertSuccess("Job status updated successfully!");
         } catch (error) {
             console.log(error);
             alertError("Failed to update the job!");
@@ -143,6 +143,8 @@ function HiredJobs({ userInfo }) {
     const renderJobs = () => {
         const jobsToDisplay = getItemsForCurrentPage();
 
+        const updatedJobs = [...jobsToDisplay];
+
         return jobsToDisplay?.map((job) => {
             return (
                 <div className="container mb-3 p-3" key={job.id}
@@ -155,8 +157,19 @@ function HiredJobs({ userInfo }) {
                             />
                         </div>
                         <div className={`${size.width >= 505 ? "col-8" : "col-12"} text-start`}>
-                            <h6 className="m-0">{job.congViec.tenCongViec}</h6>
-                            <div className="text-warning">{renderStars(job.congViec.saoCongViec)}</div>
+                            <h6 className="m-0">
+                                {job.congViec.tenCongViec}
+                            </h6>
+                            <div className="d-flex justify-content-between">
+                                <div className="text-warning">{renderStars(job.congViec.saoCongViec)}</div>
+                                <div>
+                                    {job.hoanThanh ?
+                                        <span className="badge rounded-pill text-bg-success ms-3">Finished</span>
+                                        :
+                                        <span className="badge rounded-pill text-bg-warning ms-3">Ongoing</span>
+                                    }
+                                </div>
+                            </div>
                             <Paragraph ellipsis={{ rows: 3, expandable: true }}>
                                 {job.congViec.moTa}
                             </Paragraph>
@@ -320,8 +333,8 @@ function HiredJobs({ userInfo }) {
                                         <select className="form-select " style={{ lineHeight: "2" }}
                                             {...register("hoanThanh", { valueAsBoolean: true })}
                                         >
-                                            <option value={true}>Finished</option>
-                                            <option value={false}>Ongoing</option>
+                                            <option value="true">Finished</option>
+                                            <option value="false">Ongoing</option>
                                         </select>
                                     </div>
                                 </MDBCol>
