@@ -89,7 +89,7 @@ function Register() {
     };
 
     const onSubmit = (values) => {
-        values.birthday = dayjs(values.birthday).format("DD/MM/YYYY");
+        values.birthday = dayjs(values.birthday).format("MM/DD/YYYY");
         values.skill = values.skill.split(", ");
         values.certification = values.certification.split(", ");
         console.log(values);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./HiredJobs.module.scss";
-import { apiDeleteHiredJob, apiGetHiredJobs } from "../../../apis/hiredJobAPI";
+import { apiDeleteHiredJob, apiGetHiredJobs, apiUpdateHiredJob } from "../../../apis/hiredJobAPI";
 import { alertError, alertSuccess, warningPopup } from "../../../helpers/sweeAlert2";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -14,12 +14,11 @@ import {
 }
     from 'mdb-react-ui-kit';
 import "./customAnt.scss";
-import { Pagination, Typography } from 'antd';
 import { useForm } from "react-hook-form";
 import dayjs from "dayjs";
+import { Pagination, Typography } from 'antd';
+import useWindowResize from "../../../helpers/useWindowResize";
 const { Paragraph } = Typography;
-
-const NUMBER_ONLY_FORMAT = /^[0-9]+$/;
 
 const schema = yup.object({
     id: yup.string()
@@ -33,18 +32,20 @@ const schema = yup.object({
     hoanThanh: yup.boolean(),
 });
 
-function HiredJobs() {
+function HiredJobs({ userInfo }) {
     const [hiredJobs, setHiredJobs] = useState([]);
     const [selectedJob, setSelectedJob] = useState({});
+    const [show, setShow] = useState(false);
     const [loadingJobs, setLoadingJobs] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const jobsPerPage = 7;
+    const size = useWindowResize();
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             id: "",
             maCongViec: "",
-            // maNguoiThue: "",
+            maNguoiThue: "",
             ngayThue: "",
             hoanThanh: true,
         },
@@ -52,16 +53,24 @@ function HiredJobs() {
         resolver: yupResolver(schema)
     });
 
-    const onSubmit = (values) => {
+    const onSubmit = async (values) => {
+        values.ngayThue = dayjs(selectedJob.ngayThue).format("MM/DD/YYYY");
+        try {
+            await apiUpdateHiredJob(values.id, values);
+            handleClose();
+            getHiredJobs();
+            alertSuccess("Job updated successfully!");
+        } catch (error) {
+            console.log(error);
+            alertError("Failed to update the job!");
+        }
         console.log(values);
-        reset();
     };
 
     const onError = (errors) => {
         console.log(errors);
     };
 
-    const [show, setShow] = useState(false);
     const handleClose = () => {
         setShow(false);
         reset();
@@ -76,7 +85,7 @@ function HiredJobs() {
         reset({
             id: selectedJob.id,
             maCongViec: selectedJob.congViec.id,
-            maNguoiThue: "",
+            maNguoiThue: userInfo.id,
             ngayThue: dayjs(selectedJob.ngayThue).format("YYYY-MM-DD"),
             hoanThanh: selectedJob.hoanThanh,
         });
@@ -107,7 +116,6 @@ function HiredJobs() {
 
     const handleDeleteJob = async (jobId) => {
         const { isConfirmed } = await warningPopup("Are you sure you want to delete this job?");
-        console.log(isConfirmed);
         if (isConfirmed) {
             try {
                 await apiDeleteHiredJob(jobId);
@@ -141,27 +149,35 @@ function HiredJobs() {
                     style={{ backgroundColor: "#e5ebf0" }}
                 >
                     <div className="row">
-                        <div className="col-4">
+                        <div className={size.width >= 505 ? "col-4" : "col-12 mb-3"}>
                             <img className="img-fluid" src={job.congViec.hinhAnh}
                                 alt={job.congViec.id}
                             />
                         </div>
-                        <div className="col-8 text-start">
+                        <div className={`${size.width >= 505 ? "col-8" : "col-12"} text-start`}>
                             <h6 className="m-0">{job.congViec.tenCongViec}</h6>
                             <div className="text-warning">{renderStars(job.congViec.saoCongViec)}</div>
                             <Paragraph ellipsis={{ rows: 3, expandable: true }}>
                                 {job.congViec.moTa}
                             </Paragraph>
                             <div className="text-end">
-                                <button className="btn btn-primary me-3"
+                                <button className="btn btn-primary me-3" title="Edit job status"
                                     onClick={() => handleSelectJob(job)}
                                 >
-                                    Edit
+                                    {size.width >= 370 ?
+                                        "Edit job status"
+                                        :
+                                        <i className="fa-solid fa-pen-to-square"></i>
+                                    }
                                 </button>
-                                <button className="btn btn-danger"
+                                <button className="btn btn-danger" title="Delete job"
                                     onClick={() => handleDeleteJob(job.id)}
                                 >
-                                    Delete
+                                    {size.width >= 370 ?
+                                        "Delete"
+                                        :
+                                        <i className="fa-solid fa-trash-can"></i>
+                                    }
                                 </button>
                             </div>
                         </div>
@@ -249,33 +265,9 @@ function HiredJobs() {
                     <MDBContainer>
                         <form onSubmit={handleSubmit(onSubmit, onError)}>
                             <MDBRow>
-                                <MDBCol col='12' md='6' lg='6'
-                                    className={errors.id ? '' : 'mb-3'}>
-                                    <MDBInput label='ID' size='lg' type='text'
-                                        {...register("id")}
-                                    />
-                                    {errors.id &&
-                                        <p className="mt-1 mb-3 text-danger">
-                                            {errors.id.message}
-                                        </p>
-                                    }
-                                </MDBCol>
-
-                                <MDBCol md='6' lg='6' className={errors.maCongViec ? '' : 'mb-3'}>
-                                    <MDBInput label='Job index' size='lg' type='text'
-                                        {...register("maCongViec")}
-                                    />
-                                    {errors.maCongViec &&
-                                        <p className="mt-1 mb-2 text-danger">
-                                            {errors.maCongViec.message}
-                                        </p>
-                                    }
-                                </MDBCol>
-                            </MDBRow>
-
-                            <MDBRow>
-                                <MDBCol sm='6' md='6' lg='6' className={errors.maNguoiThue ? '' : 'mb-3'}>
-                                    <MDBInput label='Person ID' size='lg' type='text'
+                                <MDBCol sm='6' md='6' lg='6'
+                                    className={errors.maNguoiThue ? '' : 'mb-3'}>
+                                    <MDBInput label='User ID' size='lg' type='text'
                                         {...register("maNguoiThue")} disabled
                                     />
                                     {errors.maNguoiThue &&
@@ -285,9 +277,34 @@ function HiredJobs() {
                                     }
                                 </MDBCol>
 
+                                <MDBCol sm='6' md='6' lg='6'
+                                    className={errors.id ? '' : 'mb-3'}>
+                                    <MDBInput label='Job ID' size='lg' type='text'
+                                        {...register("id")} disabled
+                                    />
+                                    {errors.id &&
+                                        <p className="mt-1 mb-3 text-danger">
+                                            {errors.id.message}
+                                        </p>
+                                    }
+                                </MDBCol>
+                            </MDBRow>
+
+                            <MDBRow>
+                                <MDBCol sm='6' md='6' lg='6' className={errors.maCongViec ? '' : 'mb-3'}>
+                                    <MDBInput label='Job Index' size='lg' type='text'
+                                        {...register("maCongViec")} disabled
+                                    />
+                                    {errors.maCongViec &&
+                                        <p className="mt-1 mb-2 text-danger">
+                                            {errors.maCongViec.message}
+                                        </p>
+                                    }
+                                </MDBCol>
+
                                 <MDBCol sm='6' md='6' lg='6' className={errors.ngayThue ? '' : 'mb-3'}>
-                                    <MDBInput label='Hired date' size='lg' type='date'
-                                        {...register("ngayThue")} />
+                                    <MDBInput label='Hired Date' size='lg' type='date'
+                                        {...register("ngayThue")} disabled />
                                     {errors.ngayThue &&
                                         <p className="mt-1 mb-3 text-danger">
                                             {errors.ngayThue.message}
@@ -303,7 +320,7 @@ function HiredJobs() {
                                         <select className="form-select " style={{ lineHeight: "2" }}
                                             {...register("hoanThanh", { valueAsBoolean: true })}
                                         >
-                                            <option value={true}>Finised</option>
+                                            <option value={true}>Finished</option>
                                             <option value={false}>Ongoing</option>
                                         </select>
                                     </div>
@@ -311,10 +328,13 @@ function HiredJobs() {
                             </MDBRow>
 
                             <MDBRow className="d-flex justify-content-center mt-2">
-                                <MDBBtn className="me-3 w-25" color="success">Update</MDBBtn>
-                                <MDBBtn className="w-25" color="secondary" onClick={handleClose}>
-                                    Cancel
+                                <MDBBtn className="me-3 w-25" color="success"
+                                >
+                                    Update
                                 </MDBBtn>
+                                <a className="btn btn-secondary w-25" onClick={handleClose}>
+                                    Cancel
+                                </a>
                             </MDBRow>
                         </form>
                     </MDBContainer>

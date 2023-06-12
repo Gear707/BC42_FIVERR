@@ -29,12 +29,12 @@ function UserProfile() {
         <div style={{ backgroundColor: "#f7f7f7" }}>
             <div className="container py-5">
                 <div className="row justify-content-between">
-                    <div className="col-4">
+                    <div className="col-12 col-lg-4">
                         <Avatar userInfo={userInfo} getUserInfo={getUserInfo}/>
                         <BasicInfo userInfo={userInfo} getUserInfo={getUserInfo}/>
                     </div>
-                    <div className="col-7">
-                        <HiredJobs />
+                    <div className="col-12 col-lg-7 mt-5 mt-lg-0">
+                        <HiredJobs userInfo={userInfo} />
                     </div>
                 </div>
             </div>
