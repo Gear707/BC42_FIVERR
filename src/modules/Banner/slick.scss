@@ -99,7 +99,7 @@
 
     .slick-arrow.slick-next {
         border-radius: 30px;
-        right: 0% !important;
+        right: -0.3% !important;
         top: 5px !important;
 
         &:hover {
@@ -129,4 +129,42 @@
         width: 16px;
     }
 
+}
+
+@media screen and (max-width: 992px) {
+    #SliderCategory {
+        .slick-arrow.slick-prev {
+            left: 90% !important;
+        }
+
+        .slick-arrow.slick-next {
+            right: -0.5% !important;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #SliderCategory {
+        .slick-arrow.slick-prev {
+            left: 88% !important;
+            width: 28px;
+            height: 28px;
+        }
+
+        .slick-arrow.slick-next {
+            right: -1.2% !important;
+            width: 28px;
+            height: 28px;
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #SliderCategory {
+
+        button.slick-arrow.slick-prev,
+        button.slick-arrow.slick-next {
+            display: none !important;
+        }
+    }
 }

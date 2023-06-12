@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./SubHeader.module.scss";
 import { Nav, NavDropdown } from "react-bootstrap";
-import { apiJobCategory } from "../../../apis/jobAPI";
 import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
 
-function SubHeader() {
-  const [count, setCount] = useState(0);
+function SubHeader({ jobCategory }) {
   const navigate = useNavigate();
-  const [jobCategory, setJobCategory] = useState(null);
-  // const decodedUrl = decodeURI;
 
   // Dùng state activeCategory để lưu hạng mục đang active
   const [activeCategory, setActiveCategory] = useState(null);
@@ -23,19 +20,17 @@ function SubHeader() {
     setActiveCategory(null);
   };
 
-  const getJobCategory = async () => {
-    try {
-      const data = await apiJobCategory();
-      setJobCategory(data?.content);
-      setCount(count + 1);
-    } catch (error) {
-      console.log(error);
-    }
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 500,
+    autoplaySpeed: 3000,
+    fade: true,
+    adaptiveHeight: true,
   };
-
-  useEffect(() => {
-    getJobCategory();
-  }, [count]);
 
   return (
     <>
@@ -60,18 +55,22 @@ function SubHeader() {
               }}
             >
               <div className={styles.container}>
-                {category.dsNhomChiTietLoai.map((nhom) => {
-                  return (
-                    <div key={nhom.id} className={styles.nhom}>
-                      <span>{nhom.tenNhom}</span>
-                      <div className={styles.loai}>
-                        {nhom.dsChiTietLoai.map((loai) => {
-                          return <p key={loai.id}>{loai.tenChiTiet}</p>;
-                        })}
+                {category?.dsNhomChiTietLoai.length ? (
+                  category.dsNhomChiTietLoai.map((nhom) => {
+                    return (
+                      <div key={nhom.id} className={styles.nhom}>
+                        <span>{nhom.tenNhom}</span>
+                        <div className={styles.loai}>
+                          {nhom.dsChiTietLoai.map((loai) => {
+                            return <p key={loai.id}>{loai.tenChiTiet}</p>;
+                          })}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                ) : (
+                  <p className={styles.none}>Updating...</p>
+                )}
               </div>
             </NavDropdown>
           );

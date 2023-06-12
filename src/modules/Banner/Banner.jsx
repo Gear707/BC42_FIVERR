@@ -4,9 +4,10 @@ import "./slick.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { apiJobList } from "../../apis/jobAPI";
 import { Link, useNavigate } from "react-router-dom";
 import useWindowResize from "../../helpers/useWindowResize";
+import data from "./ProfileData.json";
+import { Button } from "react-bootstrap";
 
 function Banner() {
   const navigate = useNavigate();
@@ -25,46 +26,10 @@ function Banner() {
     adaptiveHeight: true,
   };
 
-  const profiles = [
-    {
-      name: "valentina",
-      title: "AI Artist",
-    },
-    {
-      name: "andrea",
-      title: "Fashion Designer",
-    },
-    {
-      name: "moon",
-      title: "Marketing Expert",
-    },
-    {
-      name: "rikita",
-      title: "Shoemaker & Designer",
-    },
-    {
-      name: "zach",
-      title: "Bar Owner",
-    },
-    {
-      name: "gabrielle",
-      title: "Video Editor",
-    },
-  ];
-
   const handleChange = (evt) => {
     const { value, name } = evt.target;
     setValues({ ...values, [name]: value });
   };
-
-  // const handleSearch = async (keyword) => {
-  //   try {
-  //     const jobList = await apiJobList(keyword);
-  //     console.log(jobList);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <div id="Banner" className={styles.background}>
@@ -155,14 +120,14 @@ function Banner() {
               type="search"
               placeholder="Search for any services..."
               name="keyword"
-              // onChange={handleChange}
+              onChange={handleChange}
             />
             <a
               className={`${styles.submitButton}  d-lg-none d-block col-12`}
               type="submit"
               onClick={() => {
                 // handleSearch(values?.keyword);
-                navigate(`/jobList/${values.keyword}`);
+                navigate(`/jobList/${values?.keyword}`);
               }}
             >
               <svg
@@ -189,7 +154,7 @@ function Banner() {
                   type="submit"
                   onClick={() => {
                     // handleSearch(values?.keyword);
-                    navigate(`/jobList/${values.keyword}`);
+                    navigate(`/jobList/${values?.keyword}`);
                   }}
                 >
                   <svg

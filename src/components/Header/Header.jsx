@@ -4,9 +4,11 @@ import SubHeader from "./SubHeader/SubHeader";
 import styles from "./Header.module.scss";
 import { useLocation } from "react-router-dom";
 import useWindowResize from "../../helpers/useWindowResize";
+import { apiJobCategory } from "../../apis/jobAPI";
 
 function Header() {
   const [y, setY] = useState(0);
+  const [jobCategory, setJobCategory] = useState();
 
   const size = useWindowResize();
   const location = useLocation();
@@ -20,7 +22,17 @@ function Header() {
     setY(scrollY);
   };
 
+  const getJobCategory = async () => {
+    try {
+      const data = await apiJobCategory();
+      setJobCategory(data?.content);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
+    getJobCategory();
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -29,8 +41,8 @@ function Header() {
 
   return (
     <>
-      <MainHeader />
-      {condition && <SubHeader />}
+      <MainHeader jobCategory={jobCategory} />
+      {condition && <SubHeader jobCategory={jobCategory} />}
     </>
   );
 }

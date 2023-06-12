@@ -1,22 +1,29 @@
-.react-pagination li {
+#jobList .react-pagination {
+  text-align: center;
+  padding: 30px;
+}
+
+li {
   display: inline !important;
   margin: 5px;
   color: black;
   background-color: #e8e1e1;
   padding: 5px 10px;
 
+  a {
+    color: black;
+
+    &:hover {
+      color: #62646a !important;
+    }
+  }
 }
 
-.react-pagination .selected {
-  color: black;
+.selected {
+  font-weight: 600;
+  color: red;
   background-color: #f0ecec;
   border: 1px solid #62646a;
-  padding: 5px 10px;
-}
-
-.react-pagination {
-  text-align: center;
-  padding: 30px;
 }
 
 #topBar .nav-item.dropdown {
@@ -53,32 +60,17 @@
   text-decoration-line: underline;
   cursor: pointer;
   font-weight: 400;
-  // position: relative;
-  // &::after {
-  //   content: "";
-  //   position: absolute;
-
-  //   left: 16px;
-  //   bottom: 10px;
-
-  //   background-color:#404145 ;
-  //   height: 1px;
-  //   width: 75px;
-  // }
 }
 
-// scss of SubHeader component 
-#subHeader .nav-item.dropdown {
-  a.dropdown-toggle.nav-link::after {
-    display: none !important;
-  }
 
-  .dropdown-menu {
-    position: absolute;
-    top: 10px !important;
+@media screen and (max-width: 1200px) {
+  #topBar .nav-item.dropdown {
+    margin-top: 10px;
   }
 }
 
-a:hover {
-  color: #1dbf73 !important
+@media screen and (max-width: 420px) {
+  ul.react-pagination {
+    padding: 15px 10px;
+  }
 }

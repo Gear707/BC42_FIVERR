@@ -45,7 +45,7 @@ function JobList() {
   }, [keyword, currentPage]);
 
   return (
-    <div className={styles.container}>
+    <div id="jobList" className={styles.container}>
       <span className={styles.result}>
         Results for <b>{keyword}</b>
       </span>
@@ -55,7 +55,7 @@ function JobList() {
         <SwitchNav />
       </div>
 
-      <div className="row mt-5 d-flex justify-content-center">
+      <div className="row mt-3 d-flex justify-content-center">
         {jobs?.map((job) => {
           return (
             <div

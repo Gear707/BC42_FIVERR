@@ -2,14 +2,15 @@ import React from "react";
 import { Nav, NavDropdown } from "react-bootstrap";
 import ServiceOption from "./ServiceOption/ServiceOption";
 import SellerDetail from "./SellerDetail/SellerDetail";
-import styles from "./MainNav.module.scss";
+// import styles from "./MainNav.module.scss";
 import Budget from "./Budget/Budget";
 import DeliveryTime from "./DeliveryTime/DeliveryTime";
 import Category from "./Category/Category";
+import "./MainNav.scss";
 
 function MainNav() {
   return (
-    <Nav className={styles.navLink}>
+    <Nav id="MainNav">
       <NavDropdown title="Category" id="nav-dropdown1">
         <Category />
       </NavDropdown>
