@@ -58,6 +58,7 @@ function MainHeader({ jobCategory }) {
 
   return (
     <div
+      id="MainHeader"
       style={
         condition
           ? {

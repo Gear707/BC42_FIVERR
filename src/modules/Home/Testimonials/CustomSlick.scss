@@ -1,61 +1,63 @@
 @import "../../../styles/breakpoints";
 @import "../../../styles/responsive";
 
-.slick-arrow {
-    background-color: #fff !important;
-    border: 0;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
-    width: 48px !important;
-    height: 48px !important;
-    line-height: 100% !important;
-    position: absolute;
-    text-align: center;
-    z-index: 4;
-    border-radius: 30px;
+#Testimonials {
+    .slick-arrow {
+        background-color: #fff !important;
+        border: 0;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+        width: 48px !important;
+        height: 48px !important;
+        line-height: 100% !important;
+        position: absolute;
+        text-align: center;
+        z-index: 4;
+        border-radius: 30px;
 
-    &::before {
-        content: none !important;
+        &::before {
+            content: none !important;
+        }
+
+        &::after {
+            background: url("../../../../public/img/arrows.c651879.svg") no-repeat;
+            background-size: 16px 64px;
+            content: "";
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-top: 3px;
+        }
+
+        @include responsive("medium") {
+            top: 32% !important;
+        }
+
+        @include responsive("small") {
+            top: 26% !important;
+        }
+
+        @include responsive("extra-smaller") {
+            top: 23% !important;
+        }
+
+        @include responsive("smallest") {
+            top: 20% !important;
+        }
     }
 
-    &::after {
-        background: url("../../../../public/img/arrows.c651879.svg") no-repeat;
-        background-size: 16px 64px;
-        content: "";
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        margin-top: 3px;
+    .slick-prev {
+        left: -23px !important;
+
+        &::after {
+            background-position: 0 -32px;
+        }
     }
 
-    @include responsive("medium") {
-        top: 32% !important;
-    }
+    .slick-next {
+        right: -23px !important;
 
-    @include responsive("small") {
-        top: 26% !important;
-    }
-
-    @include responsive("extra-smaller") {
-        top: 23% !important;
-    }
-
-    @include responsive("smallest") {
-        top: 20% !important;
-    }
-}
-
-.slick-prev {
-    left: -23px !important;
-
-    &::after {
-        background-position: 0 -32px;
-    }
-}
-
-.slick-next {
-    right: -23px !important;
-
-    &::after {
-        background-position: 0 -48px;
+        &::after {
+            background-position: 0 -48px;
+        }
     }
 }
