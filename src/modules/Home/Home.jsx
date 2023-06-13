@@ -1,7 +1,7 @@
 import React from "react";
-import Banner from "../Banner/Banner";
-import TrustedBy from "../TrustedBy/TrustedBy";
-import Services from "../Services/Services";
+import Banner from "./Banner/Banner";
+import TrustedBy from "./TrustedBy/TrustedBy";
+import Services from "./Services/Services";
 
 function Home() {
   return (
