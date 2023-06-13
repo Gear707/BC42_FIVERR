@@ -45,7 +45,8 @@ const schema = yup.object({
         ),
     birthday: yup.string()
         .required("Birthday is required"),
-    gender: yup.boolean(),
+    gender: yup.boolean()
+        .required("Gender is required"),
     role: yup.string()
         .required("Role is required"),
 });
@@ -66,10 +67,9 @@ function Register() {
             password: "",
             phone: "",
             birthday: "",
-            gender: true,
             role: "",
-            skill: [],
-            certification: [],
+            skill: "",
+            certification: "",
         },
         mode: "onTouched",
         resolver: yupResolver(schema),
@@ -90,11 +90,12 @@ function Register() {
 
     const onSubmit = (values) => {
         values.birthday = dayjs(values.birthday).format("MM/DD/YYYY");
-        values.skill = values.skill.split(", ");
-        values.certification = values.certification.split(", ");
+        if (values.skill) values.skill = values.skill.split(", ");
+        if (values.certification) values.certification = values.certification.split(", ");
         console.log(values);
         registerUserInfo(values);
         reset();
+        navigate("/login");
     };
 
     const onError = (errors) => {
@@ -123,7 +124,7 @@ function Register() {
                                 <MDBCol col='12' md='6' lg='6'
                                     className={errors.name ? '' : 'mb-3'}
                                 >
-                                    <MDBInput label='Name' size='lg' type='text'
+                                    <MDBInput label='Name *' size='lg' type='text'
                                         {...register("name")}
                                     />
                                     {errors.name &&
@@ -134,7 +135,7 @@ function Register() {
                                 </MDBCol>
 
                                 <MDBCol md='6' lg='6' className={errors.email ? '' : 'mb-3'}>
-                                    <MDBInput label='Email' size='lg' type='email'
+                                    <MDBInput label='Email *' size='lg' type='email'
                                         {...register("email")}
                                     />
                                     {errors.email &&
@@ -151,7 +152,7 @@ function Register() {
                                 >
                                     <div className="input-group">
                                         <MDBInput wrapperClass='col-10'
-                                            label='Password' size='lg'
+                                            label='Password *' size='lg'
                                             type={showPassword ? 'text' : 'password'}
                                             {...register("password")}
                                         />
@@ -178,7 +179,7 @@ function Register() {
                                 <MDBCol sm='6' md='6' lg='6'
                                     className={errors.phone ? '' : 'mb-3'}
                                 >
-                                    <MDBInput label='Phone Number' size='lg' type='tel'
+                                    <MDBInput label='Phone Number *' size='lg' type='tel'
                                         {...register("phone")}
                                     />
                                     {errors.phone &&
@@ -193,7 +194,7 @@ function Register() {
                                 <MDBCol sm='6' md='6' lg='6'
                                     className={errors.birthday ? '' : 'mb-3'}
                                 >
-                                    <MDBInput label='Birthday' size='lg' type='date'
+                                    <MDBInput label='Birthday *' size='lg' type='date'
                                         {...register("birthday")}
                                     />
                                     {errors.birthday &&
@@ -207,10 +208,16 @@ function Register() {
                                     <div className="form-group">
                                         <select className="form-select " style={{ lineHeight: "2" }} {...register("gender", { valueAsBoolean: true })}
                                         >
+                                            <option>Select gender *</option>
                                             <option value="true">Male</option>
                                             <option value="false">Female</option>
                                         </select>
                                     </div>
+                                    {errors.gender &&
+                                        <p className="mt-1 mb-2 text-danger">
+                                            Gender is required
+                                        </p>
+                                    }
                                 </MDBCol>
                             </MDBRow>
 
@@ -218,13 +225,13 @@ function Register() {
                                 <div className="form-group">
                                     <select className="form-select" style={{ lineHeight: "2" }} {...register("role")}
                                     >
-                                        <option value="">Select role</option>
+                                        <option value="">Select role *</option>
                                         <option>USER</option>
                                         <option>ADMIN</option>
                                     </select>
                                 </div>
                                 {errors.role &&
-                                    <p className="mt-1 mb-2 text-danger">
+                                    <p className="ps-3 mt-1 mb-2 text-danger">
                                         {errors.role.message}
                                     </p>
                                 }
@@ -248,14 +255,14 @@ function Register() {
                                 </MDBCol>
                             </MDBRow>
 
-                            <MDBBtn className={`${styles.submitBtn} w-100`} size='lg'>
+                            <MDBBtn className={`${styles.submitBtn} w-100`} size='lg' color="success">
                                 Submit
                             </MDBBtn>
                         </form>
-                        <p className="mt-3">
+                        <div className="mt-3 text-center">
                             Already have an account?
                             <a onClick={() => navigate("/login")} className="ms-2">Login here</a>
-                        </p>
+                        </div>
                     </MDBRow>
                 </MDBCol>
             </MDBRow>

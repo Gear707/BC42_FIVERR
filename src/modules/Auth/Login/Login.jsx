@@ -71,7 +71,7 @@ function Login() {
                         <h2 className="mb-5 text-center">Login</h2>
 
                         <div className="mb-3">
-                            <MDBInput label='Email address' type='email' size="lg" {...register("email")} />
+                            <MDBInput label='Email address *' type='email' size="lg" {...register("email")} />
                             {errors.email &&
                                 <p className="mt-1 text-danger">{errors.email.message}</p>}
                         </div>
@@ -79,12 +79,12 @@ function Login() {
                         <div className="mb-3">
                             <div className="input-group">
                                 <MDBInput wrapperClass='col-10' size='lg'
-                                    label='Password' type={showPassword ? 'text' : 'password'}
+                                    label='Password *' type={showPassword ? "text" : "password"}
                                     {...register("password")}
                                 />
                                 <div className={`input-group-text col-2 
                                         ${styles.togglePassword} 
-                                        ${showPassword ? 'visible' : ''}`
+                                        ${showPassword ? "visible" : ""}`
                                 }
                                     onClick={togglePasswordVisibility}
                                 >
@@ -113,7 +113,9 @@ function Login() {
                             </p>
                         </div>
 
-                        <MDBBtn className={`${styles.loginBtn} mb-2 w-100`} size="lg" disabled={isLoading}>
+                        <MDBBtn className={`${styles.loginBtn} mb-2 w-100`} size="lg" 
+                        disabled={isLoading} color="success"
+                        >
                             Log in
                         </MDBBtn>
                     </form>
