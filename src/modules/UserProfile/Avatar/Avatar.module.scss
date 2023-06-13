@@ -155,15 +155,3 @@
         animation: spin 0.5s linear 0s infinite;
     }
 }
-
-.spinnerUsername {
-    @extend .spinnerAvatar;
-    background-color: transparent;
-    margin: 10px 0 !important;
-
-    .halfSpinnerUsername {
-        @extend .halfSpinnerAvatar;
-        width: 20px;
-        height: 20px;
-    }
-}

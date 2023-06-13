@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./BasicInfo.module.scss";
 import { apiUpdateCertification, apiUpdateSkill } from "../../../apis/userAPI";
+import { alertError, alertSuccess } from "../../../helpers/sweeAlert2";
 
 function BasicInfo({ userInfo, getUserInfo }) {
     const [description, setDescription] = useState("");
@@ -19,36 +20,36 @@ function BasicInfo({ userInfo, getUserInfo }) {
     const handleUpdateDescription = () => {
         setDescription(description);
         handleSelectSections(0);
+        alertSuccess("Description updated successfully!");
     };
 
     const handleUpdateLanguage = () => {
         setLanguage(language);
         handleSelectSections(1);
+        alertSuccess("Language updated successfully!");
     };
 
     const handleUpdateEducation = () => {
         setEducation(education);
         handleSelectSections(3);
+        alertSuccess("Education updated successfully!");
     };
 
-    const updateSkill = async () => {
+    const handleAddSkill = async () => {
         if (skill) {
             skill = skill.split(", ");
             const updatedSkill = [...userInfo.skill, ...skill];
-            console.log(updatedSkill);
             try {
                 const data = await apiUpdateSkill(userInfo?.id, userInfo, updatedSkill);
                 console.log(data?.content);
+                handleSelectSections(2);
+                getUserInfo();
+                alertSuccess("Skill added successfully!");
             } catch (error) {
                 console.log(error.response?.data?.content);
+                alertError("Failed to add new skill!");
             }
         }
-    };
-
-    const handleUpdateSkill = async () => {
-        await updateSkill();
-        handleSelectSections(2);
-        getUserInfo();
     };
 
     const handleDeleteSkill = async (selectedSkill) => {
@@ -56,40 +57,44 @@ function BasicInfo({ userInfo, getUserInfo }) {
         try {
             const data = await apiUpdateSkill(userInfo?.id, userInfo, updatedSkill);
             console.log(data?.content);
+            getUserInfo();
+            alertSuccess("Skill deleted successfully!");
         } catch (error) {
             console.log(error.response?.data?.content);
+            alertError("Failed to delete skill!");
         }
-        getUserInfo();
     };
 
-    const updateCertification = async () => {
+    const handleAddCertification = async () => {
         if (certification) {
             certification = certification.split(", ");
             const updatedCertification = [...userInfo.certification, ...certification];
             try {
                 const data = await apiUpdateCertification(userInfo?.id, userInfo, updatedCertification);
                 console.log(data?.content);
+                handleSelectSections(4);
+                getUserInfo();
+                alertSuccess("Certification added successfully!");
             } catch (error) {
                 console.log(error.response?.data?.content);
+                alertError("Failed to add new certification!");
             }
         }
     };
 
-    const handleUpdateCertification = async () => {
-        await updateCertification();
-        handleSelectSections(4);
-        getUserInfo();
-    };
-
     const handleDeleteCertification = async (selectedCertification) => {
-        const updatedCertification = userInfo.certification.filter((certification) => certification !== selectedCertification);
+        const updatedCertification = userInfo.certification.filter(
+            (certification) => certification !== selectedCertification
+        );
         try {
             const data = await apiUpdateCertification(userInfo?.id, userInfo, updatedCertification);
             console.log(data?.content);
+            getUserInfo();
+            alertSuccess("Certification deleted successfully!");
         } catch (error) {
             console.log(error.response?.data?.content);
+            alertError("Failed to delete certification!");
         }
-        getUserInfo();
     };
 
     useEffect(() => {
@@ -97,7 +102,7 @@ function BasicInfo({ userInfo, getUserInfo }) {
     }, []);
 
     return (
-        <div>
+        <>
             <article className={styles.basicInfo}>
                 <form>
                     <div className={styles.innerRow}>
@@ -161,7 +166,7 @@ function BasicInfo({ userInfo, getUserInfo }) {
                                         />
                                     </div>
                                     <div className={styles.buttonWrapper}>
-                                        <input type="button" defaultValue="Save"
+                                        <input type="button" defaultValue="Add"
                                             className="btn btn-success w-50"
                                             onClick={handleUpdateLanguage}
                                         />
@@ -232,14 +237,13 @@ function BasicInfo({ userInfo, getUserInfo }) {
                                     <div className={styles.inputWrapper}>
                                         <input type="text" className="form-control w-100"
                                             placeholder="Add skills (e.g. Programming, Web Design)"
-                                            value={skill}
                                             onChange={(evt) => setSkill(evt.target.value)}
                                         />
                                     </div>
                                     <div className={styles.buttonWrapper}>
-                                        <input type="button" defaultValue="Save"
+                                        <input type="button" defaultValue="Add"
                                             className="btn btn-success w-50"
-                                            onClick={handleUpdateSkill}
+                                            onClick={handleAddSkill}
                                         />
                                         <input type="button" defaultValue="Cancel"
                                             className="btn btn-secondary w-50 ms-2"
@@ -297,7 +301,7 @@ function BasicInfo({ userInfo, getUserInfo }) {
                                         />
                                     </div>
                                     <div className={styles.buttonWrapper}>
-                                        <input type="button" defaultValue="Save"
+                                        <input type="button" defaultValue="Add"
                                             className="btn btn-success w-50"
                                             onClick={handleUpdateEducation}
                                         />
@@ -333,14 +337,14 @@ function BasicInfo({ userInfo, getUserInfo }) {
                                 <div className={styles.formWrapper}>
                                     <div className={styles.inputWrapper}>
                                         <input type="text" className="form-control w-100"
-                                            placeholder="MBA, Bachelor Degree of Computer Science"
+                                            placeholder="Add certification (e.g. MBA, Supply Chain)"
                                             onChange={(evt) => setCertification(evt.target.value)}
                                         />
                                     </div>
                                     <div className={styles.buttonWrapper}>
-                                        <input type="button" defaultValue="Save"
+                                        <input type="button" defaultValue="Add"
                                             className="btn btn-success w-50"
-                                            onClick={handleUpdateCertification}
+                                            onClick={handleAddCertification}
                                         />
                                         <input type="button" defaultValue="Cancel"
                                             className="btn btn-secondary w-50 ms-2"
@@ -379,7 +383,7 @@ function BasicInfo({ userInfo, getUserInfo }) {
                     </div>
                 </form>
             </article>
-        </div>
+        </>
     );
 }
 

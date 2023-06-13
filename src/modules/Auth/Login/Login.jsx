@@ -29,7 +29,7 @@ const schema = yup.object({
 });
 
 function Login() {
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             email: "",
             password: "",
@@ -50,6 +50,7 @@ function Login() {
 
     const onSubmit = (values) => {
         dispatch(login(values));
+        reset();
     };
 
     const onError = (errors) => {
@@ -101,7 +102,7 @@ function Login() {
                         {error && <p className="text-danger">Wrong email/password</p>}
 
                         <div className="d-sm-flex justify-content-between mb-3">
-                            <MDBCheckbox label='Remember me'
+                            <MDBCheckbox label='Remember me' name='flexCheck' id='flexCheckDefault'
                                 checked={rememberMe}
                                 onChange={(e) => dispatch(setRememberMe(e.target.checked))}
                             />
