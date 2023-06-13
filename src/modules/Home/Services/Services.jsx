@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Services.module.scss";
 import Slider from "react-slick";
-import useWindowResize from "../../helpers/useWindowResize";
+import useWindowResize from "../../../helpers/useWindowResize";
 
 const services = [
   {

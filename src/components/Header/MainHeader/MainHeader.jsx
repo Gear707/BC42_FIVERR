@@ -25,9 +25,17 @@ function MainHeader({ jobCategory }) {
     navigate("/");
   };
 
-  const condition = y > 10 || pathname !== "/" || size.width < 576;
+  const condition =
+    (pathname === "/" && size.width >= 576 && y > 10) ||
+    (pathname === "/" && size.width < 576) ||
+    pathname !== "/";
+
+  const condition1 = pathname === "/" && size.width < 576;
+
   const condition2 =
-    (pathname === "/" && y >= 50) || (pathname !== "/" && size.width >= 576);
+    (pathname === "/" && size.width >= 576 && y >= 50) ||
+    (pathname !== "/" && size.width >= 576);
+
   const condition3 = pathname !== "/" && size.width < 576;
 
   const handleScroll = () => {
@@ -52,10 +60,13 @@ function MainHeader({ jobCategory }) {
     <div
       style={
         condition
-          ? { backgroundColor: "#fff", color: "black" }
+          ? {
+              backgroundColor: "#fff",
+              color: "black",
+            }
           : { backgroundColor: "transparent", color: "#fff !important" }
       }
-      className={styles.header}
+      className={condition1 ? styles.header1 : styles.header}
     >
       <Navbar className={styles.headerContainer} expand="lg">
         <Container>
