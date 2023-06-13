@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MainLayout from "./layouts/MainLayout/MainLayout";
+import HomeLayout from "./layouts/HomeLayout/HomeLayout";
 
 // import MainLayout from "./layouts/MainLayout/MainLayout";
 // import Loading from "./components/Loading/Loading";
@@ -19,7 +19,7 @@ function App() {
     <Suspense>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MainLayout />}>
+          <Route path="/" element={<HomeLayout />}>
             <Route index element={<Home />} />
             <Route path="/jobList/:keyword" element={<JobList />} />
             <Route
