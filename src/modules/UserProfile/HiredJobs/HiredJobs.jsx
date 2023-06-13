@@ -143,12 +143,10 @@ function HiredJobs({ userInfo }) {
     const renderJobs = () => {
         const jobsToDisplay = getItemsForCurrentPage();
 
-        const updatedJobs = [...jobsToDisplay];
-
         return jobsToDisplay?.map((job) => {
             return (
                 <div className="container mb-3 p-3" key={job.id}
-                    style={{ backgroundColor: "#e5ebf0" }}
+                    style={{ backgroundColor: "#e5eef0" }}
                 >
                     <div className="row">
                         <div className={size.width >= 505 ? "col-4" : "col-12 mb-3"}>
