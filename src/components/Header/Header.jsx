@@ -14,7 +14,7 @@ function Header() {
   const location = useLocation();
   const pathname = location.pathname;
 
-  const condition = y >= 150 || pathname !== "/" || size.width < 576;
+  const condition = size.width >= 992 && (y >= 150 || pathname !== "/");
 
   const handleScroll = () => {
     // const scrollTop = window.pageYOffset;

@@ -328,7 +328,7 @@
 
 @media screen and (max-width: 575.98px) {
     .header {
-        min-height: 135px;
+        min-height: 120px;
 
         .headerContainer {
             max-width: 800px !important;
@@ -395,10 +395,9 @@
         }
 
         .searchPackage {
-            max-width: 200px !important;
+            width: 400px !important;
 
             input {
-                // width: 20vw !important;
                 border-radius: 4px !important;
                 height: 42px;
             }

@@ -12,25 +12,33 @@ import {
 import useWindowResize from "../../../helpers/useWindowResize";
 
 function MainHeader({ jobCategory }) {
+  const [values, setValues] = useState(null);
   const [y, setY] = useState(0);
 
   const location = useLocation();
   const pathname = location.pathname;
   const size = useWindowResize();
 
-  const naivigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    naivigate("/");
+    navigate("/");
   };
 
   const condition = y > 10 || pathname !== "/" || size.width < 576;
-  const condition2 = y >= 150 && (pathname !== "/" || size.width >= 576);
+  const condition2 =
+    (pathname === "/" && y >= 50) || (pathname !== "/" && size.width >= 576);
+  const condition3 = pathname !== "/" && size.width < 576;
 
   const handleScroll = () => {
     // const scrollTop = window.pageYOffset;
     const scrollY = window.scrollY;
     setY(scrollY);
+  };
+
+  const handleChange = (evt) => {
+    const { value, name } = evt.target;
+    setValues({ ...values, [name]: value });
   };
 
   useEffect(() => {
@@ -71,9 +79,16 @@ function MainHeader({ jobCategory }) {
                     title="Browse Categories"
                     id={`offcanvasNavbarDropdown-expand-lg`}
                   >
-                    {jobCategory?.map((category, index) => {
+                    {jobCategory?.map((category) => {
                       return (
-                        <NavDropdown.Item key={category.id}>
+                        <NavDropdown.Item
+                          key={category.id}
+                          onClick={() =>
+                            navigate(
+                              `/${category.tenLoaiCongViec}/${category.id}`
+                            )
+                          }
+                        >
                           {category?.tenLoaiCongViec}
                         </NavDropdown.Item>
                       );
@@ -147,6 +162,8 @@ function MainHeader({ jobCategory }) {
                   type="search"
                   className="form-control long-placeholder"
                   autoComplete="off"
+                  name="keyword"
+                  onChange={handleChange}
                   placeholder={
                     size.width > 768
                       ? "What service are you looking for today?"
@@ -157,6 +174,7 @@ function MainHeader({ jobCategory }) {
                   className={styles.submitButton}
                   aria-label="search"
                   data-uw-rm-empty-ctrl
+                  onClick={() => navigate(`/jobList/${values?.keyword}`)}
                 >
                   <svg
                     width="16"
@@ -215,37 +233,39 @@ function MainHeader({ jobCategory }) {
           </div>
         </Container>
 
-        <div
-          className={`${styles.searchPackage} d-flex justify-content-center text-center d-sm-none`}
-        >
-          <form className="input-group">
-            <input
-              type="search"
-              className="form-control long-placeholder"
-              autoComplete="off"
-              placeholder={
-                size.width > 768
-                  ? "What service are you looking for today?"
-                  : "Find Services"
-              }
-            />
-            <a
-              className={styles.submitButton}
-              aria-label="search"
-              data-uw-rm-empty-ctrl
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="white"
+        {condition3 && (
+          <div
+            className={`${styles.searchPackage} d-flex justify-content-center text-center`}
+          >
+            <form className="input-group">
+              <input
+                type="search"
+                className="form-control long-placeholder"
+                autoComplete="off"
+                placeholder={
+                  size.width > 768
+                    ? "What service are you looking for today?"
+                    : "Find Services"
+                }
+              />
+              <a
+                className={styles.submitButton}
+                aria-label="search"
+                data-uw-rm-empty-ctrl
               >
-                <path d="m15.89 14.653-3.793-3.794a.37.37 0 0 0-.266-.109h-.412A6.499 6.499 0 0 0 6.5 0C2.91 0 0 2.91 0 6.5a6.499 6.499 0 0 0 10.75 4.919v.412c0 .1.04.194.11.266l3.793 3.794a.375.375 0 0 0 .531 0l.707-.707a.375.375 0 0 0 0-.53ZM6.5 11.5c-2.763 0-5-2.238-5-5 0-2.763 2.237-5 5-5 2.762 0 5 2.237 5 5 0 2.762-2.238 5-5 5Z" />
-              </svg>
-            </a>
-          </form>
-        </div>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="white"
+                >
+                  <path d="m15.89 14.653-3.793-3.794a.37.37 0 0 0-.266-.109h-.412A6.499 6.499 0 0 0 6.5 0C2.91 0 0 2.91 0 6.5a6.499 6.499 0 0 0 10.75 4.919v.412c0 .1.04.194.11.266l3.793 3.794a.375.375 0 0 0 .531 0l.707-.707a.375.375 0 0 0 0-.53ZM6.5 11.5c-2.763 0-5-2.238-5-5 0-2.763 2.237-5 5-5 2.762 0 5 2.237 5 5 0 2.762-2.238 5-5 5Z" />
+                </svg>
+              </a>
+            </form>
+          </div>
+        )}
       </Navbar>
     </div>
   );

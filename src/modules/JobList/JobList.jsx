@@ -36,10 +36,6 @@ function JobList() {
     }
   };
 
-  // const handleChange = (checked) => {
-  //   setIsChecked(checked);
-  // };
-
   useEffect(() => {
     handleSearch(keyword);
   }, [keyword, currentPage]);
@@ -47,7 +43,7 @@ function JobList() {
   return (
     <div id="jobList" className={styles.container}>
       <span className={styles.result}>
-        Results for <b>{keyword}</b>
+        Results for <b>"{keyword}"</b>
       </span>
 
       <div id="topBar" className={styles.dropdown}>

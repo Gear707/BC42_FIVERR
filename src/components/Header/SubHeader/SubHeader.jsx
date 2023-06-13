@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./SubHeader.module.scss";
+import "./SubHeader.scss";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
@@ -7,7 +8,7 @@ import Slider from "react-slick";
 function SubHeader({ jobCategory }) {
   const navigate = useNavigate();
 
-  // Dùng state activeCategory để lưu hạng mục đang active
+  // state activeCategory để lưu hạng mục đang active
   const [activeCategory, setActiveCategory] = useState(null);
 
   const handleMouseEnter = (categoryId) => {
@@ -25,7 +26,7 @@ function SubHeader({ jobCategory }) {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     speed: 500,
     autoplaySpeed: 3000,
     fade: true,

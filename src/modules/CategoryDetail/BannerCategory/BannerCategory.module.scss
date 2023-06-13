@@ -27,7 +27,7 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                z-index: 9999;
+                z-index: 9;
 
                 h1 {
                     font-size: 30px;
@@ -66,10 +66,8 @@
 
 @media screen and (max-width: 992px) {
     .container {
-        margin: 125px 20px 20px 20px;
-        padding: 32px;
-        font-size: 16px;
-
+        margin: 75px 20px 20px 20px;
+        padding: 25px;
         .banner {
 
             .bannerBackground {
@@ -109,10 +107,6 @@
 
 @media screen and (max-width: 768px) {
     .container {
-        margin: 125px 15px 15px 15px;
-        padding: 25px;
-        font-size: 16px;
-
         .banner {
 
             .bannerBackground {
@@ -145,9 +139,9 @@
     }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 575.98px) {
     .container {
-        margin: 125px 20px 20px 20px;
+        margin: 120px 20px 20px 20px;
         padding: 20px;
         font-size: 15px;
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./SliderCategory.module.scss";
 import { Link, useParams } from "react-router-dom";
 import popular from "./SliderCategoryData.json";
@@ -7,6 +7,7 @@ import useWindowResize from "../../../helpers/useWindowResize";
 
 function SliderCategory() {
   const { MaLoaiCongViec, tenLoaiCongViec } = useParams();
+
   const size = useWindowResize();
   const defaultSettings = {
     dots: false,
@@ -20,20 +21,21 @@ function SliderCategory() {
     adaptiveHeight: true,
   };
 
+  console.log(popular);
   const mdSettings = { ...defaultSettings, slidesToShow: 4 };
 
   const smSettings = { ...defaultSettings, slidesToShow: 3, slidesToScroll: 3 };
 
   const xsSettings = { ...defaultSettings, slidesToShow: 1, slidesToScroll: 3 };
 
-  useEffect(() => {}, [MaLoaiCongViec, tenLoaiCongViec]);
+  useEffect(() => {}, [tenLoaiCongViec, MaLoaiCongViec]);
 
   return (
     <div id="SliderCategory" className={styles.container}>
       <h2>Most popular in {tenLoaiCongViec}</h2>
       {size.width >= 1200 && (
         <Slider className="d-flex justify-content-center" {...defaultSettings}>
-          {popular.map((item, index) => {
+          {popular?.map((item, index) => {
             return (
               <div key={index} className={styles.slideGroup}>
                 <div className={styles.slide}>
@@ -50,7 +52,7 @@ function SliderCategory() {
       )}
       {size.width > 768 && size.width < 1200 && (
         <Slider className="d-flex justify-content-center" {...mdSettings}>
-          {popular.map((item, index) => {
+          {popular?.map((item, index) => {
             return (
               <div key={index} className={styles.slideGroup}>
                 <div className={styles.slide}>
@@ -67,7 +69,7 @@ function SliderCategory() {
       )}
       {size.width > 576 && size.width < 768 && (
         <Slider className="d-flex justify-content-center" {...smSettings}>
-          {popular.map((item, index) => {
+          {popular?.map((item, index) => {
             return (
               <div key={index} className={styles.slideGroup}>
                 <div className={styles.slide}>
@@ -85,7 +87,7 @@ function SliderCategory() {
       {size.width <= 576 && (
         <Slider {...xsSettings}>
           <div className="d-flex flex-column">
-            {popular.slice(0, 3).map((item, index) => {
+            {popular?.slice(0, 3).map((item, index) => {
               return (
                 <div key={index} className={styles.slideGroup}>
                   <div className={styles.slide}>
@@ -101,7 +103,7 @@ function SliderCategory() {
           </div>
 
           <div className="d-flex flex-column">
-            {popular.slice(3, 6).map((item, index) => {
+            {popular?.slice(3, 6).map((item, index) => {
               return (
                 <div key={index} className={styles.slideGroup}>
                   <div className={styles.slide}>
@@ -117,7 +119,7 @@ function SliderCategory() {
           </div>
 
           <div className="d-flex flex-column">
-            {popular.slice(6, 9).map((item, index) => {
+            {popular?.slice(6, 9).map((item, index) => {
               return (
                 <div key={index} className={styles.slideGroup}>
                   <div className={styles.slide}>
