@@ -9,14 +9,22 @@ import {
 }
     from 'mdb-react-ui-kit';
 import styles from "./Register.module.scss";
+<<<<<<< HEAD
 import { Navigate, useNavigate } from "react-router-dom";
+=======
+import { useNavigate } from "react-router-dom";
+>>>>>>> quyen-branch
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { apiRegister } from "../../../apis/userAPI";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
+<<<<<<< HEAD
 import { alertError, alertSuccess } from "../../../helpers/sweeAlert2";
+=======
+import Loading from "../../../components/Loading/Loading";
+>>>>>>> quyen-branch
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 const NAME_FORMAT = /^[\p{L}\s]{2,}$/u;
@@ -59,7 +67,11 @@ function Register() {
         setShowPassword(!showPassword);
     };
 
+<<<<<<< HEAD
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
+=======
+    const { register, handleSubmit, formState: { errors } } = useForm({
+>>>>>>> quyen-branch
         defaultValues: {
             name: "",
             email: "",
@@ -69,7 +81,11 @@ function Register() {
             gender: true,
             role: "",
             skill: [],
+<<<<<<< HEAD
             certification: [],
+=======
+            certification: []
+>>>>>>> quyen-branch
         },
         mode: "onTouched",
         resolver: yupResolver(schema),
@@ -79,12 +95,17 @@ function Register() {
         try {
             const data = await apiRegister(values);
             console.log(data);
+<<<<<<< HEAD
             if (data) {
                 alertSuccess("Member registered successfully!");
             }
         } catch (error) {
             console.log(error.response?.data?.content);
             alertError("Failed to register!");
+=======
+        } catch (error) {
+            console.log(error.response?.data?.content);
+>>>>>>> quyen-branch
         }
     };
 
@@ -94,7 +115,10 @@ function Register() {
         values.certification = values.certification.split(", ");
         console.log(values);
         registerUserInfo(values);
+<<<<<<< HEAD
         reset();
+=======
+>>>>>>> quyen-branch
     };
 
     const onError = (errors) => {
@@ -103,7 +127,15 @@ function Register() {
 
     const navigate = useNavigate();
 
+<<<<<<< HEAD
     if (user) return <Navigate to="/" />;
+=======
+    const navLogin = () => {
+        navigate("/login");
+    };
+
+    if (user) return <Loading />;
+>>>>>>> quyen-branch
 
     return (
         <MDBContainer className='mx-4 px-0 px-lg-5 rounded-7 bg-white'>
@@ -254,7 +286,11 @@ function Register() {
                         </form>
                         <p className="mt-3">
                             Already have an account?
+<<<<<<< HEAD
                             <a onClick={() => navigate("/login")} className="ms-2">Login here</a>
+=======
+                            <a onClick={navLogin} className="ms-2">Login here</a>
+>>>>>>> quyen-branch
                         </p>
                     </MDBRow>
                 </MDBCol>

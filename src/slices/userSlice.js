@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { apiLogin } from "../apis/userAPI";
+<<<<<<< HEAD
 import { alertError, alertSuccess } from "../helpers/sweeAlert2";
+=======
+>>>>>>> quyen-branch
 
 // async actions
 export const login = createAsyncThunk("user/login", async (values, { getState }) => {
@@ -10,10 +13,15 @@ export const login = createAsyncThunk("user/login", async (values, { getState })
         if (rememberMe) {
             localStorage.setItem("userInfo", JSON.stringify(data.content));
         }
+<<<<<<< HEAD
         alertSuccess("Logged in successfully!");
         return data.content;
     } catch (error) {
         alertError("Failed to log in!");
+=======
+        return data.content;
+    } catch (error) {
+>>>>>>> quyen-branch
         throw error.response?.data?.content;
     }
 });

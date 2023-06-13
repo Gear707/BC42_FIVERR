@@ -62,6 +62,10 @@ $color-4: #169b64;
                                 display: inline-block;
                                 position: relative;
                                 top: 1px;
+<<<<<<< HEAD
+=======
+                                transition: .2s;
+>>>>>>> quyen-branch
 
                                 @include responsive("smaller") {
                                     display: block !important;
@@ -104,7 +108,10 @@ $color-4: #169b64;
                     height: 1px;
                     width: 100%;
                     background-color: $color-1;
+<<<<<<< HEAD
                     margin: 0 16px;
+=======
+>>>>>>> quyen-branch
                 }
             }
 

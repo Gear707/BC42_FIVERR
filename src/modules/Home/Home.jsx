@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import Categories from "./Categories/Categories";
 import SellingPoint from "./SellingPoint/SellingPoint";
@@ -11,6 +12,21 @@ function Home() {
             <Categories />
         </>
     );
+=======
+import React from "react";
+import Banner from "../Banner/Banner";
+import TrustedBy from "../TrustedBy/TrustedBy";
+import Services from "../Services/Services";
+
+function Home() {
+  return (
+    <div>
+      <Banner />
+      <TrustedBy />
+      <Services />
+    </div>
+  );
+>>>>>>> quyen-branch
 }
 
 export default Home;

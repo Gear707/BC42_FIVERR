@@ -15,7 +15,11 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { login, setRememberMe } from "../../../slices/userSlice";
+<<<<<<< HEAD
 import { Navigate, useNavigate } from "react-router-dom";
+=======
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+>>>>>>> quyen-branch
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
@@ -29,7 +33,11 @@ const schema = yup.object({
 });
 
 function Login() {
+<<<<<<< HEAD
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
+=======
+    const { register, handleSubmit, formState: { errors } } = useForm({
+>>>>>>> quyen-branch
         defaultValues: {
             email: "",
             password: "",
@@ -42,22 +50,43 @@ function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+<<<<<<< HEAD
+=======
+    const [searchParams, setSearchParams] = useSearchParams();
+
+>>>>>>> quyen-branch
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
+<<<<<<< HEAD
     const onSubmit = (values) => {
         dispatch(login(values));
         reset();
+=======
+    const navRegister = () => {
+        navigate("/register");
+    };
+
+    const onSubmit = (values) => {
+        dispatch(login(values));
+>>>>>>> quyen-branch
     };
 
     const onError = (errors) => {
         console.log(errors);
     };
 
+<<<<<<< HEAD
     if (user) return <Navigate to={`/users/${user.user.name}`} />
+=======
+    if (user) {
+        const url = searchParams.get("redirectURL") || "/";
+        return <Navigate to={url} />;
+    };
+>>>>>>> quyen-branch
 
     return (
         <MDBContainer className="mx-4 p-5 bg-white rounded-7">
@@ -78,9 +107,15 @@ function Login() {
 
                         <div className="mb-3">
                             <div className="input-group">
+<<<<<<< HEAD
                                 <MDBInput wrapperClass='col-10' size='lg'
                                     label='Password' type={showPassword ? 'text' : 'password'}
                                     {...register("password")}
+=======
+                                <MDBInput wrapperClass='col-10' size='lg' 
+                                label='Password' type={showPassword ? 'text' : 'password'}  
+                                {...register("password")}
+>>>>>>> quyen-branch
                                 />
                                 <div className={`input-group-text col-2 
                                         ${styles.togglePassword} 
@@ -102,14 +137,22 @@ function Login() {
                         {error && <p className="text-danger">Wrong email/password</p>}
 
                         <div className="d-sm-flex justify-content-between mb-3">
+<<<<<<< HEAD
                             <MDBCheckbox label='Remember me' name='flexCheck' id='flexCheckDefault'
+=======
+                            <MDBCheckbox label='Remember me'
+>>>>>>> quyen-branch
                                 checked={rememberMe}
                                 onChange={(e) => dispatch(setRememberMe(e.target.checked))}
                             />
 
                             <p>
                                 Don't have an account?
+<<<<<<< HEAD
                                 <a onClick={() => navigate("/register")} className="ms-2">Register here</a>
+=======
+                                <a onClick={navRegister} className="ms-2">Register here</a>
+>>>>>>> quyen-branch
                             </p>
                         </div>
 
