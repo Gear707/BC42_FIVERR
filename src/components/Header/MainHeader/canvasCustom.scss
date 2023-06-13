@@ -57,19 +57,24 @@
 // scss of SubHeader component 
 #subHeader .nav-item.dropdown {
     .dropdown-toggle::after {
-      border-right: 0;
-      border-left: 0;
+        border-right: 0;
+        border-left: 0;
     }
-  
+
     .dropdown-menu {
-      position: absolute;
-      top: 10px !important;
+        position: absolute;
+        top: 10px !important;
     }
-  }
-  
-  a:hover {
+}
+
+a:hover {
     color: #1dbf73 !important
-  }
+}
+
+#fiverrNav.navbar.navbar-expand-md {
+    box-shadow: 1px seagreen;
+}
+
 
 @media screen and (max-width: 768px) {
     button.navbar-toggler.collapsed {

@@ -130,7 +130,10 @@ function MainHeader({ jobCategory }) {
           </Navbar.Brand>
 
           {size.width >= 576 && (
-            <div id="fiverrLogo" className="fiverrLogo">
+            <div
+              id="fiverrLogo"
+              className="fiverrLogo d-flex align-items-center"
+            >
               <Navbar.Toggle
                 className="me-2"
                 aria-controls="offcanvasNavbar-expand-lg"
@@ -194,7 +197,7 @@ function MainHeader({ jobCategory }) {
             id="#fiverrNav"
             className={`${
               condition ? styles.nav : styles.nav1
-            } navbar navbar-expand-md d-flex flex-row`}
+            } navbar-expand-md d-flex flex-row`}
           >
             <Nav id="navbar" className={`justify-content-end flex-grow-1`}>
               <Nav.Link

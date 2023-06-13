@@ -12,36 +12,27 @@
     "antd": "^5.6.1",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
-<<<<<<< HEAD
     "dayjs": "^1.11.7",
     "mdb-react-ui-kit": "^6.0.0",
-=======
     "font-awesome": "^4.7.0",
->>>>>>> quyen-branch
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
-<<<<<<< HEAD
     "react-player": "^2.12.0",
-=======
     "react-paginate": "^8.2.0",
->>>>>>> quyen-branch
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
-<<<<<<< HEAD
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.7.12",
     "web-vitals": "^2.1.4",
-    "yup": "^1.1.1"
-=======
+    "yup": "^1.1.1",
     "react-switch": "^7.0.0",
     "sass": "^1.62.1",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
->>>>>>> quyen-branch
   },
   "scripts": {
     "start": "react-scripts start",
