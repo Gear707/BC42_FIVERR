@@ -4,10 +4,9 @@ import "./slick.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link, useNavigate } from "react-router-dom";
-import useWindowResize from "../../helpers/useWindowResize";
+import { useNavigate } from "react-router-dom";
+import useWindowResize from "../../../helpers/useWindowResize";
 import data from "./ProfileData.json";
-import { Button } from "react-bootstrap";
 
 function Banner() {
   const navigate = useNavigate();
