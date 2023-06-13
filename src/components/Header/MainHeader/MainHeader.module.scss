@@ -329,6 +329,10 @@
 @media screen and (max-width: 575.98px) {
     .header {
         min-height: 120px;
+    }
+
+    .header1 {
+        min-height: 80px;
 
         .headerContainer {
             max-width: 800px !important;
@@ -407,5 +411,4 @@
             }
         }
     }
-
 }
