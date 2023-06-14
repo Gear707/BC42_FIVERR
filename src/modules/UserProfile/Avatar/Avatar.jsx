@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styles from "./Avatar.module.scss";
 import { apiUpdateUsername, apiUploadAvatar } from "../../../apis/userAPI";
 import { alertError, alertSuccess, warningPopup } from "../../../helpers/sweeAlert2";

@@ -29,10 +29,7 @@
     "sweetalert2": "^11.7.12",
     "web-vitals": "^2.1.4",
     "yup": "^1.1.1",
-    "react-switch": "^7.0.0",
-    "sass": "^1.62.1",
-    "slick-carousel": "^1.8.1",
-    "web-vitals": "^2.1.4"
+    "react-switch": "^7.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

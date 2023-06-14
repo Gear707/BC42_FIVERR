@@ -8,7 +8,7 @@ import HiredJobs from "./HiredJobs/HiredJobs";
 
 function UserProfile() {
     const [userInfo, setUserInfo] = useState({});
-    
+
     const { user } = useSelector((state) => state.user);
 
     const getUserInfo = async () => {
@@ -26,15 +26,17 @@ function UserProfile() {
     }, []);
 
     return (
-        <div style={{ backgroundColor: "#f7f7f7" }}>
-            <div className="container py-5">
-                <div className="row justify-content-between">
-                    <div className="col-12 col-lg-4">
-                        <Avatar userInfo={userInfo} getUserInfo={getUserInfo}/>
-                        <BasicInfo userInfo={userInfo} getUserInfo={getUserInfo}/>
-                    </div>
-                    <div className="col-12 col-lg-7 mt-5 mt-lg-0">
-                        <HiredJobs userInfo={userInfo} />
+        <div style={{marginTop: "128px"}}>
+            <div style={{ backgroundColor: "#f7f7f7" }}>
+                <div className="container py-5">
+                    <div className="row justify-content-between">
+                        <div className="col-12 col-lg-4">
+                            <Avatar userInfo={userInfo} getUserInfo={getUserInfo} />
+                            <BasicInfo userInfo={userInfo} getUserInfo={getUserInfo} />
+                        </div>
+                        <div className="col-12 col-lg-7 mt-5 mt-lg-0">
+                            <HiredJobs userInfo={userInfo} />
+                        </div>
                     </div>
                 </div>
             </div>
