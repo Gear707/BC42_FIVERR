@@ -41,7 +41,7 @@ function JobList() {
   }, [keyword, currentPage]);
 
   return (
-    <div id="jobList" className={styles.container}>
+    <div id="JobList" className={styles.container}>
       <span className={styles.result}>
         Results for <b>"{keyword}"</b>
       </span>
@@ -102,6 +102,7 @@ function JobList() {
       </div>
 
       <Pagination
+        id="Pagination"
         className="react-pagination mt-3"
         previousLabel="<"
         nextLabel=">"
