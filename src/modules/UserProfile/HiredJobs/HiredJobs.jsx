@@ -208,8 +208,8 @@ function HiredJobs({ userInfo }) {
                 (
                     <>
                         {loadingJobs ?
-                            (<div className={styles.spinner}>
-                                <div className={styles.halfSpinner}></div>
+                            (<div className={styles.jobSpinner}>
+                                <div className={styles.jobHalfSpinner}></div>
                             </div>)
                             :
                             (<div className={styles.jobsListWrapper}>
