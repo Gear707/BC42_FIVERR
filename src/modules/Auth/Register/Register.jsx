@@ -108,7 +108,7 @@ function Register() {
 
     return (
         <MDBContainer className='mx-4 px-0 px-lg-5 rounded-7 bg-white'>
-            <MDBRow className='g-0 d-lg-flex align-items-center justify-content-center'>
+            <MDBRow className='d-lg-flex align-items-center justify-content-center'>
                 <MDBCol lg='4' className="d-none d-lg-block">
                     <MDBCardImage src='https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg' alt='phone' className='rounded-t-5 rounded-tr-lg-0' fluid />
                 </MDBCol>
@@ -150,16 +150,14 @@ function Register() {
                                 <MDBCol sm='6' md='6' lg='6'
                                     className={errors.password ? '' : 'mb-3'}
                                 >
-                                    <div className="input-group">
+                                    <div className="position-relative">
                                         <MDBInput wrapperClass='col-10'
                                             label='Password *' size='lg'
                                             type={showPassword ? 'text' : 'password'}
                                             {...register("password")}
                                         />
-                                        <div className={`input-group-text col-2 
-                                        ${styles.togglePassword} 
-                                        ${showPassword ? 'visible' : ''}`
-                                        }
+                                        <div className={`${styles.togglePassword} 
+                                        ${showPassword ? 'visible' : ''}`}
                                             onClick={togglePasswordVisibility}
                                         >
                                             {showPassword ?

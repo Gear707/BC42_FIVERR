@@ -6,7 +6,7 @@ function AuthLayout() {
         <div className="d-flex justify-content-center align-items-center"
             style={{
                 height: "100vh",
-                backgroundImage: "radial-gradient(circle farthest-corner at 10% 20%, rgba(14,174,87,1) 0%, rgba(12,116,117,1) 90% )"
+                backgroundImage: "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)"
             }}
         >
             <Outlet />

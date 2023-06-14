@@ -4,11 +4,8 @@
 }
 
 .togglePassword {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 44.944px !important;
-    border-left: 0 !important;
+    position: absolute;
+    top: 10px;
+    right: 15px;
     cursor: pointer;
-    background-color: gainsboro !important;
 }

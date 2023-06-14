@@ -57,7 +57,7 @@ function Login() {
         console.log(errors);
     };
 
-    if (user) return <Navigate to={`/users/${user.user.name}`} />
+    if (user) return <Navigate to={`/users/${user.user.name}`} />;
 
     return (
         <MDBContainer className="mx-4 p-5 bg-white rounded-7">
@@ -77,15 +77,13 @@ function Login() {
                         </div>
 
                         <div className="mb-3">
-                            <div className="input-group">
+                            <div className="position-relative">
                                 <MDBInput wrapperClass='col-10' size='lg'
-                                    label='Password *' type={showPassword ? "text" : "password"}
+                                    label='Password *' type={showPassword ? 'text' : 'password'}
                                     {...register("password")}
                                 />
-                                <div className={`input-group-text col-2 
-                                        ${styles.togglePassword} 
-                                        ${showPassword ? "visible" : ""}`
-                                }
+                                <div className={`${styles.togglePassword} 
+                                ${showPassword ? 'visible' : ''}`}
                                     onClick={togglePasswordVisibility}
                                 >
                                     {showPassword ?
@@ -102,7 +100,7 @@ function Login() {
                         {error && <p className="text-danger">Wrong email/password</p>}
 
                         <div className="d-sm-flex justify-content-between mb-3">
-                            <MDBCheckbox label='Remember me' name='flexCheck' id='flexCheckDefault'
+                            <MDBCheckbox label='Remember me' id='flexCheckDefault'
                                 checked={rememberMe}
                                 onChange={(e) => dispatch(setRememberMe(e.target.checked))}
                             />
@@ -113,8 +111,8 @@ function Login() {
                             </p>
                         </div>
 
-                        <MDBBtn className={`${styles.loginBtn} mb-2 w-100`} size="lg" 
-                        disabled={isLoading} color="success"
+                        <MDBBtn className={`${styles.loginBtn} mb-2 w-100`} size="lg"
+                            disabled={isLoading} color="success"
                         >
                             Log in
                         </MDBBtn>
