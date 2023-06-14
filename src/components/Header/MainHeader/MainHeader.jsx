@@ -235,12 +235,13 @@ function MainHeader({ jobCategory }) {
                 English
               </Nav.Link>
               <Nav.Link href="#action2">Become a Seller</Nav.Link>
-              <Nav.Link className={styles.signIn} href="#action2">
+              <Nav.Link className={styles.signIn} href="/login">
                 Sign in
               </Nav.Link>
               <Nav.Link
                 style={{ display: "inline" }}
                 className={styles.joinButton}
+                href="/register"
               >
                 Join
               </Nav.Link>
