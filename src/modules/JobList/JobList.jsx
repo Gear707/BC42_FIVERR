@@ -69,7 +69,7 @@ function JobList() {
                   <Card.Text
                     className={styles.moTa}
                     role="button"
-                    onClick={() => navigate(`d${job.id}`)}
+                    onClick={() => navigate(`${job.id}`)}
                   >
                     {job.tenCongViec}
                   </Card.Text>

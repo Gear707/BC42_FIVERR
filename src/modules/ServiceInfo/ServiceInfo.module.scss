@@ -1,0 +1,99 @@
+.container {
+    margin: 120px 60px 20px 60px;
+    padding: 32px;
+    font-size: 16px;
+    color: #222325;
+
+    .packageInfo {
+        width: 60%;
+
+        h3 {
+            font-size: 28px;
+            margin: 15px 0 20px 0;
+        }
+
+        .sellerInfo {
+            width: 100%;
+
+            .sellerBrief {
+                display: flex;
+                align-items: center;
+
+                img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 100%;
+                }
+
+                span {
+                    margin: 0 10px;
+                }
+
+                .name {
+                    font-size: 18px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                }
+
+                i {
+                    color: gold;
+                }
+
+                .topRated {
+                    color: gold
+                }
+            }
+
+            .sellerExperience {
+                margin: 30px 0;
+                width: 100%;
+                text-align: center;
+                background-color: #f5f5f5;
+
+                img {
+                    width: 70%;
+                    height: auto;
+                }
+            }
+
+        }
+
+        .offer {
+            .benefit {
+                u {
+                    background: #ffecd1;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .aboutSeller {
+            width: 33%;
+       
+
+            .extendSeller {     margin-top: 20px;
+                display: flex;
+                justify-content: space-between;
+
+                img {
+                    width: 50%;
+                    height: 50%;
+                    border-radius: 100%;
+                    margin-right: 5px;
+                }
+
+                p {
+                    margin: 3px 0;
+                }
+
+                button {
+                    padding: 5px 10px;
+                }
+            }
+        }
+    }
+
+    .packageCost {
+        width: 40%;
+    }
+}

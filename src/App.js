@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeLayout from "./layouts/HomeLayout/HomeLayout";
+import ServiceInfo from "./modules/ServiceInfo/ServiceInfo";
 
 // import MainLayout from "./layouts/MainLayout/MainLayout";
 // import Loading from "./components/Loading/Loading";
@@ -25,6 +26,10 @@ function App() {
             <Route
               path="/:tenLoaiCongViec/:MaLoaiCongViec"
               element={<CategoryDetail />}
+            />
+            <Route
+              path="/jobList/:keyword/:MaCongViec"
+              element={<ServiceInfo />}
             />
           </Route>
         </Routes>

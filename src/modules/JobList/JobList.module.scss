@@ -39,8 +39,6 @@
 
     .card {
         margin: 15px 0;
-
-        // display: inline;
         img {
             max-width: 310px;
         }
@@ -52,7 +50,11 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 font-weight: 500;
-                ;
+                &:hover {
+                    text-decoration: underline;  
+
+                }
+
                 //   white-space: nowrap;
                 //   overflow: hidden;
                 //   text-overflow: ellipsis;
