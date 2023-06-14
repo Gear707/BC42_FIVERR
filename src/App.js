@@ -1,5 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import HomeLayout from "./layouts/HomeLayout/HomeLayout";
 import AuthLayout from "./layouts/AuthLayout/AuthLayout";
@@ -12,6 +12,10 @@ const Home = lazy(() => import("./modules/Home/Home"));
 const Login = lazy(() => import("./modules/Auth/Login/Login"));
 const Register = lazy(() => import("./modules/Auth/Register/Register"));
 const UserProfile = lazy(() => import("./modules/UserProfile/UserProfile"));
+const JobList = lazy(() => import("./modules/JobList/JobList"));
+const CategoryDetail = lazy(() =>
+  import("./modules/CategoryDetail/CategoryDetail")
+);
 
 function App() {
   return (
@@ -20,6 +24,11 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeLayout />}>
             <Route index element={<Home />} />
+            <Route path="/jobList/:keyword" element={<JobList />} />
+            <Route
+              path="/:tenLoaiCongViec/:MaLoaiCongViec"
+              element={<CategoryDetail />}
+            />
           </Route>
 
           <Route path="/" element={<AuthLayout />}>
@@ -27,15 +36,14 @@ function App() {
             <Route path="/register" element={<Register />} />
           </Route>
 
-          <Route path="/" element={<UserProfileLayout />} >
+          <Route path="/" element={<UserProfileLayout />}>
             <Route path="/users/:name" element={<UserProfile />} />
           </Route>
 
-          <Route path="*" element={<PageNotFound/>} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </Suspense>
   );
 }
-
 export default App;
