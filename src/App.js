@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeLayout from "./layouts/HomeLayout/HomeLayout";
 import AuthLayout from "./layouts/AuthLayout/AuthLayout";
 import UserProfileLayout from "./layouts/UserProfileLayout/UserProfileLayout";
+import ServiceInfo from "./modules/ServiceInfo/ServiceInfo";
 
 import Loading from "./components/Loading/Loading";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
@@ -28,6 +29,10 @@ function App() {
             <Route
               path="/:tenLoaiCongViec/:MaLoaiCongViec"
               element={<CategoryDetail />}
+            />
+            <Route
+              path="/jobList/:keyword/:MaCongViec"
+              element={<ServiceInfo />}
             />
           </Route>
 
