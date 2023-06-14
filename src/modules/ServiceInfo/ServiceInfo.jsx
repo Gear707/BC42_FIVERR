@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { apiServiceInfo } from "../../apis/jobAPI";
-import { Dropdown, Nav } from "react-bootstrap";
+import {
+  Button,
+  Collapse,
+  Dropdown,
+  Nav,
+  NavDropdown,
+  NavLink,
+  Offcanvas,
+} from "react-bootstrap";
 import styles from "./ServiceInfo.module.scss";
+// import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
 
-function ServiceInfo() {
+function ServiceInfo({ top, ...props }) {
   const { keyword, MaCongViec } = useParams();
-  console.log(keyword, MaCongViec);
+
   const [info, setInfo] = useState();
+
+  const [open1, setOpen1] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
 
   const getServiceInfo = async () => {
     try {
@@ -113,12 +126,134 @@ function ServiceInfo() {
                 </div>
               </div>
               <div className={styles.FAQ}>
-                <Dropdown>How do revisions work?</Dropdown>
-                <Dropdown>What makes you a Fiverr Pro seller?</Dropdown>
-                <Dropdown>
+                <h4>FAQ</h4>
+                <NavLink onClick={() => setOpen1(!open1)} aria-expanded={open1}>
+                  How do revisions work?
+                </NavLink>
+                <Collapse in={open1}>
+                  <div id="example-collapse-text">
+                    If you like to change anything in the integration to make
+                    the final result exactly as you envision it, revisions are
+                    your friend. Simply put, with revisions, you will be able to
+                    request adjustments. Best chance you will already get
+                    exactly what you need straight away.
+                  </div>
+                </Collapse>
+
+                <NavLink onClick={() => setOpen2(!open2)} aria-expanded={open2}>
+                  What makes you a Fiverr Pro seller?
+                </NavLink>
+                <Collapse in={open2}>
+                  <div id="example-collapse-text">
+                    Fiverr Pro sellers are meticulously evaluated for elite
+                    performance, only 4% out of Fiverr Pro applications (which
+                    are relatively few) are accepted. The following is true: My
+                    work is at the highest standard, Premium service, satisfied
+                    clients, peak level communication skills, Available 24/7.
+                  </div>
+                </Collapse>
+
+                <NavLink
+                  className={styles.thirdFAQ}
+                  onClick={() => setOpen3(!open3)}
+                  aria-expanded={open3}
+                >
                   Can I purchase a robust development, even if it's not in
                   available packages?
-                </Dropdown>
+                </NavLink>
+                <Collapse in={open3}>
+                  <div id="example-collapse-text">
+                    Absolutely yes. I am here to create your digital vision,
+                    please let me know what you need, and I will create a custom
+                    offer for you, tailored to your needs.
+                  </div>
+                </Collapse>
+              </div>
+              <div className={styles.reviewers}>
+                <h4>Reviewers</h4>
+                <span className="me-2">
+                  {item.congViec.danhGia} reviews for this Gig
+                </span>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <span className={styles.soSao}>5</span>
+              </div>
+              <div className={styles.rating}>
+                <div className="col-12 col-sm-6">
+                  <table className="">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <button>5 Stars</button>
+                        </td>
+                        <td className={styles.ratingBarContainer}>
+                          <div className={styles.ratingBarGroup}>
+                            <div className={styles.ratingBar}>
+                              <span></span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>({item.congViec.danhGia})</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button>4 Stars</button>
+                        </td>
+                        <td className={styles.ratingBarContainer}>
+                          <div className={styles.ratingBarGroup}>
+                            <div className={styles.ratingBar}>
+                              <span></span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>(0)</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button>3 Stars</button>
+                        </td>
+                        <td className={styles.ratingBarContainer}>
+                          <div className={styles.ratingBarGroup}>
+                            <div className={styles.ratingBar}>
+                              <span></span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>(0)</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button>2 Stars</button>
+                        </td>
+                        <td className={styles.ratingBarContainer}>
+                          <div className={styles.ratingBarGroup}>
+                            <div className={styles.ratingBar}>
+                              <span></span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>(0)</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button>1 Stars</button>
+                        </td>
+                        <td className={styles.ratingBarContainer}>
+                          <div className={styles.ratingBarGroup}>
+                            <div className={styles.ratingBar}>
+                              <span></span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>(0)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="col-12 col-sm-6"></div>
               </div>
             </div>
 
