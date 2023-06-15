@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./SubHeader.module.scss";
-import "./SubHeader.scss";
+import "../HeaderCustom.scss";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";

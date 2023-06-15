@@ -203,17 +203,17 @@
 
         .slideGroup {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             flex-direction: column !important;
             margin-top: 20px;
             padding: 0 15px;
 
             .slide {
-
+                max-width: 280px;
                 border: 1px solid #efeff0;
                 border-radius: 12px;
                 color: #404145;
-                padding: 30px;
+                padding: 20px 30px;
                 margin: 0 8px;
                 display: flex;
                 justify-content: space-between;
