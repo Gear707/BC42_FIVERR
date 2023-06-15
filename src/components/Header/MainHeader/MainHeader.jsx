@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MainHeader.module.scss";
-import "./canvasCustom.scss";
+import "../HeaderCustom.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   Container,
+  Dropdown,
   Nav,
   NavDropdown,
   Navbar,
   Offcanvas,
 } from "react-bootstrap";
 import useWindowResize from "../../../helpers/useWindowResize";
+import { useDispatch, useSelector } from "react-redux";
+import { alertSuccess, warningLogout } from "../../../helpers/sweeAlert2";
+import { logout } from "../../../slices/userSlice";
 
 function MainHeader({ jobCategory }) {
+  const { user } = useSelector((state) => state?.user);
+  console.log(user);
+
+  console.log(user?.user?.avatar);
   const [values, setValues] = useState(null);
   const [y, setY] = useState(0);
 
@@ -20,9 +28,16 @@ function MainHeader({ jobCategory }) {
   const size = useWindowResize();
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     navigate("/");
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem("userInfo");
+    alertSuccess("You're logging out");
   };
 
   const condition =
@@ -82,11 +97,30 @@ function MainHeader({ jobCategory }) {
                 id="sideBar"
                 className={`justify-content-end flex-grow-1 ${styles.sideBar}`}
               >
-                <Nav.Link className="joinFiverr btn" href="#action1">
-                  Join Fiverr
-                </Nav.Link>
-                <Nav.Link href="#action2">Sign in</Nav.Link>
-                <Nav.Link href="#action2">
+                {user ? (
+                  <>
+                    <Nav.Link href="/login" className="userAccount">
+                      <img src={user?.user?.avatar} alt={user?.user?.name} />
+                      <span>{user?.user?.name}</span>
+                    </Nav.Link>
+                    <Nav.Link href="/login">
+                      <span className="fa-solid fa-user me-2"></span>Profile
+                    </Nav.Link>
+                    <Nav.Link href="/" onClick={handleLogout}>
+                      <span className="fa-solid fa-right-from-bracket me-2"></span>
+                      Logout
+                    </Nav.Link>
+                  </>
+                ) : (
+                  <>
+                    <Nav.Link className="joinFiverr btn" href="/register">
+                      Join Fiverr
+                    </Nav.Link>
+                    <Nav.Link href="/login">Sign in</Nav.Link>
+                  </>
+                )}
+
+                <Nav.Link href="/">
                   <NavDropdown
                     title="Browse Categories"
                     id={`offcanvasNavbarDropdown-expand-lg`}
@@ -118,9 +152,12 @@ function MainHeader({ jobCategory }) {
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
-
           <Navbar.Toggle
-            className="me-2 d-sm-none"
+            className={
+              condition
+                ? "toggleIcon1 fa-solid fa-bars d-sm-none"
+                : "toggleIcon2 fa-solid fa-bars d-sm-none"
+            }
             aria-controls="offcanvasNavbar-expand-lg"
           />
           <Navbar.Brand className="d-sm-none" role="button">
@@ -140,15 +177,18 @@ function MainHeader({ jobCategory }) {
               </g>
             </svg>
           </Navbar.Brand>
-
           {size.width >= 576 && (
             <div
               id="fiverrLogo"
               className="fiverrLogo d-flex align-items-center"
             >
               <Navbar.Toggle
-                className="me-2"
                 aria-controls="offcanvasNavbar-expand-lg"
+                className={
+                  condition
+                    ? "toggleIcon1 fa-solid fa-bars"
+                    : "toggleIcon2 fa-solid fa-bars"
+                }
               />
               <Navbar.Brand role="button" onClick={handleClick}>
                 <svg
@@ -169,7 +209,6 @@ function MainHeader({ jobCategory }) {
               </Navbar.Brand>
             </div>
           )}
-
           <div className={condition2 ? "null" : "d-none"}>
             <div className={styles.searchPackage}>
               <form className="input-group">
@@ -204,14 +243,16 @@ function MainHeader({ jobCategory }) {
               </form>
             </div>
           </div>
-
           <div
-            id="#fiverrNav"
+            id="fiverrNav"
             className={`${
               condition ? styles.nav : styles.nav1
             } navbar-expand-md d-flex flex-row`}
           >
-            <Nav id="navbar" className={`justify-content-end flex-grow-1`}>
+            <Nav
+              id="navbar"
+              className={`justify-content-end align-items-center flex-grow-1`}
+            >
               <Nav.Link
                 href="#action1"
                 className={`active ${styles.FiverrBusiness}`}
@@ -235,16 +276,41 @@ function MainHeader({ jobCategory }) {
                 English
               </Nav.Link>
               <Nav.Link href="#action2">Become a Seller</Nav.Link>
-              <Nav.Link className={styles.signIn} href="/login">
-                Sign in
-              </Nav.Link>
-              <Nav.Link
-                style={{ display: "inline" }}
-                className={styles.joinButton}
-                href="/register"
-              >
-                Join
-              </Nav.Link>
+              {user ? (
+                <Dropdown id="UserAccount" className={styles.account}>
+                  <Dropdown.Toggle variant="transparent" id="dropdown-basic">
+                    <img src={user?.user?.avatar} alt={user?.user?.name} />
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className={styles.avatar}>
+                    <Dropdown.Item href="/login">
+                      <span className="fa-solid fa-user me-2"></span>Profile
+                    </Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item
+                      href="/"
+                      role="button"
+                      onClick={handleLogout}
+                    >
+                      <span className="fa-solid fa-right-from-bracket me-2"></span>
+                      Logout
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              ) : (
+                <>
+                  <Nav.Link className={styles.signIn} href="/login">
+                    Sign in
+                  </Nav.Link>
+                  <Nav.Link
+                    style={{ display: "inline" }}
+                    className={styles.joinButton}
+                    href="/register"
+                  >
+                    Join
+                  </Nav.Link>
+                </>
+              )}
             </Nav>
           </div>
         </Container>
