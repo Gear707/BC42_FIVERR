@@ -6,7 +6,7 @@ import { alertError, alertSuccess } from "../../../helpers/sweeAlert2";
 function BasicInfo({ userInfo, getUserInfo }) {
     const [description, setDescription] = useState("");
     const [language, setLanguage] = useState("");
-    let [skill, setSkill] = useState();
+    let [skill, setSkill] = useState("");
     const [education, setEducation] = useState("");
     let [certification, setCertification] = useState("");
     const [editSections, setEditSections] = useState([]);
@@ -120,8 +120,9 @@ function BasicInfo({ userInfo, getUserInfo }) {
                             {editSections[0] && (
                                 <div className={styles.formWrapper}>
                                     <div className={styles.textareaWrapper}>
-                                        <textarea maxLength={600} minLength={150} placeholder="Please tell us about any hobbies, additional expertise, or anything else you’d like to add." defaultValue={description}
-                                            onChange={(evt) => setDescription(evt.target.value)}>
+                                        <textarea maxLength={600} minLength={150} placeholder="Please tell us about any hobbies, additional expertise, or anything else you’d like to add." defaultValue={description} autoFocus
+                                            onChange={(evt) => setDescription(evt.target.value)}
+                                        >
                                         </textarea>
                                     </div>
                                     <div className="d-flex mt-2">
@@ -153,14 +154,14 @@ function BasicInfo({ userInfo, getUserInfo }) {
                             <a className={editSections[1] ? "d-none" : "d-inline-block"}
                                 onClick={() => handleSelectSections(1)}
                             >
-                                Add/Edit
+                                Add New
                             </a>
                         </aside>
                         <section>
                             {editSections[1] && (
                                 <div className={styles.formWrapper}>
                                     <div className={styles.inputWrapper}>
-                                        <input type="text" defaultValue={language} placeholder="Add Languages"
+                                        <input type="text" defaultValue={language} placeholder="Add Languages" autoFocus
                                             className="form-control w-100"
                                             onChange={(evt) => setLanguage(evt.target.value)}
                                         />
@@ -228,7 +229,7 @@ function BasicInfo({ userInfo, getUserInfo }) {
                             <a className={editSections[2] ? "d-none" : "d-inline-block"}
                                 onClick={() => handleSelectSections(2)}
                             >
-                                Add/Edit
+                                Add New
                             </a>
                         </aside>
                         <section>
@@ -238,6 +239,7 @@ function BasicInfo({ userInfo, getUserInfo }) {
                                         <input type="text" className="form-control w-100"
                                             placeholder="Add skills (e.g. Programming, Web Design)"
                                             onChange={(evt) => setSkill(evt.target.value)}
+                                            autoFocus
                                         />
                                     </div>
                                     <div className={styles.buttonWrapper}>
@@ -288,14 +290,14 @@ function BasicInfo({ userInfo, getUserInfo }) {
                             <a className={editSections[3] ? "d-none" : "d-inline-block"}
                                 onClick={() => handleSelectSections(3)}
                             >
-                                Add/Edit
+                                Add New
                             </a>
                         </aside>
                         <section>
                             {editSections[3] && (
                                 <div className={styles.formWrapper}>
                                     <div className={styles.inputWrapper}>
-                                        <input type="text" defaultValue={education} className="form-control w-100"
+                                        <input type="text" defaultValue={education} className="form-control w-100" autoFocus
                                             placeholder="College/University name"
                                             onChange={(evt) => setEducation(evt.target.value)}
                                         />
@@ -329,7 +331,7 @@ function BasicInfo({ userInfo, getUserInfo }) {
                             <a className={editSections[4] ? "d-none" : "d-inline-block"}
                                 onClick={() => handleSelectSections(4)}
                             >
-                                Add/Edit
+                                Add New
                             </a>
                         </aside>
                         <section>
@@ -337,7 +339,7 @@ function BasicInfo({ userInfo, getUserInfo }) {
                                 <div className={styles.formWrapper}>
                                     <div className={styles.inputWrapper}>
                                         <input type="text" className="form-control w-100"
-                                            placeholder="Add certification (e.g. MBA, Supply Chain)"
+                                            placeholder="Add certification (e.g. MBA, Supply Chain)" autoFocus
                                             onChange={(evt) => setCertification(evt.target.value)}
                                         />
                                     </div>
@@ -385,6 +387,6 @@ function BasicInfo({ userInfo, getUserInfo }) {
             </article>
         </>
     );
-}
+};
 
 export default BasicInfo;

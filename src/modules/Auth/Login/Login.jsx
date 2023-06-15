@@ -107,7 +107,11 @@ function Login() {
 
                             <p>
                                 Don't have an account?
-                                <a onClick={() => navigate("/register")} className="ms-2">Register here</a>
+                                <a onClick={() => navigate("/register")}
+                                    className="ms-2 text-success text-decoration-underline"
+                                >
+                                    Register here
+                                </a>
                             </p>
                         </div>
 
@@ -122,7 +126,7 @@ function Login() {
                         <p className="text-center fw-bold mx-3 mb-0">OR</p>
                     </div>
 
-                    <MDBBtn className="mb-3 w-100" size="lg"
+                    <MDBBtn className={`mb-3 w-100 ${styles.socialBtn}`} size="lg"
                         style={{ backgroundColor: '#3b5998' }}
                         href="https://www.facebook.com" target="_blank"
                     >
@@ -130,7 +134,7 @@ function Login() {
                         Continue with facebook
                     </MDBBtn>
 
-                    <MDBBtn className="w-100" size="lg"
+                    <MDBBtn className={`w-100 ${styles.socialBtn}`} size="lg"
                         style={{ backgroundColor: '#55acee' }}
                         href="https://twitter.com" target="_blank"
                     >

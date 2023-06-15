@@ -8,11 +8,13 @@ export const login = createAsyncThunk(
   async (values, { getState }) => {
     try {
       const data = await apiLogin(values);
+      if (data) alertSuccess("Logged in successfully!");
+
       const { rememberMe } = getState().user;
       if (rememberMe) {
         localStorage.setItem("userInfo", JSON.stringify(data.content));
       }
-      alertSuccess("Logged in successfully!");
+
       return data.content;
     } catch (error) {
       alertError("Failed to log in!");

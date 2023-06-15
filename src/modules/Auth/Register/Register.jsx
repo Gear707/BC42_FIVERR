@@ -259,7 +259,11 @@ function Register() {
                         </form>
                         <div className="mt-3 text-center">
                             Already have an account?
-                            <a onClick={() => navigate("/login")} className="ms-2">Login here</a>
+                            <a onClick={() => navigate("/login")}
+                                className="ms-2 text-success text-decoration-underline"
+                            >
+                                Login here
+                            </a>
                         </div>
                     </MDBRow>
                 </MDBCol>

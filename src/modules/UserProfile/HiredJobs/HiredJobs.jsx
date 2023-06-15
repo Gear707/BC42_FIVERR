@@ -162,9 +162,13 @@ function HiredJobs({ userInfo }) {
                                 <div className="text-warning">{renderStars(job.congViec.saoCongViec)}</div>
                                 <div>
                                     {job.hoanThanh ?
-                                        <span className="badge rounded-pill text-bg-success ms-3">Finished</span>
+                                        <span className="badge rounded-pill text-white text-bg-success ms-3">
+                                            Finished
+                                        </span>
                                         :
-                                        <span className="badge rounded-pill text-bg-warning ms-3">Ongoing</span>
+                                        <span className="badge rounded-pill text-white text-bg-secondary ms-3">
+                                            Ongoing
+                                        </span>
                                     }
                                 </div>
                             </div>

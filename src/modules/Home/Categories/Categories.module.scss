@@ -2,6 +2,7 @@
 @import "../../../styles/responsive";
 
 $iconSize: 48px;
+$textColor: #222325;
 
 .cateSection {
     margin-bottom: 55px;
@@ -46,7 +47,7 @@ $iconSize: 48px;
             }
 
             >a {
-                color: #222325;
+                color: $textColor;
                 display: inline-block;
                 position: relative;
                 text-align: center;
@@ -64,6 +65,8 @@ $iconSize: 48px;
                 }
 
                 &:hover {
+                    color: $textColor !important;
+
                     &::after {
                         border-color: #1dbf73;
                         width: $iconSize * 1.7;
