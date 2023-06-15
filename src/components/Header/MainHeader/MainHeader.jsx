@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import useWindowResize from "../../../helpers/useWindowResize";
 import { useDispatch, useSelector } from "react-redux";
-import { alertSuccess, warningLogout } from "../../../helpers/sweeAlert2";
+import { alertSuccess } from "../../../helpers/sweeAlert2";
 import { logout } from "../../../slices/userSlice";
 
 function MainHeader({ jobCategory }) {

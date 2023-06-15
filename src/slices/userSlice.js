@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { apiLogin } from "../apis/userAPI";
+import { alertError, alertSuccess } from "../helpers/sweeAlert2";
 
 // async actions
 export const login = createAsyncThunk(
@@ -7,12 +8,16 @@ export const login = createAsyncThunk(
   async (values, { getState }) => {
     try {
       const data = await apiLogin(values);
+      if (data) alertSuccess("Logged in successfully!");
+
       const { rememberMe } = getState().user;
       if (rememberMe) {
         localStorage.setItem("userInfo", JSON.stringify(data.content));
       }
+
       return data.content;
     } catch (error) {
+      alertError("Failed to log in!");
       throw error.response?.data?.content;
     }
   }

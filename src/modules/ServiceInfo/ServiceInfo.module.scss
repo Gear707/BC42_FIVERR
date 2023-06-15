@@ -114,98 +114,228 @@
             }
         }
 
-        .reviewers {
-            font-weight: 600;
-            margin-bottom: 10px;
+        .ratingBreakdown {
+            border-bottom: 1px solid #dadbdd;
 
-            h4 {
-                margin: 10px 0;
+            .reviewers {
+                font-weight: 600;
+                margin-bottom: 10px;
+
+                h4 {
+                    margin: 10px 0;
+                }
+
+                i {
+                    color: #02c2a9;
+                }
+
+                .soSao {
+                    color: #02c2a9;
+                    margin-left: 5px;
+                }
             }
 
-            i {
-                color: #02c2a9;
-            }
+            .rating {
+                display: flex;
+                margin-bottom: 30px;
 
-            .soSao {
-                color: #02c2a9;
-                margin-left: 5px;
-            }
-        }
-
-        .rating {
-            display: flex;
-
-            table {
-                tbody {
-                    tr {
-                        width: 100%;
-
-                        td {
-                            border: none;
-                            text-align: left;
-                            width: 100px;
-
-                            button {
-                                color: #02c2a9;
-                                background-color: transparent;
-                                border: 1px solid transparent;
-                                border-radius: 4px;
-                                -webkit-box-sizing: border-box;
-                                box-sizing: border-box;
-                                cursor: pointer;
-                                display: inline-block;
-                                font-weight: 600;
-                                padding: 12px 0px;
-                                position: relative;
-                                text-align: center;
-                                text-decoration: none;
-                                width: 100px;
-                            }
-                        }
-
-                        .ratingBarContainer {
-                            margin: auto;
-                            padding: 10px 10px 0 6px;
+                table {
+                    tbody {
+                        tr {
                             width: 100%;
 
-                            .ratingBarGroup {
-                                -webkit-box-align: center;
-                                -ms-flex-align: center;
-                                -webkit-align-items: center;
-                                align-items: center;
-                                display: flex;
+                            td {
+                                border: none;
+                                text-align: left;
+                                width: 100px;
 
-                                .ratingBar {
-                                    -webkit-box-flex: 1;
-                                    -ms-flex-positive: 1;
-                                    background: #e4e5e7;
-                                    border-radius: 999px;
-                                    -webkit-flex-grow: 1;
-                                    flex-grow: 1;
-                                    height: 8px;
+                                button {
+                                    color: #e4e5e7;
+                                    background-color: transparent;
+                                    border: 1px solid transparent;
+                                    border-radius: 4px;
+                                    -webkit-box-sizing: border-box;
+                                    box-sizing: border-box;
+                                    cursor: pointer;
+                                    display: inline-block;
+                                    font-weight: 600;
+                                    padding: 12px 0px;
                                     position: relative;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    width: 100px;
+                                }
 
-                                    span {
-                                        width: 100%;
-                                        background: #1dbf73;
+                            }
+
+                            .topNotch {
+                                color: #02c2a9 !important;
+                            }
+
+                            .ratingBarContainer1 {
+                                margin: auto;
+                                padding: 10px 10px 0 6px;
+                                width: 100%;
+
+                                .ratingBarGroup1 {
+                                    -webkit-box-align: center;
+                                    -ms-flex-align: center;
+                                    -webkit-align-items: center;
+                                    align-items: center;
+                                    display: flex;
+
+                                    .ratingBar1 {
+                                        -webkit-box-flex: 1;
+                                        -ms-flex-positive: 1;
+                                        background: #02c2a9;
                                         border-radius: 999px;
-                                        height: 100%;
-                                        left: 0;
-                                        position: absolute;
-                                        z-index: 1;
-                                        background-color: #02c2a9;
+                                        -webkit-flex-grow: 1;
+                                        flex-grow: 1;
+                                        height: 8px;
+                                        position: relative;
+
+                                        span {
+                                            width: 100%;
+                                            background: #1dbf73;
+                                            border-radius: 999px;
+                                            height: 100%;
+                                            left: 0;
+                                            position: absolute;
+                                            z-index: 1;
+                                            background-color: #02c2a9;
+                                        }
+                                    }
+                                    
+                                }
+                            }
+
+                            .ratingBarContainer2 {
+                                margin: auto;
+                                padding: 10px 10px 0 6px;
+                                width: 100%;
+                                color: #e4e5e7;
+
+                                .ratingBarGroup2 {
+                                    -webkit-box-align: center;
+                                    -ms-flex-align: center;
+                                    -webkit-align-items: center;
+                                    align-items: center;
+                                    display: flex;
+
+                                    .ratingBar2 {
+                                        -webkit-box-flex: 1;
+                                        -ms-flex-positive: 1;
+                                        background: #e4e5e7;
+                                        border-radius: 999px;
+                                        -webkit-flex-grow: 1;
+                                        flex-grow: 1;
+                                        height: 8px;
+                                        position: relative;
+
+                                        span {
+                                            width: 100%;
+                                            // background: #1dbf73;
+                                            border-radius: 999px;
+                                            height: 100%;
+                                            left: 0;
+                                            position: absolute;
+                                            z-index: 1;
+                                            background-color: #e4e5e7;
+                                        }
                                     }
                                 }
                             }
                         }
+
+
+
+
                     }
+                }
+            }
 
+            .breakdown {
+                margin-top: 20px;
+                margin-left: 20px;
 
+                h6 {
+                    padding-bottom: 16px
+                }
 
+                .ratingCategory {
+                    display: flex;
+                    justify-content: space-between;
+                    padding-bottom: 10px;
 
+                    .starGroup {
+                        color: #02c2a9
+                    }
                 }
             }
         }
+
+        .sellerComment {
+            .commentGroup {
+                padding-bottom: 10px;
+                margin: 20px 0;
+                border-bottom: 1px solid #dadbdd;
+                display: flex;
+
+                .comment {
+                    margin-left: 20px;
+
+                    h6 {
+                        font-size: 17px;
+                    }
+
+                    p {
+                        margin-bottom: 10px;
+                    }
+
+                    .saoBinhLuan {
+                        color: #02c2a9;
+                        font-weight: 550;
+                    }
+
+                    .helpful {
+                        font-size: 15px;
+                        font-weight: 600;
+                    }
+
+                    .reactGroup {
+                        margin-left: 25px;
+                        font-weight: 600;
+                        display: inline;
+
+                        span {
+                            color: orange;
+                            margin: 0 10px;
+
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .postComment {
+            .postGroup {
+                display: flex;
+
+                img {
+                    margin-right: 20px;
+                    width: 55px;
+                    height: 50px;
+                    border-radius: 100%;
+                }
+
+            }
+
+            .addComment {
+                margin: 20px 0 0 70px;
+            }
+        }
+
     }
 
     .packageCost {

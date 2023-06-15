@@ -1,39 +1,77 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { apiServiceInfo } from "../../apis/jobAPI";
-import {
-  Button,
-  Collapse,
-  Dropdown,
-  Nav,
-  NavDropdown,
-  NavLink,
-  Offcanvas,
-} from "react-bootstrap";
+import { Collapse, Nav, NavLink } from "react-bootstrap";
 import styles from "./ServiceInfo.module.scss";
-// import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
+import { apiPostComment, apiSellerComment } from "../../apis/commentAPI";
+import dayjs from "dayjs";
+import Avatar from "react-avatar";
 
 function ServiceInfo({ top, ...props }) {
   const { keyword, MaCongViec } = useParams();
 
   const [info, setInfo] = useState();
+  const [comments, setCommets] = useState();
+  const [like, setLike] = useState(0);
+  const [dislike, setDisLike] = useState(0);
 
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
 
+  const avatarSize = 35;
+
   const getServiceInfo = async () => {
     try {
       const data = await apiServiceInfo(MaCongViec);
       setInfo(data.content);
+      // console.log(data.content);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getSellerComment = async () => {
+    try {
+      const data = await apiSellerComment(MaCongViec);
+      setCommets(data.content);
       console.log(data.content);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(info);
+
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.push(<i key={i} className="fas fa-star"></i>);
+      } else {
+        stars.push(<i key={i} className="far fa-star"></i>);
+      }
+    }
+    return stars;
+  };
+
+  const handleLike = () => {
+    setLike(like + 1);
+  };
+
+  const handleDisLike = () => {
+    setDisLike(dislike + 1);
+  };
+
+  const handlePostComment = async () => {
+    try {
+      const data = await apiPostComment();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getServiceInfo();
+    getSellerComment();
   }, [MaCongViec]);
 
   return (
@@ -64,10 +102,7 @@ function ServiceInfo({ top, ...props }) {
                   <span className={styles.name}>{item.tenNguoiTao}</span>
                   <span className={styles.topRated}>Top rated seller</span>
                   <span>|</span>
-                  <span>
-                    <i className="fa-solid fa-star"></i>(
-                    {item.congViec.saoCongViec})
-                  </span>
+                  <span>{renderStars(item.congViec.saoCongViec)}</span>
                   <span>|</span>
                   <span>{item.congViec.danhGia}</span>
                 </div>
@@ -169,91 +204,179 @@ function ServiceInfo({ top, ...props }) {
                   </div>
                 </Collapse>
               </div>
-              <div className={styles.reviewers}>
-                <h4>Reviewers</h4>
-                <span className="me-2">
-                  {item.congViec.danhGia} reviews for this Gig
-                </span>
-                <i className="fa-solid fa-star"></i>
-                <i className="fa-solid fa-star"></i>
-                <i className="fa-solid fa-star"></i>
-                <i className="fa-solid fa-star"></i>
-                <i className="fa-solid fa-star"></i>
-                <span className={styles.soSao}>5</span>
-              </div>
-              <div className={styles.rating}>
-                <div className="col-12 col-sm-6">
-                  <table className="">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <button>5 Stars</button>
-                        </td>
-                        <td className={styles.ratingBarContainer}>
-                          <div className={styles.ratingBarGroup}>
-                            <div className={styles.ratingBar}>
-                              <span></span>
-                            </div>
-                          </div>
-                        </td>
-                        <td>({item.congViec.danhGia})</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <button>4 Stars</button>
-                        </td>
-                        <td className={styles.ratingBarContainer}>
-                          <div className={styles.ratingBarGroup}>
-                            <div className={styles.ratingBar}>
-                              <span></span>
-                            </div>
-                          </div>
-                        </td>
-                        <td>(0)</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <button>3 Stars</button>
-                        </td>
-                        <td className={styles.ratingBarContainer}>
-                          <div className={styles.ratingBarGroup}>
-                            <div className={styles.ratingBar}>
-                              <span></span>
-                            </div>
-                          </div>
-                        </td>
-                        <td>(0)</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <button>2 Stars</button>
-                        </td>
-                        <td className={styles.ratingBarContainer}>
-                          <div className={styles.ratingBarGroup}>
-                            <div className={styles.ratingBar}>
-                              <span></span>
-                            </div>
-                          </div>
-                        </td>
-                        <td>(0)</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <button>1 Stars</button>
-                        </td>
-                        <td className={styles.ratingBarContainer}>
-                          <div className={styles.ratingBarGroup}>
-                            <div className={styles.ratingBar}>
-                              <span></span>
-                            </div>
-                          </div>
-                        </td>
-                        <td>(0)</td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <div id="RatingBreakdown" className={styles.ratingBreakdown}>
+                <div className={styles.reviewers}>
+                  <h4>Reviewers</h4>
+                  <span className="me-2">
+                    {item.congViec.danhGia} reviews for this Gig
+                  </span>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <span className={styles.soSao}>5</span>
                 </div>
-                <div className="col-12 col-sm-6"></div>
+                <div className={styles.rating}>
+                  <div className="col-12 col-sm-6">
+                    <table className="">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <button className={styles.topNotch}>5 Stars</button>
+                          </td>
+                          <td className={styles.ratingBarContainer1}>
+                            <div className={styles.ratingBarGroup1}>
+                              <div className={styles.ratingBar1}></div>
+                            </div>
+                          </td>
+                          <td className={styles.topNotch}>
+                            ({item.congViec.danhGia})
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button>4 Stars</button>
+                          </td>
+                          <td className={styles.ratingBarContainer2}>
+                            <div className={styles.ratingBarGroup2}>
+                              <div className={styles.ratingBar2}>
+                                <span></span>
+                              </div>
+                            </div>
+                          </td>
+                          <td>(0)</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button>3 Stars</button>
+                          </td>
+                          <td className={styles.ratingBarContainer2}>
+                            <div className={styles.ratingBarGroup2}>
+                              <div className={styles.ratingBar2}>
+                                <span></span>
+                              </div>
+                            </div>
+                          </td>
+                          <td>(0)</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button>2 Stars</button>
+                          </td>
+                          <td className={styles.ratingBarContainer2}>
+                            <div className={styles.ratingBarGroup2}>
+                              <div className={styles.ratingBar2}>
+                                <span></span>
+                              </div>
+                            </div>
+                          </td>
+                          <td>(0)</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button>1 Stars</button>
+                          </td>
+                          <td className={styles.ratingBarContainer2}>
+                            <div className={styles.ratingBarGroup2}>
+                              <div className={styles.ratingBar2}>
+                                <span></span>
+                              </div>
+                            </div>
+                          </td>
+                          <td>(0)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="col-12 col-sm-6">
+                    <div className={styles.breakdown}>
+                      <h6>Rating Breakdown</h6>
+                      <div className={styles.ratingCategory}>
+                        <span>Seller communication level</span>
+                        <div className={styles.starGroup}>
+                          <i className="fa-solid fa-star"></i>
+                          <span>5</span>
+                        </div>
+                      </div>
+                      <div className={styles.ratingCategory}>
+                        <span>Recommend to a friend</span>
+                        <div className={styles.starGroup}>
+                          <i className="fa-solid fa-star"></i>
+                          <span>5</span>
+                        </div>
+                      </div>
+                      <div className={styles.ratingCategory}>
+                        <span>Seller communication level</span>
+                        <div className={styles.starGroup}>
+                          <i className="fa-solid fa-star"></i>
+                          <span>4.9</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="SellerComment" className={styles.sellerComment}>
+                {comments?.map((item, index) => {
+                  return (
+                    <div key={index} className={styles.commentGroup}>
+                      <Avatar
+                        name={item.tenNguoiBinhLuan}
+                        round
+                        size={avatarSize}
+                        color="#007bff"
+                        textSizeRatio={2}
+                      >
+                        {item.tenNguoiBinhLuan
+                          .split(" ")
+                          .map((name) => name.charAt(0))
+                          .join("")}
+                      </Avatar>
+                      <div className={styles.comment}>
+                        <h6>{item.tenNguoiBinhLuan}</h6>
+                        <p className={styles.saoBinhLuan}>
+                          {renderStars(item.saoBinhLuan)} {item.saoBinhLuan}
+                        </p>
+                        <p>{item.noiDung}</p>
+                        <p>{dayjs(item.ngayBinhLuan).format("DD/MM/YYYY")}</p>
+                        <b className={styles.helpful}>Helpful?</b>
+                        <div className={styles.reactGroup}>
+                          <span
+                            className="fa-solid fa-thumbs-up"
+                            role="button"
+                            onClick={handleLike}
+                          ></span>
+                          <span
+                            className="fa-solid fa-thumbs-down"
+                            role="button"
+                            onClick={handleDisLike}
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div id="PostComment" className={styles.postComment}>
+                <div className={styles.postGroup}>
+                  <img
+                    src="https://www.linkpicture.com/q/Vuong-Tu-Ky.jpg"
+                    alt=""
+                  />
+                  <textarea
+                    name="Add Comment"
+                    id="feedbackCustomer"
+                    cols="80"
+                    rows="7"
+                  ></textarea>
+                </div>
+                <button
+                  className={`${styles.addComment} btn btn-primary`}
+                  onClick={handlePostComment}
+                >
+                  Add Comment
+                </button>
               </div>
             </div>
 
