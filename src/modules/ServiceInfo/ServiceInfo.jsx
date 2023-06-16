@@ -6,12 +6,19 @@ import styles from "./ServiceInfo.module.scss";
 import { apiPostComment, apiSellerComment } from "../../apis/commentAPI";
 import dayjs from "dayjs";
 import Avatar from "react-avatar";
+import { useSelector } from "react-redux";
+import { apiGetBookedJob } from "../../apis/hiredJobAPI";
 
-function ServiceInfo({ top, ...props }) {
+function ServiceInfo() {
   const { keyword, MaCongViec } = useParams();
+  const user = useSelector((state) => state?.user);
+  console.log(user.user.token);
+  console.log(user.user.user.id);
 
+  console.log(MaCongViec);
   const [info, setInfo] = useState();
   const [comments, setCommets] = useState();
+  const [bookedJob, setBookedJob] = useState();
   const [like, setLike] = useState(0);
   const [dislike, setDisLike] = useState(0);
 
@@ -60,16 +67,61 @@ function ServiceInfo({ top, ...props }) {
   const handleDisLike = () => {
     setDisLike(dislike + 1);
   };
-
-  const handlePostComment = async () => {
+  let maNguoiThue;
+  let index;
+  const getBookedJob = async () => {
     try {
-      const data = await apiPostComment();
+      const data = await apiGetBookedJob();
+      setBookedJob(data.content);
+      index = data.content.findIndex(
+        (job) => job.maNguoiThue === user.user.user.id
+      );
+      maNguoiThue = bookedJob[index].id;
+      // return index;
     } catch (error) {
       console.log(error);
     }
   };
+  // const index = bookedJob?.findIndex(
+  //   (job) => job?.maNguoiThue === user?.user?.user.id
+  // );
+  // let maNguoiThue = bookedJob[index]?.id;
+  // console.log(index);
+  // const maNguoiThue = getBookedJob();
+  console.log(user.user.user);
+  console.log(index);
+  console.log(maNguoiThue);
+  console.log(bookedJob);
+  console.log(user?.user?.user.id);
+  // const findById = async ()=> {
+  //   try {
+
+  //   }catch {
+
+  //   }
+  // }
+
+  const handlePostComment = async () => {
+    // const token = user.user.token;
+    const payload = {
+      id: 1001,
+      maCongViec: +MaCongViec,
+      maNguoiBinhLuan: +user.user.user.id,
+      ngayBinhLuan: "23/06/2023",
+      noiDung: "Dịch vụ quá đỗi tuyệt vời á hhahaha!!!",
+      saoBinhLuan: 5,
+    };
+    try {
+      const data = await apiPostComment(payload);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // console.log(user.user.token);
+  handlePostComment();
 
   useEffect(() => {
+    getBookedJob();
     getServiceInfo();
     getSellerComment();
   }, [MaCongViec]);
@@ -373,7 +425,7 @@ function ServiceInfo({ top, ...props }) {
                 </div>
                 <button
                   className={`${styles.addComment} btn btn-primary`}
-                  onClick={handlePostComment}
+                  // onClick={handlePostComment}
                 >
                   Add Comment
                 </button>

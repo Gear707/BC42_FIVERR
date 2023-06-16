@@ -312,7 +312,6 @@ function MainHeader({ jobCategory }) {
             </Nav>
           </div>
         </Container>
-
         {condition3 && (
           <div
             className={`${styles.searchPackage} d-flex justify-content-center text-center`}
