@@ -225,8 +225,8 @@ function ServiceInfo({ top, ...props }) {
                           <td>
                             <button className={styles.topNotch}>5 Stars</button>
                           </td>
-                          <td className={styles.ratingBarContainer1}>
-                            <div className={styles.ratingBarGroup1}>
+                          <td className={styles.ratingBarContainer}>
+                            <div className={styles.ratingBarGroup}>
                               <div className={styles.ratingBar1}></div>
                             </div>
                           </td>
@@ -238,8 +238,8 @@ function ServiceInfo({ top, ...props }) {
                           <td>
                             <button>4 Stars</button>
                           </td>
-                          <td className={styles.ratingBarContainer2}>
-                            <div className={styles.ratingBarGroup2}>
+                          <td className={styles.ratingBarContainer}>
+                            <div className={styles.ratingBarGroup}>
                               <div className={styles.ratingBar2}>
                                 <span></span>
                               </div>
@@ -251,8 +251,8 @@ function ServiceInfo({ top, ...props }) {
                           <td>
                             <button>3 Stars</button>
                           </td>
-                          <td className={styles.ratingBarContainer2}>
-                            <div className={styles.ratingBarGroup2}>
+                          <td className={styles.ratingBarContainer}>
+                            <div className={styles.ratingBarGroup}>
                               <div className={styles.ratingBar2}>
                                 <span></span>
                               </div>
@@ -264,8 +264,8 @@ function ServiceInfo({ top, ...props }) {
                           <td>
                             <button>2 Stars</button>
                           </td>
-                          <td className={styles.ratingBarContainer2}>
-                            <div className={styles.ratingBarGroup2}>
+                          <td className={styles.ratingBarContainer}>
+                            <div className={styles.ratingBarGroup}>
                               <div className={styles.ratingBar2}>
                                 <span></span>
                               </div>
@@ -277,8 +277,8 @@ function ServiceInfo({ top, ...props }) {
                           <td>
                             <button>1 Stars</button>
                           </td>
-                          <td className={styles.ratingBarContainer2}>
-                            <div className={styles.ratingBarGroup2}>
+                          <td className={styles.ratingBarContainer}>
+                            <div className={styles.ratingBarGroup}>
                               <div className={styles.ratingBar2}>
                                 <span></span>
                               </div>

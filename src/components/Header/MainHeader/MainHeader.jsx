@@ -17,9 +17,7 @@ import { logout } from "../../../slices/userSlice";
 
 function MainHeader({ jobCategory }) {
   const { user } = useSelector((state) => state?.user);
-  console.log(user);
 
-  console.log(user?.user?.avatar);
   const [values, setValues] = useState(null);
   const [y, setY] = useState(0);
 
