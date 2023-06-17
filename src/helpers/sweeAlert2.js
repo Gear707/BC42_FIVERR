@@ -45,3 +45,19 @@ export const warningLogout = () => {
     cancelButtonColor: "#d33",
   });
 };
+
+export const alertSuccess2 = (title) => {
+  return Popup.fire({
+    icon: "success",
+    title,
+    position: "center",
+  });
+};
+
+export const alertError2 = (title) => {
+  return Popup.fire({
+    icon: "error",
+    title,
+    position: "center",
+  });
+};

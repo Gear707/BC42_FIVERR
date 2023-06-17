@@ -129,13 +129,49 @@ a:hover {
             top: 50px;
         }
 
-        .dropdown-toggle::after {
-            border-right: 0;
-            border-left: 0;
-        }
-    }
+        .dropdown-toggle {
+            position: relative;
 
+            &::after {
+                border-right: 0;
+                border-left: 0;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: 2px;
+                right: 0px;
+                border-width: 2px;
+                background-color: #7ed321;
+                border-radius: 100%;
+                width: 9px;
+                height: 9px;
+
+            }
+        }
+
+
+    }
 }
+
+#sideBar .userAccount {
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 10px;
+        right: 50px;
+        border-width: 2px;
+        background-color: #7ed321;
+        border-radius: 100%;
+        width: 9px;
+        height: 9px;
+
+    }
+}
+
 
 
 // @media screen and (min-width: 576px) {

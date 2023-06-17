@@ -12,14 +12,12 @@ import {
 } from "react-bootstrap";
 import useWindowResize from "../../../helpers/useWindowResize";
 import { useDispatch, useSelector } from "react-redux";
-import { alertSuccess, warningLogout } from "../../../helpers/sweeAlert2";
+import { alertSuccess } from "../../../helpers/sweeAlert2";
 import { logout } from "../../../slices/userSlice";
 
 function MainHeader({ jobCategory }) {
   const { user } = useSelector((state) => state?.user);
-  console.log(user);
 
-  console.log(user?.user?.avatar);
   const [values, setValues] = useState(null);
   const [y, setY] = useState(0);
 
@@ -62,6 +60,12 @@ function MainHeader({ jobCategory }) {
   const handleChange = (evt) => {
     const { value, name } = evt.target;
     setValues({ ...values, [name]: value });
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      navigate(`/jobList/${values?.keyword}`);
+    }
   };
 
   useEffect(() => {
@@ -218,6 +222,7 @@ function MainHeader({ jobCategory }) {
                   autoComplete="off"
                   name="keyword"
                   onChange={handleChange}
+                  onKeyPress={handleKeyPress}
                   placeholder={
                     size.width > 768
                       ? "What service are you looking for today?"
@@ -314,7 +319,6 @@ function MainHeader({ jobCategory }) {
             </Nav>
           </div>
         </Container>
-
         {condition3 && (
           <div
             className={`${styles.searchPackage} d-flex justify-content-center text-center`}

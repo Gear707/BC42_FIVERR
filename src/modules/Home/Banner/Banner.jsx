@@ -30,6 +30,12 @@ function Banner() {
     setValues({ ...values, [name]: value });
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      navigate(`/jobList/${values?.keyword}`);
+    }
+  };
+
   return (
     <div id="Banner" className={styles.background}>
       {size.width >= 992 && (
@@ -120,12 +126,12 @@ function Banner() {
               placeholder="Search for any services..."
               name="keyword"
               onChange={handleChange}
+              onKeyPress={handleKeyPress}
             />
             <a
               className={`${styles.submitButton}  d-lg-none d-block col-12`}
               type="submit"
               onClick={() => {
-                // handleSearch(values?.keyword);
                 navigate(`/jobList/${values?.keyword}`);
               }}
             >
@@ -147,12 +153,12 @@ function Banner() {
                   placeholder="Search for any services..."
                   name="keyword"
                   onChange={handleChange}
+                  onKeyPress={handleKeyPress}
                 />
                 <a
                   className={`${styles.submitButton} text-center`}
                   type="submit"
                   onClick={() => {
-                    // handleSearch(values?.keyword);
                     navigate(`/jobList/${values?.keyword}`);
                   }}
                 >
