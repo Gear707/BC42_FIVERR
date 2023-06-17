@@ -61,3 +61,16 @@ export const alertError2 = (title) => {
     position: "center",
   });
 };
+
+export const alertRequireLogin = (title) => {
+  return Popup.fire({
+    title: "You need to login to make this action",
+    icon: "warning",
+    position: "center",
+    showCancelButton: true,
+    confirmButtonText: "Continue",
+    confirmButtonColor: "#0354a5",
+    cancelButtonText: "Cancel",
+    cancelButtonColor: "#d33",
+  });
+};

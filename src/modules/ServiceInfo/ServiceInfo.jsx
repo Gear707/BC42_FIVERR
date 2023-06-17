@@ -40,7 +40,7 @@ function ServiceInfo() {
       console.log(error);
     }
   };
-  console.log(info);
+
   const getSellerComment = async () => {
     try {
       const data = await apiSellerComment(MaCongViec);
@@ -76,22 +76,26 @@ function ServiceInfo() {
   };
 
   const handlePostComment = async () => {
-    const currentTime = new Date().toLocaleString();
-    const payload = {
-      id: 1003,
-      maCongViec: +MaCongViec,
-      maNguoiBinhLuan: +user.user.user.id,
-      ngayBinhLuan: currentTime,
-      noiDung: comment,
-      saoBinhLuan: rating,
-    };
-    try {
-      const data = await apiPostComment(payload);
-      if (data.statusCode === 200 || data.statusCode === 201) {
-        alertSuccess2(data.message);
+    if (user) {
+      const currentTime = new Date().toLocaleString();
+      const payload = {
+        id: 1003,
+        maCongViec: +MaCongViec,
+        maNguoiBinhLuan: +user?.user?.user?.id,
+        ngayBinhLuan: currentTime,
+        noiDung: comment,
+        saoBinhLuan: rating,
+      };
+      try {
+        const data = await apiPostComment(payload);
+        if (data.statusCode === 200 || data.statusCode === 201) {
+          alertSuccess2(data.message);
+        }
+      } catch (error) {
+        alertError2(error.response.data.content);
       }
-    } catch (error) {
-      alertError2(error.response.data.content);
+    } else {
+      navigate("/login");
     }
   };
 
@@ -411,7 +415,12 @@ function ServiceInfo() {
               </div>
               <div id="PostComment" className={styles.postComment}>
                 <div className={styles.postGroup}>
-                  <img src={user.user.user.avatar} alt={user.user.user.name} />
+                  {user && (
+                    <img
+                      src={user?.user?.user?.avatar}
+                      alt={user?.user?.user?.name}
+                    />
+                  )}
                   <textarea
                     name="comment"
                     id="feedbackCustomer"
@@ -516,26 +525,3 @@ function ServiceInfo() {
   );
 }
 export default ServiceInfo;
-
-{
-  /* <ul>
-<li>
-  <i className="fa-solid fa-check"></i>
-  <span>Design Customization</span>
-</li>
-<li>
-  <span className={styles.noCheck}>Content upload</span>
-</li>
-<li>
-  <i className="fa-solid fa-check"></i>
-  <span>Responsive Design</span>
-</li>
-<li>
-  <i className="fa-solid fa-check"></i>
-  <span>Include Source Code</span>
-</li>
-<li>
-  <span className={styles.noCheck}>1 Page</span>
-</li>
-</ul> */
-}
