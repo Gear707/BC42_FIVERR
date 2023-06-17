@@ -10,14 +10,14 @@ import Avatar from "react-avatar";
 import Rating from "react-rating";
 import { useSelector } from "react-redux";
 import { apiCreateHiredJob } from "../../apis/hiredJobAPI";
-import { alertSuccess2 } from "../../helpers/sweeAlert2";
+import { alertRequireLogin, alertSuccess2 } from "../../helpers/sweeAlert2";
 import { alertError2 } from "../../helpers/sweeAlert2";
 
 function ServiceInfo() {
   const { keyword, MaCongViec } = useParams();
   const user = useSelector((state) => state?.user);
   const navigate = useNavigate();
-
+  console.log(user);
   const [comment, setComment] = useState([]);
 
   const [info, setInfo] = useState();
@@ -25,6 +25,7 @@ function ServiceInfo() {
   const [like, setLike] = useState(0);
   const [dislike, setDisLike] = useState(0);
   const [rating, setRating] = useState(null);
+  const [isActiveTab, setIsActiveTab] = useState("Standard");
 
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
@@ -76,52 +77,76 @@ function ServiceInfo() {
   };
 
   const handlePostComment = async () => {
-    if (user) {
-      const currentTime = new Date().toLocaleString();
-      const payload = {
-        id: 1003,
-        maCongViec: +MaCongViec,
-        maNguoiBinhLuan: +user?.user?.user?.id,
-        ngayBinhLuan: currentTime,
-        noiDung: comment,
-        saoBinhLuan: rating,
-      };
-      try {
-        const data = await apiPostComment(payload);
-        if (data.statusCode === 200 || data.statusCode === 201) {
-          alertSuccess2(data.message);
+    const currentTime = new Date().toLocaleString();
+    const payload = {
+      id: 1003,
+      maCongViec: +MaCongViec,
+      maNguoiBinhLuan: +user?.user?.user?.id,
+      ngayBinhLuan: currentTime,
+      noiDung: comment,
+      saoBinhLuan: rating,
+    };
+    try {
+      const data = await apiPostComment(payload);
+      if (data.statusCode === 200 || data.statusCode === 201) {
+        alertSuccess2(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      if (!payload.maNguoiBinhLuan) {
+        const result = await alertRequireLogin();
+        if (result.isConfirmed) {
+          navigate("/login");
         }
-      } catch (error) {
+      } else {
         alertError2(error.response.data.content);
       }
-    } else {
-      navigate("/login");
+      // console.log(error.response.data.content);
     }
   };
 
+  // hàm chọn số sao đánh giá ở phần bình luận
   const handleRatingChange = (value) => {
     setRating(value);
   };
 
   const handleContinue = async () => {
-    if (user) {
-      const currentTime = new Date().toLocaleString();
-      const payload = {
-        id: 0,
-        maCongViec: MaCongViec,
-        maNguoiThue: user.user.user.id,
-        ngayThue: currentTime,
-        hoanThanh: true,
-      };
-      try {
-        const data = await apiCreateHiredJob(payload);
+    const currentTime = new Date().toLocaleString();
+    const payload = {
+      id: 0,
+      maCongViec: MaCongViec,
+      maNguoiThue: user?.user?.user?.id,
+      ngayThue: currentTime,
+      hoanThanh: true,
+    };
+    try {
+      const data = await apiCreateHiredJob(payload);
+      if (data) {
         alertSuccess2(data.message);
-      } catch (error) {
+      }
+    } catch (error) {
+      if (!payload.maNguoiThue) {
+        const result = await alertRequireLogin();
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      } else {
         alertError2(error.response.data.content);
       }
-    } else {
-      navigate("./login");
     }
+  };
+
+  const handleTab1 = () => {
+    setIsActiveTab("");
+    setIsActiveTab("Basic");
+  };
+  const handleTab2 = () => {
+    setIsActiveTab("");
+    setIsActiveTab("Standard");
+  };
+  const handleTab3 = () => {
+    setIsActiveTab("");
+    setIsActiveTab("Premium");
   };
 
   useEffect(() => {
@@ -452,17 +477,35 @@ function ServiceInfo() {
             <div id="PackageCost" className={styles.packageCost}>
               <Nav variant="tabs" defaultActiveKey="/home">
                 <Nav.Item>
-                  <Nav.Link eventKey="link-1">Basic</Nav.Link>
+                  <Nav.Link
+                    className={isActiveTab === "Basic" && "active"}
+                    eventKey="link-1"
+                    onClick={handleTab1}
+                  >
+                    Basic
+                  </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="link-2">Standard</Nav.Link>
+                  <Nav.Link
+                    className={isActiveTab === "Standard" && "active"}
+                    eventKey="link-2"
+                    onClick={handleTab2}
+                  >
+                    Standard
+                  </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="link-3">Premium</Nav.Link>
+                  <Nav.Link
+                    className={isActiveTab === "Premium" && "active"}
+                    eventKey="link-3"
+                    onClick={handleTab3}
+                  >
+                    Premium
+                  </Nav.Link>
                 </Nav.Item>
                 <div className={styles.packageContent}>
                   <div className={styles.standard}>
-                    <b>Standard</b>
+                    <b>{isActiveTab}</b>
                     <b>{item.congViec.giaTien}$</b>
                   </div>
                   <p>Create a simple web application for business</p>
