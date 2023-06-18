@@ -1,4 +1,4 @@
-import axiosClient from "./axioisClient";
+import axiosClient from "./axiosClient";
 
 export const apiSellerComment = async (MaCongViec) => {
   const { data } = await axiosClient.get(

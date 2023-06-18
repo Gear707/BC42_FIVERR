@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { apiServiceInfo } from "../../apis/jobAPI";
+import { useSelector } from "react-redux";
 import { Collapse, Nav, NavLink } from "react-bootstrap";
-import styles from "./ServiceInfo.module.scss";
-import "./ServiceInfo.scss";
-import { apiPostComment, apiSellerComment } from "../../apis/commentAPI";
 import dayjs from "dayjs";
 import Avatar from "react-avatar";
 import Rating from "react-rating";
-import { useSelector } from "react-redux";
+import {
+  alertRequireLogin,
+  alertSuccess2,
+  alertError2,
+} from "../../helpers/sweeAlert2";
+import { apiServiceInfo } from "../../apis/jobAPI";
+import { apiPostComment, apiSellerComment } from "../../apis/commentAPI";
 import { apiCreateHiredJob } from "../../apis/hiredJobAPI";
-import { alertRequireLogin, alertSuccess2 } from "../../helpers/sweeAlert2";
-import { alertError2 } from "../../helpers/sweeAlert2";
+import styles from "./ServiceInfo.module.scss";
+import "./ServiceInfo.scss";
+// import axiosClient from "../../apis/axioisClient";
 
 function ServiceInfo() {
   const { keyword, MaCongViec } = useParams();
   const user = useSelector((state) => state?.user);
   const navigate = useNavigate();
-  console.log(user);
-  const [comment, setComment] = useState([]);
 
+  const [comment, setComment] = useState("");
   const [info, setInfo] = useState();
   const [comments, setCommets] = useState();
-  const [like, setLike] = useState(0);
-  const [dislike, setDisLike] = useState(0);
   const [rating, setRating] = useState(null);
   const [isActiveTab, setIsActiveTab] = useState("Standard");
 
@@ -38,16 +39,16 @@ function ServiceInfo() {
       const data = await apiServiceInfo(MaCongViec);
       setInfo(data.content);
     } catch (error) {
-      console.log(error);
+      alertError2(error.response.data.content);
     }
   };
-
+  console.log(info);
   const getSellerComment = async () => {
     try {
       const data = await apiSellerComment(MaCongViec);
       setCommets(data.content);
     } catch (error) {
-      console.log(error);
+      alertError2(error.response.data.content);
     }
   };
 
@@ -61,14 +62,6 @@ function ServiceInfo() {
       }
     }
     return stars;
-  };
-
-  const handleLike = () => {
-    setLike(like + 1);
-  };
-
-  const handleDisLike = () => {
-    setDisLike(dislike + 1);
   };
 
   const handleChange = (evt) => {
@@ -90,9 +83,10 @@ function ServiceInfo() {
       const data = await apiPostComment(payload);
       if (data.statusCode === 200 || data.statusCode === 201) {
         alertSuccess2(data.message);
+        setComment("");
+        setRating(0);
       }
     } catch (error) {
-      console.log(error);
       if (!payload.maNguoiBinhLuan) {
         const result = await alertRequireLogin();
         if (result.isConfirmed) {
@@ -101,7 +95,6 @@ function ServiceInfo() {
       } else {
         alertError2(error.response.data.content);
       }
-      // console.log(error.response.data.content);
     }
   };
 
@@ -152,14 +145,14 @@ function ServiceInfo() {
   useEffect(() => {
     getServiceInfo();
     getSellerComment();
-  }, [MaCongViec]);
+  }, [MaCongViec, comment, keyword]);
 
   return (
     <div id="ServiceInfo" className={styles.container}>
       {info?.map((item) => {
         return (
           <div key={item.id}>
-            <div className={styles.packageInfo}>
+            <div id="ServiceDetail" className={styles.serviceDetail}>
               <Nav className="d-flex align-items-center">
                 <Nav.Link>
                   <span>{item.tenLoaiCongViec}</span>
@@ -195,7 +188,7 @@ function ServiceInfo() {
                 <p>Top Rated Seller With all positive reviews</p>
                 <p>{item.congViec.moTa}</p>
                 <b>Things I offer</b>
-                <p>Web Development:</p>
+                <b style={{ display: "block" }}>Web Development:</b>
                 <ul>
                   <li>HTML</li>
                   <li>CSS / SCSS</li>
@@ -209,7 +202,7 @@ function ServiceInfo() {
                   <li>Angular</li>
                   <li>Vue JS</li>
                 </ul>
-                <p>Backend (Server Programming):</p>
+                <b>Backend (Server Programming):</b>
                 <ul>
                   <li>NodeJS</li>
                   <li>PHP</li>
@@ -231,11 +224,11 @@ function ServiceInfo() {
               <div className={styles.aboutSeller}>
                 <b>About The Seller</b>
                 <div className={styles.extendSeller}>
-                  <img src={item.avatar} alt="" />
+                  <img src={item.avatar} alt={item.tenNguoiTao} />
                   <div>
-                    <p>{item.tenNguoiTao}</p>
-                    <p>Web Developer</p>
-                    <p>{item.congViec.saoCongViec}</p>
+                    <b>{item.tenNguoiTao}</b>
+                    <em>Web Developer</em>
+                    <p> {renderStars(item.congViec.saoCongViec)} </p>
                     <button className="btn btn-primary">Contact Me</button>
                   </div>
                 </div>
@@ -425,12 +418,10 @@ function ServiceInfo() {
                           <span
                             className="fa-solid fa-thumbs-up"
                             role="button"
-                            onClick={handleLike}
                           ></span>
                           <span
                             className="fa-solid fa-thumbs-down"
                             role="button"
-                            onClick={handleDisLike}
                           ></span>
                         </div>
                       </div>
@@ -451,6 +442,7 @@ function ServiceInfo() {
                     id="feedbackCustomer"
                     cols="80"
                     rows="7"
+                    placeholder="Leave your feedback to help our seller enhance their services"
                     value={comment}
                     onChange={handleChange}
                   ></textarea>
@@ -474,7 +466,7 @@ function ServiceInfo() {
               </div>
             </div>
 
-            <div id="PackageCost" className={styles.packageCost}>
+            <div id="ServiceCost" className={styles.serviceCost}>
               <Nav variant="tabs" defaultActiveKey="/home">
                 <Nav.Item>
                   <Nav.Link
@@ -510,7 +502,7 @@ function ServiceInfo() {
                   </div>
                   <p>Create a simple web application for business</p>
                   <div className={styles.addtionalInfo}>
-                    <div className="delivery-wrapper">
+                    <div className="delivery-wrappern">
                       <span
                         className="glAQDp5 delivery-icon"
                         aria-hidden="true"
@@ -556,7 +548,7 @@ function ServiceInfo() {
                     >
                       Continue (${item.congViec.giaTien})
                     </button>
-                    <Link>Compare packages</Link>
+                    <a href="#">Compare packages</a>
                   </div>
                 </div>
               </Nav>
