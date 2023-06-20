@@ -30,7 +30,7 @@
              }
 
              i {
-                color: #02c2a9;
+                 color: #02c2a9;
              }
 
              .topRated {
@@ -79,7 +79,7 @@
                  width: 110px;
 
                  p {
-                    color: #02c2a9;
+                     color: #02c2a9;
                      margin: 3px 0;
                  }
 
@@ -391,14 +391,6 @@
                      font-size: 16px;
                      font-weight: 550;
                  }
-
-                 i {
-                     color: gold;
-                 }
-
-                 .topRated {
-                     color: gold
-                 }
              }
          }
 
@@ -446,11 +438,6 @@
 
                  i {
                      font-size: 13px;
-                     color: gold;
-                 }
-
-                 .topRated {
-                     color: gold
                  }
              }
 
@@ -461,8 +448,6 @@
          }
 
          .aboutSeller {
-             //  max-width: 40%;
-
              .extendSeller {
                  margin-top: 20px;
                  display: flex;
@@ -675,15 +660,6 @@
                  .name {
                      font-size: 14px;
                      font-weight: 500;
-                 }
-
-                 i {
-                     font-size: 13px;
-                     color: gold;
-                 }
-
-                 .topRated {
-                     color: gold
                  }
              }
 

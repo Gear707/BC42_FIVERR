@@ -12,7 +12,6 @@ function Services() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: false,
-    // variableWidth: true,
     draggable: true,
     swipeToSlide: true,
   };
