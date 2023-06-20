@@ -10,15 +10,10 @@
   color: white !important;
 
   .headerContainer {
-    max-width: 1500px !important;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80px;
-
-    #navbar.container {
-      max-width: 1500px !important;
-    }
 
     .sideBar {
       > joinFiverr {
