@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import useWindowResize from "../../../helpers/useWindowResize";
 import { useDispatch, useSelector } from "react-redux";
-import { alertSuccess } from "../../../helpers/sweeAlert2";
+import { alertSuccess, warningLogout } from "../../../helpers/sweeAlert2";
 import { logout } from "../../../slices/userSlice";
 
 function MainHeader({ jobCategory }) {
@@ -33,9 +33,17 @@ function MainHeader({ jobCategory }) {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
-    localStorage.removeItem("userInfo");
-    alertSuccess("You're logging out");
+    warningLogout()
+      .then((result) => {
+        if (result.isConfirmed) {
+          dispatch(logout());
+          localStorage.removeItem("userInfo");
+          alertSuccess("Logged out successfully");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const condition =
@@ -110,7 +118,7 @@ function MainHeader({ jobCategory }) {
                     <Nav.Link href="/login">
                       <span className="fa-solid fa-user me-2"></span>Profile
                     </Nav.Link>
-                    <Nav.Link href="/" onClick={handleLogout}>
+                    <Nav.Link onClick={handleLogout}>
                       <span className="fa-solid fa-right-from-bracket me-2"></span>
                       Logout
                     </Nav.Link>

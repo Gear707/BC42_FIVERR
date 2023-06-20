@@ -86,3 +86,9 @@
         height: 50px;
     }
 }
+
+.cancelBtn {
+    &:hover {
+        color: #285192 !important;
+    }
+}

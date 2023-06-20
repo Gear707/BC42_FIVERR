@@ -11,6 +11,7 @@ import {
     MDBCol,
     MDBInput,
     MDBBtn,
+    MDBCardLink,
 }
     from 'mdb-react-ui-kit';
 import "./customAnt.scss";
@@ -347,7 +348,7 @@ function HiredJobs({ userInfo }) {
                                 >
                                     Update
                                 </MDBBtn>
-                                <a className="btn btn-secondary w-25" onClick={handleClose}>
+                                <a className={`btn btn-secondary w-25 ${styles.cancelBtn}`} onClick={handleClose}>
                                     Cancel
                                 </a>
                             </MDBRow>

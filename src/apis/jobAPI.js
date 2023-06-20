@@ -1,4 +1,4 @@
-import axiosClient from "./axioisClient";
+import axiosClient from "./axiosClient";
 
 export const apiJobCategory = async () => {
   const { data } = await axiosClient.get(`cong-viec/lay-menu-loai-cong-viec`);

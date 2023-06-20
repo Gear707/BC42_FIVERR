@@ -1,18 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import styles from "./PageNotFound.module.scss";
 
 function PageNotFound() {
-    return (
-        <div className="text-center" style={{height: "100vh", backgroundColor: "#f1fdf7"}}>
-            <div>
-                <img src="https://file.hstatic.net/200000348419/file/404_1_ff141bafa60e4ed3aef90c7ebdbf54e6.png" />
-                <h2>The page you’re looking for doesn’t exist.</h2>
-                <Link className="btn btn-danger" to="/">
-                    Back to Home
-                </Link>
-            </div>
-        </div>
-    );
+  return (
+    <div className="text-center" style={{ maxHeight: "100vh" }}>
+      <img
+        src="https://file.hstatic.net/200000348419/file/404_1_ff141bafa60e4ed3aef90c7ebdbf54e6.png"
+        alt="not found"
+        className="img-fluid"
+      />
+      <h2>The page you’re looking for doesn’t exist.</h2>
+      <a className={`btn btn-danger ${styles.toHomeBtn}`} href="/">
+        Back to Home
+      </a>
+    </div>
+  );
 }
 
 export default PageNotFound;
