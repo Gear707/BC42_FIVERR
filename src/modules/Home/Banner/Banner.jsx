@@ -51,8 +51,7 @@ function Banner() {
               </div>
 
               <p>
-                Valentina,
-                <b>AI Artist</b>
+                Valentina, <b>AI Artist</b>
               </p>
             </div>
           </div>

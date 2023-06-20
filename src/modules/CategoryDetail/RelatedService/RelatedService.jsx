@@ -22,4 +22,3 @@ function RelatedService() {
 }
 
 export default RelatedService;
-// d-flex align-items-center justify-content-center

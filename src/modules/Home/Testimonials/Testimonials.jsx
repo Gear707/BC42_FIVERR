@@ -17,7 +17,6 @@ function Testimonials() {
     slidesToShow: 1,
     slidesToScroll: 1,
     speed: 500,
-    adaptiveHeight: true,
   };
 
   return (
@@ -31,9 +30,9 @@ function Testimonials() {
                 onClick={() => setPlayVideo(true)}
               >
                 <img
-                  alt="Video teaser image"
+                  alt="teaser video"
                   src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173395/testimonial-video-still-haerfest.jpg"
-                  className="img-fluid"
+                  className="img-fluid h-100"
                 />
               </div>
             </div>
@@ -42,8 +41,9 @@ function Testimonials() {
                 Tim and Dan Joo, Co-Founders
                 <span>
                   <img
-                    alt="Company logo"
+                    alt="logo"
                     src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/haerfest-logo-x2.934ab63.png"
+                    className="img-fluid"
                   />
                 </span>
               </h5>
@@ -64,7 +64,7 @@ function Testimonials() {
                 onClick={() => setPlayVideo(true)}
               >
                 <img
-                  alt="Video teaser image"
+                  alt="teaser video"
                   src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173414/testimonial-video-still-naadam.jpg"
                   className="img-fluid"
                 />
@@ -75,7 +75,7 @@ function Testimonials() {
                 Caitlin Tormey, Chief Commercial Officer
                 <span>
                   <img
-                    alt="Company logo"
+                    alt="logo"
                     src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/naadam-logo-x2.a79031d.png"
                     className="img-fluid"
                   />
@@ -99,7 +99,7 @@ function Testimonials() {
                 onClick={() => setPlayVideo(true)}
               >
                 <img
-                  alt="Video teaser image"
+                  alt="teaser video"
                   src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173396/testimonial-video-still-lavender.jpg"
                   className="img-fluid"
                 />
@@ -110,7 +110,7 @@ function Testimonials() {
                 Brighid Gannon (DNP, PMHNP-BC), Co-Founder
                 <span>
                   <img
-                    alt="Company logo"
+                    alt="logo"
                     src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/lavender-logo-x2.3fff9e7.png"
                     className="img-fluid"
                   />
@@ -134,7 +134,7 @@ function Testimonials() {
                 onClick={() => setPlayVideo(true)}
               >
                 <img
-                  alt="Video teaser image"
+                  alt="teaser video"
                   src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173399/testimonial-video-still-rooted.jpg"
                   className="img-fluid"
                 />
@@ -145,7 +145,7 @@ function Testimonials() {
                 Kay Kim, Co-Founder
                 <span>
                   <img
-                    alt="Company logo"
+                    alt="logo"
                     src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/rooted-logo-x2.7da3bc9.png"
                     className="img-fluid"
                   />
