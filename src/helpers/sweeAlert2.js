@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 const Popup = Swal.mixin({
   position: "center",
   showConfirmButton: false,
-  timer: 9000,
+  timer: 2000,
 });
 
 export const alertSuccess = (title) => {
