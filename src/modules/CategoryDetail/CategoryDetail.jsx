@@ -1,5 +1,4 @@
 import React from "react";
-// import styles from "./CategoryDetail.module.scss";
 import ExploreCategory from "./ExploreCategory/ExploreCategory";
 import SliderCategory from "./SliderCategory/SliderCategory";
 import BannerCategory from "./BannerCategory/BannerCategory";

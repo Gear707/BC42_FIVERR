@@ -2,7 +2,6 @@ import React from "react";
 import { Nav, NavDropdown } from "react-bootstrap";
 import ServiceOption from "./ServiceOption/ServiceOption";
 import SellerDetail from "./SellerDetail/SellerDetail";
-// import styles from "./MainNav.module.scss";
 import Budget from "./Budget/Budget";
 import DeliveryTime from "./DeliveryTime/DeliveryTime";
 import Category from "./Category/Category";

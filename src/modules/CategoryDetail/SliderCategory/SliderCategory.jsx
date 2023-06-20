@@ -17,7 +17,7 @@ function SliderCategory() {
     autoplay: false,
     speed: 500,
     autoplaySpeed: 3000,
-    adaptiveHeight: true,
+    // adaptiveHeight: true,
   };
 
   const mdSettings = { ...defaultSettings, slidesToShow: 4 };

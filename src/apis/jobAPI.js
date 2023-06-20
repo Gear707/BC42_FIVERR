@@ -16,8 +16,6 @@ export const apiJobList = async (currentPage, keyword) => {
   return data?.content;
 };
 
-// cong-viec/phan-trang-tim-kiem?pageIndex=2&pageSize=1&keyword=${keyword}
-
 export const apiJobCategoryDetail = async (MaLoaiCongViec) => {
   const { data } = await axiosClient.get(
     `cong-viec/lay-chi-tiet-loai-cong-viec/${MaLoaiCongViec}`

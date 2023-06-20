@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { apiJobCategoryDetail } from "../../../apis/jobAPI";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "./ExploreCategory.module.scss";
 function ExploreCategory() {
   const { MaLoaiCongViec, tenLoaiCongViec } = useParams();
