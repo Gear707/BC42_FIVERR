@@ -23,8 +23,4 @@ function RelatedService() {
   );
 }
 
-<<<<<<< HEAD
 export default RelatedService;
-=======
-export default RelatedService;
->>>>>>> 758da34 (adjust ServiceInfo Component)
