@@ -12,7 +12,6 @@ function JobList() {
   const { keyword } = useParams();
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
-  // const [isChecked, setIsChecked] = useState(false);
 
   const handleOnChange = () => {
     setChecked(!checked);
@@ -65,7 +64,6 @@ function JobList() {
                   src={job.hinhAnh}
                 />
                 <Card.Body className={styles.body}>
-                  {/* <Card.Title>Card Title</Card.Title> */}
                   <Card.Text
                     className={styles.moTa}
                     role="button"
@@ -73,7 +71,6 @@ function JobList() {
                   >
                     {job.tenCongViec}
                   </Card.Text>
-                  {/* <Button variant="primary">Go somewhere</Button> */}
                   <span>
                     <i className="fa-solid fa-star"></i>
                     {job.saoCongViec}.0

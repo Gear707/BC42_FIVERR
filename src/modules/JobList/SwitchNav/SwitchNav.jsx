@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
-import Switch from "react-switch";
+import { Switch } from "antd";
 import styles from "./SwitchNav.module.scss";
 import "./Switch.scss";
 

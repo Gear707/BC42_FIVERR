@@ -8,7 +8,7 @@
         text-align: center;
         font-size: 24px;
         font-weight: 600;
-        margin-bottom: 40px;
+        margin-bottom: 35px;
     }
 
     .card {
@@ -26,6 +26,39 @@
             border-radius: 50px;
         }
     }
+}
 
+@media screen and (max-width: 992px) {
+    .container {
+        h4 {
+            font-size: 23px;
+            margin-bottom: 30px;
+        }
+    }
+}
 
+@media screen and (max-width: 768px) {
+    .container {
+        h4 {
+            font-size: 22px;
+            margin-bottom: 25px;
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        h4 {
+            font-size: 21px;
+            margin-bottom: 20px;
+        }
+    }
+}
+@media screen and (max-width: 420px) {
+    .container {
+        h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+    }
 }

@@ -35,9 +35,9 @@ function ExploreCategory() {
               {nhom?.dsChiTietLoai?.map((loai) => {
                 return (
                   <div key={loai.id} className={styles.loai}>
-                    <Link className={styles.tenChiTiet} role="button">
+                    <a className={styles.tenChiTiet} role="button" href="#">
                       {loai.tenChiTiet}
-                    </Link>
+                    </a>
                   </div>
                 );
               })}

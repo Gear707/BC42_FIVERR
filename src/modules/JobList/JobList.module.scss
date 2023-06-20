@@ -39,6 +39,7 @@
 
     .card {
         margin: 15px 0;
+
         img {
             max-width: 310px;
         }
@@ -50,8 +51,9 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 font-weight: 500;
+
                 &:hover {
-                    text-decoration: underline;  
+                    text-decoration: underline;
 
                 }
 
@@ -89,12 +91,20 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
     .container {
+        margin: 70px 20px 20px 20px;
         padding: 25px;
-
         .result {
             font-size: 26px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        .result {
+            font-size: 24px;
         }
 
         .dropdown {
@@ -105,11 +115,11 @@
 
 @media screen and (max-width: 576px) {
     .container {
-        margin: 190px 20px 20px 20px;
+        margin: 115px 20px 20px 20px;
         padding: 20px;
 
         .result {
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .dropdown {

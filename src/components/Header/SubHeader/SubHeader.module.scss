@@ -31,15 +31,18 @@
 
         .nhom,
         p.none {
+            font-size: 17px;
             font-weight: 600;
             color: #404145;
             padding: 15px 25px !important;
 
             .loai {
+                font-size: 16px;
                 font-weight: 400;
                 z-index: 9999;
 
-                p {
+                a {
+                    display: block;
                     margin-bottom: 6px;
                 }
             }

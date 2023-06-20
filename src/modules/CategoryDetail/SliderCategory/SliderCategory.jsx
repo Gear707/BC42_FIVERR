@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./SliderCategory.module.scss";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import popular from "./SliderCategoryData.json";
 import Slider from "react-slick";
 import useWindowResize from "../../../helpers/useWindowResize";
@@ -17,18 +17,16 @@ function SliderCategory() {
     autoplay: false,
     speed: 500,
     autoplaySpeed: 3000,
-    // fade: true,
     adaptiveHeight: true,
   };
 
-  console.log(popular);
   const mdSettings = { ...defaultSettings, slidesToShow: 4 };
 
   const smSettings = { ...defaultSettings, slidesToShow: 3, slidesToScroll: 3 };
 
   const xsSettings = { ...defaultSettings, slidesToShow: 1, slidesToScroll: 3 };
 
-  useEffect(() => {}, [tenLoaiCongViec, MaLoaiCongViec]);
+  // useEffect(() => {}, [tenLoaiCongViec, MaLoaiCongViec]);
 
   return (
     <div id="SliderCategory" className={styles.container}>
@@ -39,11 +37,14 @@ function SliderCategory() {
             return (
               <div key={index} className={styles.slideGroup}>
                 <div className={styles.slide}>
-                  <Link className="d-flex justify-content-between align-items-center">
+                  <a
+                    className="d-flex justify-content-between align-items-center"
+                    href="#"
+                  >
                     <img src={item.logo} alt={item.jobTitle} />
                     <span>{item.jobTitle}</span>
                     <i className="fa-solid fa-arrow-right"></i>
-                  </Link>
+                  </a>
                 </div>
               </div>
             );
@@ -56,11 +57,14 @@ function SliderCategory() {
             return (
               <div key={index} className={styles.slideGroup}>
                 <div className={styles.slide}>
-                  <Link className="d-flex justify-content-between align-items-center">
+                  <a
+                    className="d-flex justify-content-between align-items-center"
+                    href="#"
+                  >
                     <img src={item.logo} alt={item.jobTitle} />
                     <span>{item.jobTitle}</span>
                     <i className="fa-solid fa-arrow-right"></i>
-                  </Link>
+                  </a>
                 </div>
               </div>
             );
@@ -73,11 +77,14 @@ function SliderCategory() {
             return (
               <div key={index} className={styles.slideGroup}>
                 <div className={styles.slide}>
-                  <Link className="d-flex justify-content-between align-items-center">
+                  <a
+                    className="d-flex justify-content-between align-items-center"
+                    href="#"
+                  >
                     <img src={item.logo} alt={item.jobTitle} />
                     <span>{item.jobTitle}</span>
                     <i className="fa-solid fa-arrow-right"></i>
-                  </Link>
+                  </a>
                 </div>
               </div>
             );
@@ -91,11 +98,14 @@ function SliderCategory() {
               return (
                 <div key={index} className={styles.slideGroup}>
                   <div className={styles.slide}>
-                    <Link className="d-flex justify-content-between align-items-center">
+                    <a
+                      className="d-flex justify-content-between align-items-center"
+                      href="#"
+                    >
                       <img src={item.logo} alt={item.jobTitle} />
                       <span>{item.jobTitle}</span>
                       <i className="fa-solid fa-arrow-right"></i>
-                    </Link>
+                    </a>
                   </div>
                 </div>
               );
@@ -107,11 +117,14 @@ function SliderCategory() {
               return (
                 <div key={index} className={styles.slideGroup}>
                   <div className={styles.slide}>
-                    <Link className="d-flex justify-content-between align-items-center">
+                    <a
+                      className="d-flex justify-content-between align-items-center"
+                      href="#"
+                    >
                       <img src={item.logo} alt={item.jobTitle} />
                       <span>{item.jobTitle}</span>
                       <i className="fa-solid fa-arrow-right"></i>
-                    </Link>
+                    </a>
                   </div>
                 </div>
               );
@@ -123,11 +136,14 @@ function SliderCategory() {
               return (
                 <div key={index} className={styles.slideGroup}>
                   <div className={styles.slide}>
-                    <Link className="d-flex justify-content-between align-items-center">
+                    <a
+                      className="d-flex justify-content-between align-items-center"
+                      href="#"
+                    >
                       <img src={item.logo} alt={item.jobTitle} />
                       <span>{item.jobTitle}</span>
                       <i className="fa-solid fa-arrow-right"></i>
-                    </Link>
+                    </a>
                   </div>
                 </div>
               );

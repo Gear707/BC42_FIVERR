@@ -145,14 +145,14 @@ function MainHeader({ jobCategory }) {
                     })}
                   </NavDropdown>
                 </Nav.Link>
-                <Nav.Link href="#action2">Explore</Nav.Link>
-                <Nav.Link className="fiverBusiness" href="#action2">
+                <Nav.Link href="#">Explore</Nav.Link>
+                <Nav.Link className="fiverBusiness" href="#">
                   Fiverr Business
                 </Nav.Link>
                 <h6>General</h6>
-                <Nav.Link href="#action2">Home</Nav.Link>
-                <Nav.Link href="#action2">English</Nav.Link>
-                <Nav.Link href="#action2">US$ USD</Nav.Link>
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="#">English</Nav.Link>
+                <Nav.Link href="#">US$ USD</Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
@@ -327,12 +327,14 @@ function MainHeader({ jobCategory }) {
               <input
                 type="search"
                 className="form-control long-placeholder"
-                autoComplete="off"
                 placeholder={
                   size.width > 768
                     ? "What service are you looking for today?"
                     : "Find Services"
                 }
+                name="keyword"
+                onChange={handleChange}
+                onKeyPress={handleKeyPress}
               />
               <a
                 className={styles.submitButton}

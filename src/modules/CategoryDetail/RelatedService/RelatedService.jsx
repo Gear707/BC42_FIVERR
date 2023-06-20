@@ -12,7 +12,9 @@ function RelatedService() {
         {data?.map((item, index) => {
           return (
             <div className={styles.card} key={`{${MaLoaiCongViec}-${index}`}>
-              <span className={styles.service}>{item}</span>
+              <a href="#" className={styles.service}>
+                {item}
+              </a>
             </div>
           );
         })}
@@ -21,4 +23,8 @@ function RelatedService() {
   );
 }
 
+<<<<<<< HEAD
 export default RelatedService;
+=======
+export default RelatedService;
+>>>>>>> 758da34 (adjust ServiceInfo Component)
