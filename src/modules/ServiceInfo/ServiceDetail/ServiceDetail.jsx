@@ -65,7 +65,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
   const schema = yup.object({
     noiDung: yup
       .string()
-      .required("*Comment is required")
+      .required("*Comment is required!")
       .matches(COMMENT, "*Comment must have at least 10 characters!"),
   });
 
