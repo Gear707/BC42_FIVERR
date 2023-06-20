@@ -22,6 +22,8 @@ function ServiceDetail({ info, user, MaCongViec }) {
   const [rating, setRating] = useState(0);
 
   const [comments, setCommets] = useState();
+
+  // This variable plays as a dependency in re-rendering component
   const [comment, setComment] = useState("");
   const size = useWindowResize();
 
@@ -63,8 +65,8 @@ function ServiceDetail({ info, user, MaCongViec }) {
   const schema = yup.object({
     noiDung: yup
       .string()
-      .required("*Nội dung không được để trống!")
-      .matches(COMMENT, "*Phản hồi phản hồi phải ít nhất 10 từ!"),
+      .required("*Comment is required!")
+      .matches(COMMENT, "*Comment must have at least 10 characters!"),
   });
 
   const {
@@ -75,26 +77,25 @@ function ServiceDetail({ info, user, MaCongViec }) {
   } = useForm({
     defaultValues: {
       noiDung: "",
-      saoBinhLuan: 0,
     },
     mode: "onTouched",
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async () => {
+  const onSubmit = async (values) => {
     const currentTime = new Date().toLocaleString();
     const payload = {
       id: 1003,
       maCongViec: +MaCongViec,
       maNguoiBinhLuan: +user?.user?.user?.id,
       ngayBinhLuan: currentTime,
-      noiDung: comment,
+      noiDung: values.noiDung,
       saoBinhLuan: rating,
     };
     try {
       const data = await apiPostComment(payload);
       if (data.statusCode === 200 || data.statusCode === 201) {
-        alertSuccess2(data.message);
+        alertSuccess2("Your comment has been posted successfully");
         setComment("");
         setRating(0);
         reset({
@@ -150,7 +151,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
               <h3>{item.congViec.tenCongViec}</h3>
               <div className={styles.sellerInfo}>
                 <div className={styles.sellerBrief}>
-                  <img src={item.avatar} alt="" />
+                  <img src={item.avatar} alt={item.tenNguoiTao} />
                   <span className={styles.name}>{item.tenNguoiTao}</span>
                   <span className={styles.topRated}>Top seller</span>
                   <span>|</span>
@@ -210,7 +211,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
                   <div className={styles.contactSeller}>
                     <b>{item.tenNguoiTao}</b>
                     <em>Web Developer</em>
-                    <p> {renderStars(item.congViec.saoCongViec)} </p>
+                    <p>{renderStars(item.congViec.saoCongViec)}</p>
                     <button className="btn btn-primary">Contact Me</button>
                   </div>
                 </div>
@@ -403,7 +404,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
                         <h6 className="d-inline">{item.tenNguoiBinhLuan}</h6>
                         <span className="mx-2">|</span>
                         <span>
-                          {dayjs(item.ngayBinhLuan).format("DD/MM/YYYY")}
+                          {dayjs(item.ngayBinhLuan).format("DD/MM/YYYY h:mm")}
                         </span>
                         <p className={styles.saoBinhLuan}>
                           {renderStars(item.saoBinhLuan)} {item.saoBinhLuan}
@@ -439,14 +440,13 @@ function ServiceDetail({ info, user, MaCongViec }) {
                     <div className="form-group">
                       <textarea
                         className="form-control"
-                        name="comment"
                         id="feedbackCustomer"
                         cols="80"
                         rows="7"
                         placeholder="Leave your feedback to help our seller enhance their services"
                         value={comment}
                         {...register("noiDung")}
-                        onChange={handleChange}
+                        onChange={handleChange} //not really need to update the value of this input
                       ></textarea>
                       {errors.noiDung && (
                         <p className="mt-1 text-danger">
@@ -456,7 +456,13 @@ function ServiceDetail({ info, user, MaCongViec }) {
                     </div>
 
                     <div className={styles.addComment}>
-                      <Rate onChange={handleRatingChange} />
+                      <div className="form-group">
+                        <label className="me-2" htmlFor="">
+                          Rate:
+                        </label>
+                        <Rate value={rating} onChange={handleRatingChange} />
+                      </div>
+
                       <p>You've rated: {rating} (stars)</p>
                       <button className="btn btn-primary">Add Comment</button>
                     </div>

@@ -300,11 +300,7 @@ function MainHeader({ jobCategory }) {
                       <span className="fa-solid fa-user me-2"></span>Profile
                     </Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item
-                      href="/"
-                      role="button"
-                      onClick={handleLogout}
-                    >
+                    <Dropdown.Item role="button" onClick={handleLogout}>
                       <span className="fa-solid fa-right-from-bracket me-2"></span>
                       Logout
                     </Dropdown.Item>

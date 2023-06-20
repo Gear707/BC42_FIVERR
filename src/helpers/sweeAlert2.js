@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 const Popup = Swal.mixin({
   position: "center",
   showConfirmButton: false,
-  timer: 2000,
+  timer: 9000,
 });
 
 export const alertSuccess = (title) => {
@@ -37,6 +37,7 @@ export const warningLogout = () => {
     title: "Are you sure you want to log out?",
     icon: "warning",
     showCancelButton: true,
+    showConfirmButton: true,
     confirmButtonText: "Yes, I do",
     confirmButtonColor: "#0354a5",
     cancelButtonText: "Cancel",
