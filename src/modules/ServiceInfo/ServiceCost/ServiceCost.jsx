@@ -35,7 +35,7 @@ function ServiceCost({ info, user, MaCongViec }) {
     try {
       const data = await apiCreateHiredJob(payload);
       if (data) {
-        alertSuccess2(data.message);
+        alertSuccess2("Job hired successfully!");
       }
     } catch (error) {
       if (!payload.maNguoiThue) {
@@ -44,7 +44,7 @@ function ServiceCost({ info, user, MaCongViec }) {
           navigate("/login");
         }
       } else {
-        alertError2(error.response.data.content);
+        alertError2("Failed to hire job");
       }
     }
   };

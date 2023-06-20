@@ -52,7 +52,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
       const data = await apiSellerComment(MaCongViec);
       setCommets(data.content);
     } catch (error) {
-      alertError2(error.response.data.content);
+      alertError2("Failed to get comments");
     }
   };
 
@@ -95,7 +95,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
     try {
       const data = await apiPostComment(payload);
       if (data.statusCode === 200 || data.statusCode === 201) {
-        alertSuccess2("Your comment has been posted successfully");
+        alertSuccess2("Your comment has been posted successfully!");
         setComment("");
         setRating(0);
         reset({
