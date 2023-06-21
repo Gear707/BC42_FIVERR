@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import styles from "./SliderCategory.module.scss";
 import { useParams } from "react-router-dom";
 import popular from "./SliderCategoryData.json";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import useWindowResize from "../../../helpers/useWindowResize";
 
@@ -25,7 +27,7 @@ function SliderCategory() {
 
   const xsSettings = { ...defaultSettings, slidesToShow: 1, slidesToScroll: 3 };
 
-  // useEffect(() => {}, [tenLoaiCongViec, MaLoaiCongViec]);
+  useEffect(() => {}, [tenLoaiCongViec, MaLoaiCongViec]);
 
   return (
     <div id="SliderCategory" className={styles.container}>

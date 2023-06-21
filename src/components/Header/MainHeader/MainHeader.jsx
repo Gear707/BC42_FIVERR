@@ -273,8 +273,8 @@ function MainHeader({ jobCategory }) {
               >
                 Fiverr Business
               </Nav.Link>
-              <Nav.Link href="#action2">Explore</Nav.Link>
-              <Nav.Link href="#action2">
+              <Nav.Link href="#">Explore</Nav.Link>
+              <Nav.Link href="#">
                 <svg
                   width={18}
                   height={18}
@@ -289,10 +289,10 @@ function MainHeader({ jobCategory }) {
                 </svg>
                 English
               </Nav.Link>
-              <Nav.Link href="#action2">Become a Seller</Nav.Link>
+              <Nav.Link href="#">Become a Seller</Nav.Link>
               {user ? (
                 <Dropdown id="UserAccount" className={styles.account}>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  <Dropdown.Toggle variant="" id="dropdown-basic">
                     {user?.user?.avatar ? (
                       <img src={user?.user?.avatar} alt={user?.user?.name} />
                     ) : (
