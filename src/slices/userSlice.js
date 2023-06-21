@@ -9,23 +9,25 @@ export const login = createAsyncThunk(
     try {
       const data = await apiLogin(values);
       if (data) alertSuccess("Logged in successfully!");
-
+      sessionStorage.setItem("userInfo", JSON.stringify(data.content));
       const { rememberMe } = getState().user;
       if (rememberMe) {
         localStorage.setItem("userInfo", JSON.stringify(data.content));
       }
-
       return data.content;
     } catch (error) {
       alertError("Failed to log in!");
-      throw error.response?.data?.content;
+      throw error;
     }
   }
 );
 
 // default state
 const initialState = {
-  user: JSON.parse(localStorage.getItem("userInfo")) || null,
+  user:
+    JSON.parse(sessionStorage.getItem("userInfo")) ||
+    JSON.parse(localStorage.getItem("userInfo")) ||
+    null,
   isLoading: false,
   error: null,
   rememberMe: false,

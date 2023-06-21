@@ -12,7 +12,9 @@ axiosClient.interceptors.request.use((config) => {
   // config: chứa thông tin của request từ client gửi lên server
 
   // Thêm key token vào headers của request nếu user đã đăng nhập
-  const user = JSON.parse(localStorage.getItem("userInfo"));
+  const user =
+    JSON.parse(localStorage.getItem("userInfo")) ||
+    JSON.parse(sessionStorage.getItem("userInfo"));
   if (user) {
     config.headers.token = user.token;
   }
@@ -29,6 +31,7 @@ axiosClient.interceptors.response.use(
     // Lỗi 401: Trường hợp token hết hạn => Đăng xuất
     if (error.response.status === 401) {
       localStorage.removeItem("userInfo");
+      sessionStorage.removeItem("userInfo");
       //   window.history.replaceState(null, null, "/login");
       window.location.href = "/login";
     }

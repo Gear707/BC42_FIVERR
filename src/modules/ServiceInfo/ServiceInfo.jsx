@@ -19,9 +19,9 @@ function ServiceInfo() {
   const getServiceInfo = async () => {
     try {
       const data = await apiServiceInfo(MaCongViec);
-      setInfo(data.content);
+      setInfo(data?.content);
     } catch (error) {
-      alertError2(error.response.data.content);
+      alertError2("Failed to get service details");
     }
   };
 

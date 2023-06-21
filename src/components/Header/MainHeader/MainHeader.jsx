@@ -296,7 +296,7 @@ function MainHeader({ jobCategory }) {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className={styles.avatar}>
-                    <Dropdown.Item href="/login">
+                    <Dropdown.Item href={`/users/${user?.user?.name}`}>
                       <span className="fa-solid fa-user me-2"></span>Profile
                     </Dropdown.Item>
                     <Dropdown.Divider />

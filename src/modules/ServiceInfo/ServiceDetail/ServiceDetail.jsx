@@ -109,7 +109,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
           navigate("/login");
         }
       } else {
-        alertError2(error.response.data.content);
+        alertError2("Failed to post your comment");
       }
     }
   };

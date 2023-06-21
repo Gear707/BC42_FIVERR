@@ -57,13 +57,13 @@ function Login() {
         console.log(errors);
     };
 
-    if (user) return <Navigate to={`/users/${user.user.name}`} />;
+    if (user) return <Navigate to="/" />;
 
     return (
         <MDBContainer className="mx-4 p-5 bg-white rounded-7">
             <MDBRow className="justify-content-between">
                 <MDBCol col='10' lg='7' className="d-none d-lg-block align-self-center">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" className="img-fluid" alt="Phone image" />
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" className="img-fluid" alt="phone" />
                 </MDBCol>
 
                 <MDBCol col='4' lg='5'>
