@@ -38,6 +38,7 @@ function MainHeader({ jobCategory }) {
         if (result.isConfirmed) {
           dispatch(logout());
           localStorage.removeItem("userInfo");
+          sessionStorage.removeItem("userInfo");
           alertSuccess("Logged out successfully");
         }
       })
@@ -291,8 +292,12 @@ function MainHeader({ jobCategory }) {
               <Nav.Link href="#action2">Become a Seller</Nav.Link>
               {user ? (
                 <Dropdown id="UserAccount" className={styles.account}>
-                  <Dropdown.Toggle variant="transparent" id="dropdown-basic">
-                    <img src={user?.user?.avatar} alt={user?.user?.name} />
+                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    {user?.user?.avatar ? (
+                      <img src={user?.user?.avatar} alt={user?.user?.name} />
+                    ) : (
+                      <span>{user?.user?.name.charAt(0).toUpperCase()}</span>
+                    )}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className={styles.avatar}>
