@@ -21,7 +21,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
   const navigate = useNavigate();
   const [rating, setRating] = useState(0);
 
-  const [comments, setCommets] = useState();
+  const [comments, setComments] = useState();
 
   // This variable plays as a dependency in re-rendering component
   const [comment, setComment] = useState("");
@@ -50,7 +50,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
   const getSellerComment = async () => {
     try {
       const data = await apiSellerComment(MaCongViec);
-      setCommets(data.content);
+      setComments(data.content);
     } catch (error) {
       alertError2("Failed to get comments");
     }
