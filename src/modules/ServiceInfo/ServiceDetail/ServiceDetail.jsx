@@ -66,7 +66,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
     noiDung: yup
       .string()
       .required("*Comment is required!")
-      .matches(COMMENT, "*Comment must have at least 10 characters!"),
+      .matches(COMMENT, "*Comment must have at least 10 words!"),
   });
 
   const {
