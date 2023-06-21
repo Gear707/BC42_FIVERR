@@ -292,7 +292,7 @@ function MainHeader({ jobCategory }) {
               <Nav.Link href="#">Become a Seller</Nav.Link>
               {user ? (
                 <Dropdown id="UserAccount" className={styles.account}>
-                  <Dropdown.Toggle variant="" id="dropdown-basic">
+                  <Dropdown.Toggle variant="success" id="dropdown-basic">
                     {user?.user?.avatar ? (
                       <img src={user?.user?.avatar} alt={user?.user?.name} />
                     ) : (
