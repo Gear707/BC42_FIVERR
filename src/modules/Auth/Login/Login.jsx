@@ -50,6 +50,7 @@ function Login() {
 
     const onSubmit = (values) => {
         dispatch(login(values));
+        navigate("/");
         reset();
     };
 
