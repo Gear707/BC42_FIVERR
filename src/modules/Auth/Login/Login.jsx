@@ -108,7 +108,7 @@ function Login() {
 
                             <p>
                                 Don't have an account?
-                                <a href="/register"
+                                <a onClick={() => navigate("/register")}
                                     className="ms-2 text-success text-decoration-underline"
                                 >
                                     Register here
