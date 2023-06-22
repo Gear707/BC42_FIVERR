@@ -58,7 +58,6 @@ function Login() {
 
   const onSubmit = (values) => {
     dispatch(login(values));
-    navigate("/");
     reset();
   };
 
@@ -66,7 +65,10 @@ function Login() {
     console.log(errors);
   };
 
-  if (user) return <Navigate to="/" />;
+  if (localStorage.getItem("page") && user)
+    return (window.location.href = localStorage.getItem("page"));
+
+  if (!localStorage.getItem("page") && user) return <Navigate to="/" />;
 
   return (
     <MDBContainer className="mx-4 p-5 bg-white rounded-7">
