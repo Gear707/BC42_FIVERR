@@ -40,8 +40,7 @@ function SubHeader({ jobCategory }) {
               key={category.id}
               className={`${styles.navLink}`}
               title={category.tenLoaiCongViec}
-              // Thêm show={activeCategory === category.id} để hiển thị dropdown của
-              // hạng mục được hover vào
+              // Thêm show={activeCategory === category.id} để hiển thị dropdown của hạng mục được hover vào
               show={dropdownVisible && activeCategory === category.id}
               onMouseEnter={() => handleMouseEnter(category.id)}
               onMouseLeave={handleMouseLeave}

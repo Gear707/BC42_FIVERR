@@ -1,6 +1,6 @@
 .container {
     margin: 10px 20px 20px 10px;
-    padding: 0px 32px 32px 32px;
+    padding: 0px 30px 30px 30px;
     font-size: 16px;
     color: #222325;
     overflow: hidden;
@@ -13,11 +13,12 @@
     .slideGroup {
         display: flex;
         justify-content: space-between;
-        margin-top: 20px;
+        margin: 20px 1px 2px 1px;
         max-width: 270px;
 
         .slide {
-            width: 100%;
+            width: 98%;
+            box-shadow: 0.15px 0.15px 1px 1px rgba(0, 0, 0, .09);
             border: 1px solid #efeff0;
             border-radius: 12px;
             color: #404145;
@@ -65,7 +66,6 @@
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
-            // width: 100vw;
             overflow: hidden;
 
             .slide {

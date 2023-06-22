@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./BannerCategory.module.scss";
 import { useParams } from "react-router-dom";
+import category from "./BannerCategoryData.json";
 
 function BannerCategory() {
   const { MaLoaiCongViec, tenLoaiCongViec } = useParams();
+  useEffect(() => {}, [MaLoaiCongViec, tenLoaiCongViec]);
+
   return (
     <div className={styles.container}>
       <div className={styles.banner}>
         <div className={styles.bannerBackground}>
           <img
-            src={
-              "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto/v1/attachments/generic_asset/asset/3f1b7ea10295936b6846bcff0afd38cf-1626595415203/graphics-design-desktop.png"
-            }
-            alt=""
+            src={category[MaLoaiCongViec - 1] || category[1]}
+            alt={tenLoaiCongViec}
           />
           <div className={styles.bannerContent}>
             <h1 className={styles.title}>{tenLoaiCongViec}</h1>

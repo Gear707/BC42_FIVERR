@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Collapse, Nav } from "react-bootstrap";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -83,39 +83,46 @@ function ServiceDetail({ info, user, MaCongViec }) {
   });
 
   const onSubmit = async (values) => {
-    const currentTime = new Date().toLocaleString();
-    const payload = {
-      id: 1003,
-      maCongViec: +MaCongViec,
-      maNguoiBinhLuan: +user?.user?.user?.id,
-      ngayBinhLuan: currentTime,
-      noiDung: values.noiDung,
-      saoBinhLuan: rating,
-    };
-    try {
-      const data = await apiPostComment(payload);
-      if (data.statusCode === 200 || data.statusCode === 201) {
-        alertSuccess2("Your comment has been posted successfully!");
-        setComment("");
-        setRating(0);
-        reset({
-          noiDung: "",
-        });
+    if (!user.user) {
+      localStorage.setItem("page", window.location.href); // Lưu đường dẫn, nội dung và đánh giá ở trang trước khi chuyển sang trang login
+      localStorage.setItem("noiDung", values.noiDung);
+      localStorage.setItem("saoBinhLuan", rating);
+      const result = await alertRequireLogin();
+      if (result.isConfirmed) {
+        navigate("/login");
       }
-    } catch (error) {
-      if (!payload.maNguoiBinhLuan) {
-        const result = await alertRequireLogin();
-        if (result.isConfirmed) {
-          navigate("/login");
+    }
+    if (user.user) {
+      localStorage.removeItem("page"); // Xóa đường dẫn trang trước đó yêu cầu đăng nhập
+      const currentTime = new Date().toLocaleString();
+      const payload = {
+        id: 1003,
+        maCongViec: +MaCongViec,
+        maNguoiBinhLuan: +user?.user?.user?.id,
+        ngayBinhLuan: currentTime,
+        noiDung: values.noiDung || localStorage.getItem("noiDung"),
+        saoBinhLuan: rating || localStorage.getItem("saoBinhLuan"),
+      };
+      try {
+        const data = await apiPostComment(payload);
+        if (data.statusCode === 200 || data.statusCode === 201) {
+          alertSuccess2("Your comment has been posted successfully!");
+          setComment("");
+          setRating(0);
+          reset({
+            noiDung: "",
+          });
+          localStorage.removeItem("noiDung");
+          localStorage.removeItem("saoBinhLuan");
         }
-      } else {
+      } catch (error) {
         alertError2("Failed to post your comment");
       }
     }
   };
 
   const onError = (errors) => {
-    console.log(errors);
+    alertError2(errors.noiDung.message);
   };
 
   // hàm chọn số sao đánh giá ở phần bình luận
@@ -237,7 +244,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
                 </Collapse>
 
                 <NavLink onClick={() => setOpen2(!open2)} aria-expanded={open2}>
-                  What makes you a Fiverr Pro seller?{" "}
+                  What makes you a Fiverr Pro seller?
                   <span
                     className={
                       open2 ? "fa-solid fa-angle-up" : "fa-solid fa-angle-down"
@@ -444,7 +451,7 @@ function ServiceDetail({ info, user, MaCongViec }) {
                         cols="80"
                         rows="7"
                         placeholder="Leave your feedback to help our seller enhance their services"
-                        value={comment}
+                        value={comment || localStorage.getItem("noiDung")}
                         {...register("noiDung")}
                         onChange={handleChange} //not really need to update the value of this input
                       ></textarea>
@@ -460,10 +467,16 @@ function ServiceDetail({ info, user, MaCongViec }) {
                         <label className="me-2" htmlFor="">
                           Rate:
                         </label>
-                        <Rate value={rating} onChange={handleRatingChange} />
+                        <Rate
+                          value={rating || localStorage.getItem("saoBinhLuan")}
+                          onChange={handleRatingChange}
+                        />
                       </div>
 
-                      <p>You've rated: {rating} (stars)</p>
+                      <p>
+                        You've rated:
+                        {rating || localStorage.getItem("saoBinhLuan")} (stars)
+                      </p>
                       <button className="btn btn-primary">Add Comment</button>
                     </div>
                   </form>

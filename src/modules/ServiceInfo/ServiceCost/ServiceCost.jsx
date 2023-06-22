@@ -24,26 +24,31 @@ function ServiceCost({ info, user, MaCongViec }) {
   };
 
   const handleContinue = async () => {
-    const currentTime = new Date().toLocaleString();
-    const payload = {
-      id: 0,
-      maCongViec: MaCongViec,
-      maNguoiThue: user?.user?.user?.id,
-      ngayThue: currentTime,
-      hoanThanh: true,
-    };
-    try {
-      const data = await apiCreateHiredJob(payload);
-      if (data) {
-        alertSuccess2("Job hired successfully!");
-      }
-    } catch (error) {
-      if (!payload.maNguoiThue) {
-        const result = await alertRequireLogin();
+    if (!user.user) {
+      localStorage.setItem("page", window.location.href); // Lưu đường dẫn trang trước khi chuyển sang trang login
+      const result = await alertRequireLogin();
+      if (result.isConfirmed) {
+        navigate("/login");
         if (result.isConfirmed) {
           navigate("/login");
         }
-      } else {
+      }
+    } else {
+      localStorage.removeItem("page"); // Xóa đường dẫn trang trước đó yêu cầu đăng nhập
+      const currentTime = new Date().toLocaleString();
+      const payload = {
+        id: 0,
+        maCongViec: MaCongViec,
+        maNguoiThue: user?.user?.user?.id,
+        ngayThue: currentTime,
+        hoanThanh: true,
+      };
+      try {
+        const data = await apiCreateHiredJob(payload);
+        if (data) {
+          alertSuccess2("Job hired successfully!");
+        }
+      } catch (error) {
         alertError2("Failed to hire job");
       }
     }

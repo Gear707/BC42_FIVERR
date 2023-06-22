@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import popular from "./SliderCategoryData.json";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./SliderCategoryCustom.scss";
 import Slider from "react-slick";
 import useWindowResize from "../../../helpers/useWindowResize";
 
