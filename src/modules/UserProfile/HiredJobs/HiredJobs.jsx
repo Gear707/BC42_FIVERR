@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./HiredJobs.module.scss";
 import {
   apiDeleteHiredJob,
@@ -150,7 +150,7 @@ function HiredJobs({ userInfo }) {
     return stars;
   };
 
-  const renderJobs = useCallback(() => {
+  const renderJobs = () => {
     const jobsToDisplay = getItemsForCurrentPage();
 
     return jobsToDisplay?.map((job) => {
@@ -220,7 +220,7 @@ function HiredJobs({ userInfo }) {
         </div>
       );
     });
-  }, [getItemsForCurrentPage, handleDeleteJob, handleSelectJob, size.width]);
+  };
 
   useEffect(() => {
     getHiredJobs();
