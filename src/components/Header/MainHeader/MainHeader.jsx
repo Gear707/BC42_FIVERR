@@ -12,7 +12,11 @@ import {
 } from "react-bootstrap";
 import useWindowResize from "../../../helpers/useWindowResize";
 import { useDispatch, useSelector } from "react-redux";
-import { alertSuccess, warningLogout } from "../../../helpers/sweeAlert2";
+import {
+  alertError,
+  alertSuccess,
+  warningLogout,
+} from "../../../helpers/sweeAlert2";
 import { logout } from "../../../slices/userSlice";
 
 function MainHeader({ jobCategory }) {
@@ -43,7 +47,7 @@ function MainHeader({ jobCategory }) {
         }
       })
       .catch((error) => {
-        console.log(error);
+        alertError(error.response.data.content);
       });
   };
 
@@ -61,7 +65,6 @@ function MainHeader({ jobCategory }) {
   const condition3 = pathname !== "/" && size.width < 576;
 
   const handleScroll = () => {
-    // const scrollTop = window.pageYOffset;
     const scrollY = window.scrollY;
     setY(scrollY);
   };
@@ -113,8 +116,20 @@ function MainHeader({ jobCategory }) {
                 {user ? (
                   <>
                     <Nav.Link href="/login" className="userAccount">
-                      <img src={user?.user?.avatar} alt={user?.user?.name} />
-                      <span>{user?.user?.name}</span>
+                      <button className="btn btn-success">
+                        {user?.user?.avatar ? (
+                          <img
+                            src={user?.user?.avatar}
+                            alt={user?.user?.name}
+                          />
+                        ) : (
+                          <span>
+                            {user?.user?.name.charAt(0).toUpperCase()}
+                          </span>
+                        )}
+                      </button>
+
+                      <span className="userName">{user?.user?.name}</span>
                     </Nav.Link>
                     <Nav.Link href="/login">
                       <span className="fa-solid fa-user me-2"></span>Profile

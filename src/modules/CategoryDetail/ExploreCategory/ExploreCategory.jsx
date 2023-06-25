@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { apiJobCategoryDetail } from "../../../apis/jobAPI";
 import { useParams } from "react-router-dom";
 import styles from "./ExploreCategory.module.scss";
+import { alertError } from "../../../helpers/sweeAlert2";
+
 function ExploreCategory() {
   const { MaLoaiCongViec, tenLoaiCongViec } = useParams();
 
@@ -12,7 +14,7 @@ function ExploreCategory() {
       const data = await apiJobCategoryDetail(MaLoaiCongViec);
       setJobCategoryDetail(data?.content[0]);
     } catch (error) {
-      console.log(error);
+      alertError(error.response.data.content);
     }
   };
 

@@ -7,15 +7,11 @@ import { apiJobList } from "../../apis/jobAPI";
 import "./Pagination.scss";
 import MainNav from "./MainNav/MainNav";
 import SwitchNav from "./SwitchNav/SwitchNav";
+import { alertError } from "../../helpers/sweeAlert2";
 
 function JobList() {
   const { keyword } = useParams();
   const navigate = useNavigate();
-  const [checked, setChecked] = useState(false);
-
-  const handleOnChange = () => {
-    setChecked(!checked);
-  };
 
   // state theo dõi phân trang
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,7 +27,7 @@ function JobList() {
       const data = await apiJobList(currentPage, keyword);
       setJobs(data.data);
     } catch (error) {
-      console.log(error);
+      alertError(error.response.data.content);
     }
   };
 

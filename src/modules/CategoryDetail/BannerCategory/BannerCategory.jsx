@@ -12,7 +12,7 @@ function BannerCategory() {
       <div className={styles.banner}>
         <div className={styles.bannerBackground}>
           <img
-            src={category[MaLoaiCongViec - 1] || category[1]}
+            src={category[MaLoaiCongViec - 1] || category[6]}
             alt={tenLoaiCongViec}
           />
           <div className={styles.bannerContent}>

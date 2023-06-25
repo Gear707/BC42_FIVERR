@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import styles from "./SubHeader.module.scss";
-import "../HeaderCustom.scss";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 

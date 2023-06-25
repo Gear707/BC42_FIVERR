@@ -23,6 +23,13 @@ export const apiJobCategoryDetail = async (MaLoaiCongViec) => {
   return data;
 };
 
+export const apiTypeJobCategory = async (MaChiTietLoai) => {
+  const { data } = await axiosClient.get(
+    `/cong-viec/lay-cong-viec-theo-chi-tiet-loai/${MaChiTietLoai}`
+  );
+  return data;
+};
+
 export const apiServiceInfo = async (MaCongViec) => {
   const { data } = await axiosClient.get(
     `/cong-viec/lay-cong-viec-chi-tiet/${MaCongViec}`

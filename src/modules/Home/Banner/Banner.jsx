@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick-theme.css";
 import "./slick.scss";
 import { useNavigate } from "react-router-dom";
 import useWindowResize from "../../../helpers/useWindowResize";
-import data from "./ProfileData.json";
 
 function Banner() {
   const navigate = useNavigate();

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import MainHeader from "./MainHeader/MainHeader";
 import SubHeader from "./SubHeader/SubHeader";
-import styles from "./Header.module.scss";
+import "./HeaderCustom.scss";
 import { useLocation } from "react-router-dom";
 import useWindowResize from "../../helpers/useWindowResize";
 import { apiJobCategory } from "../../apis/jobAPI";
+import { alertError } from "../../helpers/sweeAlert2";
 
 function Header() {
   const [y, setY] = useState(0);
@@ -17,7 +18,6 @@ function Header() {
   const condition = size.width >= 992 && (y >= 150 || pathname !== "/");
 
   const handleScroll = () => {
-    // const scrollTop = window.pageYOffset;
     const scrollY = window.scrollY;
     setY(scrollY);
   };
@@ -27,7 +27,7 @@ function Header() {
       const data = await apiJobCategory();
       setJobCategory(data?.content);
     } catch (error) {
-      console.log(error);
+      alertError(error.response.data.content);
     }
   };
 

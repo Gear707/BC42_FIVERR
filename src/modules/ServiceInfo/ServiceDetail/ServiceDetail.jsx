@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Collapse, Nav } from "react-bootstrap";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -395,18 +395,19 @@ function ServiceDetail({ info, user, MaCongViec }) {
                 {comments?.map((item, index) => {
                   return (
                     <div key={index} className={styles.commentGroup}>
-                      <Avatar
-                        name={item.tenNguoiBinhLuan}
-                        round
-                        size={avatarSize}
-                        color="#007bff"
-                        textSizeRatio={2}
-                      >
-                        {item.tenNguoiBinhLuan
-                          .split(" ")
-                          .map((name) => name.charAt(0))
-                          .join("")}
-                      </Avatar>
+                      {item.avatar ? (
+                        <div className={styles.commentorAvatar}>
+                          <img src={item.avatar} alt={item.tenNguoiBinhLuan} />
+                        </div>
+                      ) : (
+                        <div className={styles.commentorAvatar}>
+                          <button className="btn btn-success">
+                            <span>
+                              {item.tenNguoiBinhLuan.charAt(0).toUpperCase()}
+                            </span>
+                          </button>
+                        </div>
+                      )}
                       <div className={styles.comment}>
                         <h6 className="d-inline">{item.tenNguoiBinhLuan}</h6>
                         <span className="mx-2">|</span>
@@ -435,14 +436,19 @@ function ServiceDetail({ info, user, MaCongViec }) {
               </div>
               <div id="PostComment" className={styles.postComment}>
                 <div className={styles.postGroup}>
-                  {user && (
-                    <div className={styles.avatarCommentor}>
+                  <div className={styles.avatarCommentor}>
+                    {user?.user?.user ? (
                       <img
                         src={user?.user?.user?.avatar}
                         alt={user?.user?.user?.name}
                       />
-                    </div>
-                  )}
+                    ) : (
+                      <img
+                        src="https://m.media-amazon.com/images/I/71zTE0u2iXL._AC_UX679_.jpg"
+                        alt="anonymous"
+                      />
+                    )}
+                  </div>
                   <form onSubmit={handleSubmit(onSubmit, onError)}>
                     <div className="form-group">
                       <textarea
